@@ -1,0 +1,16 @@
+<table class="table table-striped">
+    <tbody>
+      <tr *ngFor='let task of myTasks'>
+          <td>{{ task.taskName }}</td>
+          <td>{{ task.taskState }}</td>
+          <td>
+            <a href="#">
+                <span class="glyphicon glyphicon-play-circle"></span>
+            </a>
+            <a href="#">
+              <span class="glyphicon glyphicon-remove"></span>
+            </a>
+          </td>
+      </tr>
+    </tbody>
+</table>
