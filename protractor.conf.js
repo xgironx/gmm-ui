@@ -5,19 +5,21 @@
 var SpecReporter = require('jasmine-spec-reporter');
 
 exports.config = {
-  allScriptsTimeout: 11000,
+  allScriptsTimeout: 11000000,
   specs: [
     './e2e/**/*.e2e-spec.ts'
   ],
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'phantomjs',
+    'phantomjs.binary.path': require('phantomjs-prebuilt').path,
+    'phantomjs.ghostdriver.cli.args': ['--loglevel=DEBUG']
   },
-  directConnect: true,
+  directConnect: false,
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 30000,
+    defaultTimeoutInterval: 30000000,
     print: function() {}
   },
   useAllAngular2AppRoots: true,

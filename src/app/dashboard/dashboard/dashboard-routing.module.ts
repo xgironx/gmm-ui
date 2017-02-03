@@ -5,7 +5,7 @@ import { Dashboard1Component } from '../dashboard1/dashboard1.component';
 
 const lazyRoutes: Routes = [
   {
-    path: '',
+    path: 'Dashboard',
     component: DashboardComponent,
     children: [
       {
