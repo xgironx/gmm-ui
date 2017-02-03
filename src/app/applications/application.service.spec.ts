@@ -1,5 +1,4 @@
-/*import { ApplicationService } from './application.service';
-import {} from 'jasmine';
+import { } from 'jasmine';
 import {
   TestBed,
   getTestBed,
@@ -8,69 +7,109 @@ import {
 } from '@angular/core/testing';
 import {
   Headers, BaseRequestOptions,
-  Response, HttpModule, Http, XHRBackend, RequestMethod
+  Response, HttpModule, Http, XHRBackend, RequestMethod, ResponseOptions
 } from '@angular/http';
 
-import {ResponseOptions} from '@angular/http';
-import {MockBackend, MockConnection} from '@angular/http/testing';
+import { MockBackend, MockConnection } from '@angular/http/testing';
+
+import { ApplicationService } from './application.service';
+import { Application } from './application';
 import { IApplication } from './iapplication';
 
 describe('ApplicationService', () => {
-  let mockBackend: MockBackend;
-
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        ApplicationService,
-        MockBackend,
-        BaseRequestOptions,
-        {
-          provide: Http,
-          deps: [MockBackend, BaseRequestOptions],
-          useFactory:
-            (backend: XHRBackend, defaultOptions: BaseRequestOptions) => {
-              return new Http(backend, defaultOptions);
-            }
-       }
+        ApplicationService
       ],
       imports: [
         HttpModule
       ]
     });
-    mockBackend = getTestBed().get(MockBackend);
-  }));
+  });
 
-  /*it('should ...', inject([ApplicationService], (service: ApplicationService) => {
-    expect(service).toBeTruthy();
-  }));*/
+  it('should construct', async(inject([ApplicationService], (service) => {
+    expect(service).toBeDefined();
+  })));
+});
 
-  /*it('should get applications', done => {
-    let applicationService: ApplicationService;
+describe('ApplicationService (Mocked)', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        ApplicationService,
 
-    getTestBed().compileComponents().then(() => {
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => {
-          connection.mockRespond(new Response(
-            new ResponseOptions({
-                body: [
-                  {
-                    applicationId: 26,
-                    contentRendered: '<p><b>Hi there</b></p>',
-                    contentMarkdown: '*Hi there*'
-                  }]
-              }
-            )));
-        });
-
-        applicationService = getTestBed().get(ApplicationService);
-        expect(applicationService).toBeDefined();
-
-        applicationService.getApplications().subscribe((applications: IApplication[]) => {
-            expect(applications.length).toBeDefined();
-            expect(applications.length).toEqual(1);
-            expect(applications[0].applicationId).toEqual(26);
-            done();
-        });
+        MockBackend,
+        BaseRequestOptions,
+        {
+          provide: Http,
+          useFactory: (backend, options) => new Http(backend, options),
+          deps: [MockBackend, BaseRequestOptions]
+        }
+      ],
+      imports: [
+        HttpModule
+      ]
     });
   });
-});*/
+
+  it('should construct', async(inject(
+    [ApplicationService, MockBackend], (service, mockBackend) => {
+
+      expect(service).toBeDefined();
+    })));
+});
+
+describe('ApplicationService Methods', () => {
+  const mockApplication1: Application = {
+    applicationId: 6548976,
+    grantType: "Research",
+    poc: "Joe Smith",
+    subGrantee: "Yes",
+    status: "Active"
+  };
+  const mockApplication2: Application = {
+    applicationId: 6558976,
+    grantType: "Research",
+    poc: "Frank Jones",
+    subGrantee: "Yes",
+    status: "Submitted"
+  };
+  const mockResponse: Application[] = [mockApplication1, mockApplication2];
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        ApplicationService,
+        {
+          provide: Http,
+          useFactory: (mockBackend, options) => {
+            return new Http(mockBackend, options);
+          },
+          deps: [MockBackend, BaseRequestOptions]
+        },
+        MockBackend,
+        BaseRequestOptions
+      ],
+      imports: [
+        HttpModule
+      ]
+    });
+  }));
+
+  it('should return an Observable<Array<IApplication>>',
+    inject([ApplicationService, MockBackend], (applicationService, mockBackend) => {
+      mockBackend.connections.subscribe((connection) => {
+        connection.mockRespond(new Response(new ResponseOptions({
+          body: JSON.stringify(mockResponse)
+        })));
+      });
+
+      applicationService.getApplications().subscribe((applications) => {
+        expect(applications.length).toBe(2);
+        expect(applications[0].applicationId).toEqual(6548976);
+        expect(applications[1].applicationId).toEqual(6558976);
+      });
+    }));
+});
+
