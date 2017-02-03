@@ -18,5 +18,5 @@ COPY . /usr/src/app
 #Set some volumes
 VOLUME ["/usr/src/app", "/usr/src/app/node_modules"]
 
-EXPOSE 8080
+EXPOSE 4200
 CMD [ "npm", "start" ]
