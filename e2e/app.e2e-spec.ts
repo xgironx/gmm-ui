@@ -1,14 +1,14 @@
-import { FemaBpmDemoPage } from './app.po';
+import { HomePage } from './app.po';
 
 describe('fema-bpm-demo App', function() {
-  let page: FemaBpmDemoPage;
+  let page: HomePage;
 
   beforeEach(() => {
-    page = new FemaBpmDemoPage();
+    page = new HomePage();
   });
 
-  it('should display message saying app works', () => {
+  it('should display title Applications', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    expect(page.getTitleText()).toEqual('Applications');
   });
 });

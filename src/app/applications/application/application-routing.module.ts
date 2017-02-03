@@ -8,7 +8,7 @@ import { StateResolver, ApplicantTypeResolver, GrantTypeResolver } from '../../s
 
 const lazyRoutes: Routes = [
   {
-    path: '',
+    path: 'Application',
     component: ApplicationComponent,
     children: [
       {

@@ -5,6 +5,10 @@ import { Observable } from 'rxjs/Observable';
 import { IApplication } from './iapplication';
 import { IGrantee } from './igrantee';
 
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+
 
 @Injectable()
 export class ApplicationService {
@@ -15,7 +19,7 @@ export class ApplicationService {
     getApplications(): Observable<IApplication[]> {
         return this._http.get(this._applicationUrl)
             .map((response: Response) => <IApplication[]>response.json())
-            .do(data => console.log('All: ' + JSON.stringify(data)))
+            //.do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
