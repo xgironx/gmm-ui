@@ -12,18 +12,19 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ApplicationService {
-    private _applicationUrl = 'api/applications/applications.json';
+    //private _applicationUrl = 'api/applications/applications.json';
+    private _applicationUrl = 'http://localhost:8080/applications';
 
     constructor(private _http: Http) { }
 
     getApplications(): Observable<IApplication[]> {
         return this._http.get(this._applicationUrl)
             .map((response: Response) => <IApplication[]>response.json())
-            //.do(data => console.log('All: ' + JSON.stringify(data)))
+            .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
-    saveGrantee(grantee): Observable<IGrantee> {
+    saveGrantee(grantee: IGrantee): Observable<IGrantee> {
         let headers = new Headers({ 'Content-Type': 'grantee/json' });
         let options = new RequestOptions({ headers: headers });
 
@@ -33,7 +34,7 @@ export class ApplicationService {
         }).catch(this.handleError);
     }
 
-    saveApplication(application): Observable<IApplication> {
+    saveApplication(application: IApplication): Observable<IApplication> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 

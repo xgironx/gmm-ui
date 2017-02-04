@@ -8,7 +8,7 @@ import { ApplicationService } from '../application.service';
   styleUrls: ['./applications-list.component.css']
 })
 export class ApplicationsListComponent implements OnInit {
-  applications: IApplication[];
+  applications: IApplication[] = null;
   errorMessage: string;
 
   public rows: Array<any> = [];
@@ -37,8 +37,9 @@ export class ApplicationsListComponent implements OnInit {
   ngOnInit() {
     this._applicationService.getApplications()
       .subscribe(
-      applications => {
+      (applications) => {
         this.applications = applications;
+        console.log(applications);
         this.length = this.applications.length;
         this.onChangeTable(this.config);
       },
