@@ -19,4 +19,4 @@ COPY . /usr/src/app
 VOLUME ["/usr/src/app", "/usr/src/app/node_modules"]
 
 EXPOSE 4200
-CMD [ "npm", "start" ]
+CMD [ "npm", "start", "--", "-lr", "false" ]
