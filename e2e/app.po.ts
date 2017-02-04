@@ -8,7 +8,8 @@ export class HomePage {
 
   getTitleText() {
     
-    var titleElement =  element.all(by.binding('pageTitle')).first();
+    var titleElement = element(by.binding('pageTitle'));
+    //element.all(by.binding('pageTitle')).first();
     return "Applications";
     //return titleElement.getText();
     //return element(by.css('app-root h3')).getText();

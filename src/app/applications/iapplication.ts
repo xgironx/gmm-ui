@@ -1,5 +1,5 @@
 export interface IApplication {
-    applicationId: number;
+    applicationId: string;
     grantType: string;
     poc: string;
     subGrantee: string;
