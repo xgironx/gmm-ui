@@ -29,8 +29,6 @@ import { CoreModule } from './core/core.module';
 
 /* Components */
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './core/sidebar/sidebar.component';
-import { TopnavbarComponent } from './core/topnavbar/topnavbar.component';
 import { HomeComponent } from './home/home/home.component';
 import { ReportsReceivedPieChartComponent } from './shared/charts/reports-received-pie-chart/reports-received-pie-chart.component';
 import { PieGridCustomComponent } from './shared/charts/pie-grid-custom/pie-grid-custom.component';
@@ -42,8 +40,6 @@ export function optionsFactory(backend: MockBackend, options: BaseRequestOptions
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
-    TopnavbarComponent,
     HomeComponent,
     ReportsReceivedPieChartComponent,
     PieGridCustomComponent
@@ -77,6 +73,6 @@ export function optionsFactory(backend: MockBackend, options: BaseRequestOptions
       useFactory: optionsFactory
     }
   ],
-  entryComponents: [ AppComponent ]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
