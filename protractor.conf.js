@@ -29,6 +29,7 @@ exports.config = {
     });
   },
   onPrepare: function() {
+    browser.param.jasmineTimeout = 40000;
     jasmine.getEnv().addReporter(new SpecReporter());
   }
 };
