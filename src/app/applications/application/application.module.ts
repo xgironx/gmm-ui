@@ -19,6 +19,9 @@ import { Ng2TableModule } from 'ng2-table/ng2-table';
 import { PaginationModule } from 'ng2-bootstrap';
 import {SelectModule} from 'angular2-select';
 
+/* Shared Module */
+import { SharedModule } from '../../shared/shared.module';
+
 @NgModule({
   imports: [
     PaginationModule.forRoot(),
@@ -29,7 +32,8 @@ import {SelectModule} from 'angular2-select';
     ReactiveFormsModule,
     lazyRouting,
     Ng2TableModule,
-    SelectModule
+    SelectModule,
+    SharedModule
     
   ],
   exports: [
