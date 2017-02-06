@@ -7,7 +7,8 @@ import { ITask } from './itask';
 
 @Injectable()
 export class TaskService {
-    private _taskUrl = 'api/tasks/tasks.json';
+    //private _taskUrl = 'api/tasks/tasks.json';
+    private _taskUrl = 'http://localhost:8080/tasks';
 
     constructor(private _http: Http) { }
 
