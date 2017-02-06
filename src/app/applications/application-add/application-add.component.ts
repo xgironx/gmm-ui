@@ -8,8 +8,7 @@ import { IApplication } from '../iapplication';
 
 @Component({
   selector: 'app-application-add',
-  templateUrl: './application-add.component.html',
-  styleUrls: ['./application-add.component.css']
+  templateUrl: './application-add.component.html'
 })
 export class ApplicationAddComponent implements OnInit {
     public pageTitle: string = 'Application Information';

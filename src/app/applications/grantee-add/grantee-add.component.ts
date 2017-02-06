@@ -9,8 +9,7 @@ import { ApplicationService } from '../application.service';
 
 @Component({
   selector: 'app-grantee-add',
-  templateUrl: './grantee-add.component.html',
-  styleUrls: ['./grantee-add.component.css']
+  templateUrl: './grantee-add.component.html'
 })
 export class GranteeAddComponent implements OnInit {
     public pageTitle: string = 'Grantee Information';

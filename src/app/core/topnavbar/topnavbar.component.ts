@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-topnavbar',
-  templateUrl: './topnavbar.component.html',
-  styleUrls: ['./topnavbar.component.css']
+  templateUrl: './topnavbar.component.html'
 })
 
 export class TopnavbarComponent {
