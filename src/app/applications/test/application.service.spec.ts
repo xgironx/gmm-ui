@@ -12,9 +12,9 @@ import {
 
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
-import { ApplicationService } from './application.service';
-import { Application } from './application';
-import { IApplication } from './iapplication';
+import { ApplicationService } from '../application.service';
+import { Application } from '../application';
+import { IApplication } from '../iapplication';
 
 describe('ApplicationService', () => {
   beforeEach(() => {
@@ -62,14 +62,14 @@ describe('ApplicationService (Mocked)', () => {
 
 describe('ApplicationService Methods', () => {
   const mockApplication1: Application = {
-    applicationId: 6548976,
+    applicationId: "6548976",
     grantType: "Research",
     poc: "Joe Smith",
     subGrantee: "Yes",
     status: "Active"
   };
   const mockApplication2: Application = {
-    applicationId: 6558976,
+    applicationId: "6558976",
     grantType: "Research",
     poc: "Frank Jones",
     subGrantee: "Yes",
@@ -107,8 +107,8 @@ describe('ApplicationService Methods', () => {
 
       applicationService.getApplications().subscribe((applications) => {
         expect(applications.length).toBe(2);
-        expect(applications[0].applicationId).toEqual(6548976);
-        expect(applications[1].applicationId).toEqual(6558976);
+        expect(applications[0].applicationId).toEqual("6548976");
+        expect(applications[1].applicationId).toEqual("6558976");
       });
     }));
 });
