@@ -7,12 +7,16 @@ import { TaskModule } from '../../tasks/task/task.module';
 import { TabsModule } from 'ng2-bootstrap';
 //import { ReportsReceivedPieChartComponent } from '../../shared/charts/reports-received-pie-chart/reports-received-pie-chart.component';
 
+/* Shared Module */
+import { SharedModule } from '../../shared/shared.module';
+
 @NgModule({
   imports: [
     CommonModule,
     dashboardRouting,
     TaskModule,
-    TabsModule
+    TabsModule,
+    SharedModule
   ],
   declarations: [
     DashboardComponent,
