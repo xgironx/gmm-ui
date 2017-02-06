@@ -13,7 +13,6 @@ import {NgxChartsModule, PieArcComponent , calculateViewDimensions, ViewDimensio
 @Component({
   selector: 'app-pie-grid-custom',
   templateUrl: './pie-grid-custom.component.html',
-  styleUrls: ['./pie-grid-custom.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PieGridCustomComponent extends BaseChartComponent {

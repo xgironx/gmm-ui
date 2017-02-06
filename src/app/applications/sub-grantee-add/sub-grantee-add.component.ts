@@ -9,8 +9,7 @@ import { ApplicationService } from '../application.service';
 
 @Component({
   selector: 'app-sub-grantee-add',
-  templateUrl: './sub-grantee-add.component.html',
-  styleUrls: ['./sub-grantee-add.component.css']
+  templateUrl: './sub-grantee-add.component.html'
 })
 
 export class SubGranteeAddComponent implements OnInit {

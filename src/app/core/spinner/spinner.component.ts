@@ -4,8 +4,7 @@ import { LoggerService } from '../logger.service';
 import { SpinnerState, SpinnerService } from '../spinner.service';
 @Component({
   selector: 'app-spinner',
-  templateUrl: './spinner.component.html',
-  styleUrls: ['./spinner.component.css']
+  templateUrl: './spinner.component.html'
 })
 export class SpinnerComponent implements OnDestroy, OnInit {
   visible = false;

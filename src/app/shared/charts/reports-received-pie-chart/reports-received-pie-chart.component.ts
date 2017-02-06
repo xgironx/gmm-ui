@@ -3,8 +3,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @Component({
   selector: 'app-reports-received-pie-chart',
-  templateUrl: './reports-received-pie-chart.component.html',
-  styleUrls: ['./reports-received-pie-chart.component.css']
+  templateUrl: './reports-received-pie-chart.component.html'
 })
 export class ReportsReceivedPieChartComponent implements OnInit {
     single: any[];
