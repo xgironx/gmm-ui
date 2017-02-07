@@ -3,14 +3,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
-
 import { NgxChartsModule } from "@swimlane/ngx-charts";
-import { ReportsReceivedPieChartComponent } from '../charts/reports-received-pie-chart/reports-received-pie-chart.component';
-import { PieGridCustomComponent } from '../charts/pie-grid-custom/pie-grid-custom.component';
 
-describe('ReportsReceivedPieChartComponent', () => {
-  let component: ReportsReceivedPieChartComponent;
-  let fixture: ComponentFixture<ReportsReceivedPieChartComponent>;
+import { PieChartCustomComponent } from '../charts/pie-chart-custom/pie-chart-custom.component';
+import { PieChartSeriesCustomComponent } from '../charts/pie-chart-series-custom/pie-chart-series-custom.component';
+
+describe('PieChartCustomComponent', () => {
+  let component: PieChartCustomComponent;
+  let fixture: ComponentFixture<PieChartCustomComponent>;
 
   beforeEach(function () {
     TestBed.configureTestingModule({
@@ -18,8 +18,8 @@ describe('ReportsReceivedPieChartComponent', () => {
         NgxChartsModule
       ],
       declarations: [ 
-        ReportsReceivedPieChartComponent,
-        PieGridCustomComponent
+        PieChartCustomComponent,
+        PieChartSeriesCustomComponent 
       ],
       providers: [
         { provide: APP_BASE_HREF, useValue: '/' }
@@ -29,12 +29,12 @@ describe('ReportsReceivedPieChartComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReportsReceivedPieChartComponent);
+    fixture = TestBed.createComponent(PieChartCustomComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  /*it('should create', () => {
     expect(component).toBeTruthy();
-  });
+  });*/
 });
