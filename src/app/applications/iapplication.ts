@@ -1,7 +1,9 @@
 export interface IApplication {
-    applicationId: string;
+    applicationId: number;
+    fiscalYear: number;
     grantType: string;
     poc: string;
-    subGrantee: string;
+    programId: number;
     status: string;
+    subGrantee: string;
 }

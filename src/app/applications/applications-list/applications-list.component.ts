@@ -7,7 +7,8 @@ import { ApplicationService } from '../application.service';
   templateUrl: './applications-list.component.html'
 })
 export class ApplicationsListComponent implements OnInit {
-  applications: IApplication[] = null;
+  applications: ApplicationTableData[] = [];
+  appData: IApplication[] = null;
   errorMessage: string;
 
   public rows: Array<any> = [];
@@ -37,7 +38,10 @@ export class ApplicationsListComponent implements OnInit {
     this._applicationService.getApplications()
       .subscribe(
       (applications) => {
-        this.applications = applications;
+        this.appData = applications;
+        for (let a of this.appData) {
+          this.applications.push(new ApplicationTableData(a.applicationId.toString(), a.grantType, a.poc, a.subGrantee, a.status));
+        }
         console.log(applications);
         this.length = this.applications.length;
         this.onChangeTable(this.config);
@@ -137,4 +141,15 @@ export class ApplicationsListComponent implements OnInit {
   public onCellClick(data: any): any {
     console.log(data);
   }
+}
+
+class ApplicationTableData {
+
+    constructor(
+        public applicationId: string = "",
+        public grantType: string = "",
+        public poc: string = "",
+        public subGrantee: string = "",
+        public status: string = "")
+     {}
 }

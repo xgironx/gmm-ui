@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { IApplication } from './iapplication';
 import { IGrantee } from './igrantee';
+import { environment } from '../../environments/environment';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
@@ -12,13 +13,21 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ApplicationService {
-    //private _applicationUrl = 'api/applications/applications.json';
-    private _applicationUrl = 'http://localhost:8080/applications';
+    private _getApplicationsUrl = environment.serviceBase + "getApplications";
+    //private _applicationUrl = 'http://localhost:8080/applications';
 
-    constructor(private _http: Http) { }
+    private headers:Headers;
+        
+
+    constructor(private _http: Http) { 
+        this.headers = new Headers();
+        this.headers.append('Access-Control-Allow-Headers', 'Content-Type');
+        this.headers.append('Access-Control-Allow-Methods', 'GET');
+        this.headers.append('Access-Control-Allow-Origin', '*');
+    }
 
     getApplications(): Observable<IApplication[]> {
-        return this._http.get(this._applicationUrl)
+        return this._http.get(this._getApplicationsUrl, {headers: this.headers})
             .map((response: Response) => <IApplication[]>response.json())
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
