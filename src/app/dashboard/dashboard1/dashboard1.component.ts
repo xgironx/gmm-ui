@@ -27,6 +27,12 @@ export class Dashboard1Component implements OnInit  {
     submittedFinancialReportsInnerCircleLine2: string;
     submittedFinancialReportsInnerCircleLine3: string;
     submittedFinancialReportsEntries: any[];
+
+    reportsReceivedTitle:string;
+    reportsReceivedInnerCircleLine1: string;
+    reportsReceivedInnerCircleLine2: string;
+    reportsReceivedInnerCircleLine3: string;
+    reportsReceivedEntries: any[];
     
 
     constructor() {
@@ -36,6 +42,7 @@ export class Dashboard1Component implements OnInit  {
     ngOnInit() {
         this.setPrepardednessGrantsChart();
         this.setSubmittedFinancialReportsChart();
+        this.setReportsReceivedChart();
     }
 
     private setPrepardednessGrantsChart(){
@@ -70,5 +77,22 @@ export class Dashboard1Component implements OnInit  {
         this.submittedFinancialReportsInnerCircleLine1 = "of quartlerly federal financial ";
         this.submittedFinancialReportsInnerCircleLine2 = "reports submitted on time";
         this.submittedFinancialReportsInnerCircleLine3 = "View Details";
+    }
+
+    private setReportsReceivedChart(){
+        this.reportsReceivedEntries = [
+            {
+                "name": "Received",
+                "value": 390
+            },
+            {
+                "name": "Outstanding",
+                "value": 300
+            }
+        ];
+        this.reportsReceivedTitle = "Reports Received";
+        this.reportsReceivedInnerCircleLine1 = "";
+        this.reportsReceivedInnerCircleLine2 = "";
+        this.reportsReceivedInnerCircleLine3 = "";
     }
 }
