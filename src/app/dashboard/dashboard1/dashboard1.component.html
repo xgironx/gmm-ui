@@ -35,14 +35,36 @@
             <div class="col-md-6 col-sm-6  col-xs-12">
                 <div class="x_panel">
                     <div class="x_content">
-                        <app-reports-received-pie-chart></app-reports-received-pie-chart>
+                        <app-pie-chart-guage-custom
+                            [title]="prepardednessGrantsTitle"
+                            [view]="view"
+                            [scheme]="colorScheme"
+                            [results]="prepardednessGrantsEntries"
+                            [legend]="showLegend"
+                            [labels]="showLabels"
+                            [innerCircleLine1] = "prepardednessGrantInnerCircleLine1"
+                            [innerCircleLine2] = "prepardednessGrantInnerCircleLine2"
+                            [innerCircleLine3] = "prepardednessGrantInnerCircleLine3"
+                            [doughnut]="doughnut">
+                        </app-pie-chart-guage-custom>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-sm-6  col-xs-12">
                 <div class="x_panel">
                     <div class="x_content">
-                        <app-prepardedness-grants-pie-chart></app-prepardedness-grants-pie-chart>
+                        <app-pie-chart-guage-custom
+                            [title]="submittedFinancialReportsTitle"
+                            [view]="view"
+                            [scheme]="colorScheme"
+                            [results]="submittedFinancialReportsEntries"
+                            [legend]="showLegend"
+                            [labels]="showLabels"
+                            [innerCircleLine1] = "submittedFinancialReportsInnerCircleLine1"
+                            [innerCircleLine2] = "submittedFinancialReportsInnerCircleLine2"
+                            [innerCircleLine3] = "submittedFinancialReportsInnerCircleLine3"
+                            [doughnut]="doughnut">
+                        </app-pie-chart-guage-custom>
                     </div>
                 </div>
             </div>

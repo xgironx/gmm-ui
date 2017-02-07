@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { MockBackendService } from './mock-backend/mock-backend.service';
+//import { MockBackendService } from './mock-backend/mock-backend.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  providers: [MockBackendService]
+  //providers: [MockBackendService]
 })
 export class AppComponent {
-  constructor(private mockBackendService: MockBackendService) {
+  //constructor(private mockBackendService: MockBackendService) {
     //if(!this.mockBackendService.isStarted)
-      this.mockBackendService.start();
-  }
+      //this.mockBackendService.start();
+  //}
 }

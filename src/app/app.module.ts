@@ -43,7 +43,7 @@ export function optionsFactory(backend: MockBackend, options: BaseRequestOptions
     TabsModule.forRoot(),
     BrowserModule,
     FormsModule,
-    //HttpModule,
+    HttpModule,
     routing,
     ApplicationModule,
     DashboardModule,
@@ -58,14 +58,14 @@ export function optionsFactory(backend: MockBackend, options: BaseRequestOptions
     StateResolver,
     ApplicantTypeResolver,
     GrantTypeResolver,
-    appRoutingProviders,
+    appRoutingProviders/*,
     MockBackend,
     BaseRequestOptions,
     {
       provide: Http,
       deps: [MockBackend, BaseRequestOptions],
       useFactory: optionsFactory
-    }
+    }*/
   ],
   bootstrap: [ AppComponent ]
 })

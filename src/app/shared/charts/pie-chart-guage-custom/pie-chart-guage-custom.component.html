@@ -1,3 +1,5 @@
+<h2>{{title}}</h2>
+<hr />
 <ngx-charts-chart
   [view]="[width, height]"
   [showLegend]="legend"
@@ -27,7 +29,7 @@
         x="0"
         y="0"
         text-anchor="middle">
-        <tspan x="0" dy="-.2em" font-size="40">60%</tspan>
+        <tspan x="0" dy="-.2em" font-size="40">{{percent}}</tspan>
         <tspan x="0" dy="1.2em">{{innerCircleLine1}}</tspan>
         <tspan x="0" dy="1.2em">{{innerCircleLine2}}</tspan>
         <tspan x="0" dy="1.2em"><a href="">{{innerCircleLine3}}</a></tspan>

@@ -43,7 +43,7 @@ export class ApplicationAddComponent implements OnInit {
     }
 
     save(formValues) {
-        let application:IApplication = {
+        /*let application:IApplication = {
             applicationId: undefined,
             grantType: formValues.grantType,
             poc: formValues.firstNamePoc + ' ' + formValues.lastNamePoc,
@@ -71,6 +71,6 @@ export class ApplicationAddComponent implements OnInit {
                         this.router.navigate(['/home']);
                     }
                 }
-        );  
+        ); */ 
     }
 }

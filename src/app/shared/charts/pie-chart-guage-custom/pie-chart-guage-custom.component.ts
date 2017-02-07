@@ -26,10 +26,10 @@ export class PieChartGuageCustomComponent extends BaseChartComponent {
   @Input() arcWidth = 0.10;
   @Input() gradient: boolean;
   @Input() activeEntries: any[] = [];
-  @Input()  middleLabel: string;
   @Input()  innerCircleLine1: string;
   @Input()  innerCircleLine2: string;
   @Input()  innerCircleLine3: string;
+  @Input()  title: string;
 
   @Output() select = new EventEmitter();
   @Output() activate: EventEmitter<any> = new EventEmitter();
@@ -45,6 +45,7 @@ export class PieChartGuageCustomComponent extends BaseChartComponent {
   margin = [20, 20, 20, 20];
   legendOptions: any;
   total: number;
+  percent: number;
 
   constructor(chartElement: ElementRef, zone: NgZone, cd: ChangeDetectorRef, location: Location){
        super(chartElement, zone, cd, location);
@@ -52,6 +53,8 @@ export class PieChartGuageCustomComponent extends BaseChartComponent {
 
   update(): void {
     super.update();
+    console.log(this.results[0]);
+    
 
     this.zone.run(() => {
       if (this.labels) {
@@ -111,6 +114,7 @@ export class PieChartGuageCustomComponent extends BaseChartComponent {
         items.push(label);
       }
     });
+    this.percent = d3.format(".0%")(this.results[0].value/this.total);
 
     return items;
   }
