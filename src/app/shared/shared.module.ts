@@ -9,6 +9,9 @@ import { ApprovedGrantsPieChartComponent } from './charts/approved-grants-pie-ch
 import { PieGridCustomComponent } from './charts/pie-grid-custom/pie-grid-custom.component';
 import { PieChartCustomComponent } from './charts/pie-chart-custom/pie-chart-custom.component';
 import { PieChartSeriesCustomComponent } from './charts/pie-chart-series-custom/pie-chart-series-custom.component';
+import { PrepardednessGrantsPieChartComponent } from './charts/prepardedness-grants-pie-chart/prepardedness-grants-pie-chart.component';
+import { PieChartGuageCustomComponent } from './charts/pie-chart-guage-custom/pie-chart-guage-custom.component';
+import { PieChartGuageSeriesCustomComponent } from './charts/pie-chart-guage-series-custom/pie-chart-guage-series-custom.component';
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 
 
@@ -25,8 +28,11 @@ import { NgxChartsModule } from "@swimlane/ngx-charts";
     ReportsReceivedPieChartComponent,
     PieChartCustomComponent,
     PieChartSeriesCustomComponent,
+    PrepardednessGrantsPieChartComponent,
     PieGridCustomComponent,
-    ApprovedGrantsPieChartComponent
+    ApprovedGrantsPieChartComponent,
+    PieChartGuageCustomComponent,
+    PieChartGuageSeriesCustomComponent
   ],
   providers: [
     FilterTextService
@@ -36,9 +42,14 @@ import { NgxChartsModule } from "@swimlane/ngx-charts";
     FormsModule,
     FilterTextComponent,
     InitCapsPipe,
+    ReportsReceivedPieChartComponent,
     PieChartCustomComponent,
     PieChartSeriesCustomComponent,
-    ApprovedGrantsPieChartComponent
+    PrepardednessGrantsPieChartComponent,
+    PieGridCustomComponent,
+    ApprovedGrantsPieChartComponent,
+    PieChartGuageCustomComponent,
+    PieChartGuageSeriesCustomComponent
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,36 @@
+<ngx-charts-chart
+  [view]="[width, height]"
+  [showLegend]="legend"
+  [legendOptions]="legendOptions"
+  [activeEntries]="activeEntries"
+  (legendLabelActivate)="onActivate($event)"
+  (legendLabelDeactivate)="onDeactivate($event)"
+  (legendLabelClick)="onClick($event)">
+  <svg:g [attr.transform]="translation" class="pie-chart chart">
+    <svg:g app-pie-chart-guage-series-custom
+      [colors]="colors"
+      [showLabels]="labels"
+      [series]="data"
+      [activeEntries]="activeEntries"
+      [innerRadius]="innerRadius"
+      [outerRadius]="outerRadius"
+      [explodeSlices]="explodeSlices"
+      [gradient]="gradient"
+      [total]="total"
+      (select)="onClick($event)"
+      (activate)="onActivate($event)"
+      (deactivate)="onDeactivate($event)"
+    />
+    <svg:text
+        font-size="10"
+        dy="0em"
+        x="0"
+        y="0"
+        text-anchor="middle">
+        <tspan x="0" dy="-.2em" font-size="40">60%</tspan>
+        <tspan x="0" dy="1.2em">{{innerCircleLine1}}</tspan>
+        <tspan x="0" dy="1.2em">{{innerCircleLine2}}</tspan>
+        <tspan x="0" dy="1.2em"><a href="">{{innerCircleLine3}}</a></tspan>
+      </svg:text>
+  </svg:g>
+</ngx-charts-chart>
