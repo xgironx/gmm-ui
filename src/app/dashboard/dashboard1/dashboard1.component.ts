@@ -33,7 +33,18 @@ export class Dashboard1Component implements OnInit  {
     reportsReceivedInnerCircleLine2: string;
     reportsReceivedInnerCircleLine3: string;
     reportsReceivedEntries: any[];
-    
+
+    improperPaymentsTitle:string;
+    improperPaymentsInnerCircleLine1: string;
+    improperPaymentsInnerCircleLine2: string;
+    improperPaymentsInnerCircleLine3: string;
+    improperPaymentsEntries: any[];
+
+    correctiveActionsTitle:string;
+    correctiveActionsInnerCircleLine1: string;
+    correctiveActionsInnerCircleLine2: string;
+    correctiveActionsInnerCircleLine3: string;
+    correctiveActionsEntries: any[];
 
     constructor() {
 
@@ -43,6 +54,8 @@ export class Dashboard1Component implements OnInit  {
         this.setPrepardednessGrantsChart();
         this.setSubmittedFinancialReportsChart();
         this.setReportsReceivedChart();
+        this.setImproperPaymentsChart();
+        this.setCorrectiveActionsChart();
     }
 
     private setPrepardednessGrantsChart(){
@@ -94,5 +107,39 @@ export class Dashboard1Component implements OnInit  {
         this.reportsReceivedInnerCircleLine1 = "";
         this.reportsReceivedInnerCircleLine2 = "";
         this.reportsReceivedInnerCircleLine3 = "";
+    }
+
+    private setImproperPaymentsChart(){
+        this.improperPaymentsEntries = [
+            {
+                "name": "Received",
+                "value": 444
+            },
+            {
+                "name": "Outstanding",
+                "value": 300
+            }
+        ];
+        this.improperPaymentsTitle = "Improper Payments";
+        this.improperPaymentsInnerCircleLine1 = "of improper payments identified";
+        this.improperPaymentsInnerCircleLine2 = "through financial monitoring";
+        this.improperPaymentsInnerCircleLine3 = "View Details";
+    }
+
+    private setCorrectiveActionsChart(){
+        this.correctiveActionsEntries = [
+            {
+                "name": "On Time",
+                "value": 650
+            },
+            {
+                "name": "Late",
+                "value": 300
+            }
+        ];
+        this.correctiveActionsTitle = "Corrective Actions";
+        this.correctiveActionsInnerCircleLine1 = "of corrective actions";
+        this.correctiveActionsInnerCircleLine2 = "submitted on time";
+        this.correctiveActionsInnerCircleLine3 = "View Details";
     }
 }

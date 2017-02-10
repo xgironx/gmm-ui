@@ -1,7 +1,9 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { APP_BASE_HREF } from '@angular/common';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { Dashboard1Component } from '../dashboard1/dashboard1.component';
 
@@ -9,12 +11,21 @@ describe('Dashboard1Component', () => {
   let component: Dashboard1Component;
   let fixture: ComponentFixture<Dashboard1Component>;
 
-  beforeEach(async(() => {
+  beforeEach(function () {
     TestBed.configureTestingModule({
-      declarations: [ Dashboard1Component ]
+      imports: [
+        RouterTestingModule
+      ],
+      declarations: [ 
+        Dashboard1Component 
+      ],
+      providers: [
+        { provide: APP_BASE_HREF, useValue: '/' }
+      ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(Dashboard1Component);
@@ -22,7 +33,7 @@ describe('Dashboard1Component', () => {
     fixture.detectChanges();
   });
 
-  /*it('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
-  });*/
+  });
 });
