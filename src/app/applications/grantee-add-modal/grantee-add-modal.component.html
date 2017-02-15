@@ -1,0 +1,181 @@
+<div class="container-fluid custom-modal-container">
+  <div class="row custom-modal-header">
+    <div class="col-sm-12">
+      <h1>{{context.title}}</h1>
+    </div>
+  </div>
+  <div class="row" [ngClass]="{'myclass' : shouldUseMyClass}">
+                <div class="col-xs-12">
+                    <div class="jumbotron">
+                        
+                        <form class="form-horizontal" (ngSubmit)="save(applicationForm.value)" [formGroup]="applicationForm">
+                    <fieldset>
+                        <div class="row">
+                            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('firstName').touched || 
+                                                applicationForm.get('firstName').dirty) &&
+                                                !applicationForm.get('firstName').valid }">
+                                <label class="control-label" for="firstNameId">First Name</label>
+                                <input [(ngModel)]="editGrantee.firstName" class="form-control" id="firstNameId" type="text" placeholder="First Name (required)" formControlName="firstName"
+                                />
+                                <span class="form-text" *ngIf="(applicationForm.get('firstName').touched || 
+                                                                applicationForm.get('firstName').dirty) && 
+                                                                applicationForm.get('firstName').errors">
+                                    <span *ngIf="applicationForm.get('firstName').errors.required" class="form-control-feedback">
+                                        Please enter your first name.
+                                    </span>
+                                <span *ngIf="applicationForm.get('firstName').errors.minlength" class="form-control-feedback">
+                                        The first name must be longer than 3 characters.
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('lastName').touched || applicationForm.get('lastName').dirty) && !applicationForm.get('lastName').valid }">
+                                <label class="control-label" for="lastNameId">Last Name</label>
+                                <input [(ngModel)]="editGrantee.lastName" class="form-control" id="lastNameId" type="text" placeholder="Last Name (required)" formControlName="lastName" />
+                                <span class="form-text" *ngIf="(applicationForm.get('lastName').touched || 
+                                                                applicationForm.get('lastName').dirty) && 
+                                                                applicationForm.get('lastName').errors">
+                                    <span *ngIf="applicationForm.get('lastName').errors.required" class="form-control-feedback">
+                                        Please enter your last name.
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('street1').touched || 
+                                                applicationForm.get('street1').dirty) &&
+                                                !applicationForm.get('street1').valid }">
+                                <label class="control-label" for="street1Id">Address 1</label>
+                                <input [(ngModel)]="editGrantee.street1" class="form-control" id="street1Id" type="text" placeholder="Address 1 (required)" formControlName="street1" />
+                                <span class="form-text" *ngIf="(applicationForm.get('street1').touched || 
+                                                                applicationForm.get('street1').dirty) && 
+                                                                applicationForm.get('street1').errors">
+                                    <span *ngIf="applicationForm.get('street1').errors.required" class="form-control-feedback">
+                                        Please enter address 1.
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label" for="street2Id">Address 2</label>
+                                <input [(ngModel)]="editGrantee.street2" class="form-control" id="street2Id" type="text" placeholder="Address 2" formControlName="street2" />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('city').touched || 
+                                                applicationForm.get('city').dirty) &&
+                                                !applicationForm.get('city').valid }">
+                                <label class="control-label" for="cityId">City</label>
+                                <input [(ngModel)]="editGrantee.city" class="form-control" id="cityId" type="text" placeholder="City (required)" formControlName="city" />
+                                <span class="form-text" *ngIf="(applicationForm.get('city').touched || 
+                                                                applicationForm.get('city').dirty) && 
+                                                                applicationForm.get('city').errors">
+                                    <span *ngIf="applicationForm.get('city').errors.required" class="form-control-feedback">
+                                        Please enter city.
+                                    </span>
+                                </span>
+                            </div>
+
+                            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('state').touched || 
+                                                applicationForm.get('state').dirty) &&
+                                                !applicationForm.get('state').valid }">
+                                <label class="control-label" for="stateId">State</label>
+                                <ng-select
+                                    formControlName="state"
+                                    placeholder="State (required)"
+                                    [allowClear]="true"
+                                    [options]="stateDropDownList">
+                                </ng-select>
+                                <span class="form-text" *ngIf="(applicationForm.get('state').touched || 
+                                                                applicationForm.get('state').dirty) && 
+                                                                applicationForm.get('state').errors">
+                                    <span *ngIf="applicationForm.get('state').errors.required" class="form-control-feedback">
+                                        Please enter state.
+                                    </span>
+                                </span>
+                                
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('dunsId').touched || 
+                                                applicationForm.get('dunsId').dirty) &&
+                                                !applicationForm.get('dunsId').valid }">
+                                <label class="control-label" for="dunsIdId">DUNS ID</label>
+                                <input [(ngModel)]="editGrantee.dunsId" class="form-control" id="dunsIdId" type="text" placeholder="DUNS ID (required)" formControlName="dunsId" />
+                                <span class="form-text" *ngIf="(applicationForm.get('dunsId').touched || 
+                                                                applicationForm.get('dunsId').dirty) && 
+                                                                applicationForm.get('dunsId').errors">
+                                    <span *ngIf="applicationForm.get('dunsId').errors.required" class="form-control-feedback">
+                                        Please enter DUNS ID.
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('taxId').touched || 
+                                                applicationForm.get('taxId').dirty) &&
+                                                !applicationForm.get('taxId').valid }">
+                                <label class="control-label" for="taxIdId">Tax ID</label>
+                                <input [(ngModel)]="editGrantee.taxId" class="form-control" id="taxIdId" type="text" placeholder="Tax ID (required)" formControlName="taxId" />
+                                <span class="form-text" *ngIf="(applicationForm.get('taxId').touched || 
+                                                                applicationForm.get('taxId').dirty) && 
+                                                                applicationForm.get('taxId').errors">
+                                    <span *ngIf="applicationForm.get('taxId').errors.required" class="form-control-feedback">
+                                        Please enter Tax ID.
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('financialReportDate').touched || 
+                                                applicationForm.get('financialReportDate').dirty) &&
+                                                !applicationForm.get('financialReportDate').valid }">
+                                <label class="control-label" for="financialReportDateId">Financial Report Date</label>
+                                <input [(ngModel)]="editGrantee.financialReportDate" class="form-control" id="financialReportDateId" type="date" placeholder="Financial Report Date (required)" formControlName="financialReportDate" />
+                                <span class="form-text" *ngIf="(applicationForm.get('financialReportDate').touched || 
+                                                                applicationForm.get('financialReportDate').dirty) && 
+                                                                applicationForm.get('financialReportDate').errors">
+                                    <span *ngIf="applicationForm.get('financialReportDate').errors.required" class="form-control-feedback">
+                                        Please enter Financial Report Date.
+                                    </span>
+                                </span>
+                            </div>
+
+                            <!--<div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('applicantType').touched || 
+                                                applicationForm.get('applicantType').dirty) &&
+                                                !applicationForm.get('applicantType').valid }">
+                                <label class="control-label" for="applicantTypeId">Applicant Type</label>
+                                <ng-select
+                                    formControlName="applicantType"
+                                    placeholder="Applicant Type (required)"
+                                    [allowClear]="true"
+                                    [options]="applicantTypesDropDownList">
+                                </ng-select>
+                                <span class="form-text" *ngIf="(applicationForm.get('applicantType').touched || 
+                                                                applicationForm.get('applicantType').dirty) && 
+                                                                applicationForm.get('applicantType').errors">
+                                    <span *ngIf="applicationForm.get('applicantType').errors.required" class="form-control-feedback">
+                                        Please enter Applicant Type.
+                                    </span>
+                                </span>
+                                
+                            </div>-->
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                              <button class="btn btn-primary" type="button" (click)="save(applicationForm.value)" [disabled]="!applicationForm.valid">Save and Continue</button>
+                            </div>
+                            <div class="col-md-4">
+                              <button class="btn btn-primary" type="button" (click)="close()">Cancel</button>
+                            </div>
+                        </div>
+                        
+                    </fieldset>
+                </form>
+                    </div>
+                </div>
+            </div>
+</div>

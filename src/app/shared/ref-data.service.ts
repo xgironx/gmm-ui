@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 
 import { IState } from './istate';
 import { IApplicantType } from './iapplicant-type';
@@ -8,13 +9,14 @@ import { IGrantType } from './igrant-type';
 
 @Injectable()
 export class RefDataService {
-    private _stateUrl = '/api/refData/state.json';
+    private _stateUrl = environment.serviceBase + "getStates";
+    private _grantTypeUrl = environment.serviceBase + "getGrantTypes";
     private _applicantTypeUrl = '/api/refData/applicantType.json';
-    private _grantTypeUrl = '/api/refData/grantType.json';
 
     constructor(private _http: Http) { }
 
     getStates(): Observable<IState[]> {
+        console.log("getStates()");
         return this._http.get(this._stateUrl)
             .map((response: Response) => <IState[]> response.json())
             .do(data => console.log('All: ' +  JSON.stringify(data)))

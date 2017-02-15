@@ -18,12 +18,14 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "../node_modules/bootstrap-v4-dev/dist/css/bootstrap.css",
+        "../node_modules/font-awesome/css/font-awesome.css",
         "styles.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.js"
+        "../node_modules/tether/dist/js/tether.js",
+        "../node_modules/bootstrap-v4-dev/dist/js/bootstrap.js"
       ],
       "environments": {
         "source": "environments/environment.ts",
@@ -33,6 +35,9 @@
       }
     }
   ],
+  "addons": [
+    "../node_modules/font-awesome/fonts/*.+(otf|eot|svg|ttf|woff|woff2)"
+],
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"

@@ -13,7 +13,8 @@ import { StateResolver, ApplicantTypeResolver, GrantTypeResolver } from './share
 /* Third Party */
 import { Ng2TableModule } from 'ng2-table/ng2-table';
 import { SelectModule } from 'angular2-select';
-import { TabsModule } from 'ng2-bootstrap';
+import { TabsModule, ModalModule } from 'ng2-bootstrap';
+import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 
 /* Feature Modules */
 import { ApplicationModule } from './applications/application/application.module';
@@ -41,6 +42,7 @@ export function optionsFactory(backend: MockBackend, options: BaseRequestOptions
   ],
   imports: [
     TabsModule.forRoot(),
+    ModalModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -59,6 +61,7 @@ export function optionsFactory(backend: MockBackend, options: BaseRequestOptions
     ApplicantTypeResolver,
     GrantTypeResolver,
     appRoutingProviders/*,
+    BootstrapModalModule.getProviders(),
     MockBackend,
     BaseRequestOptions,
     {
