@@ -38,7 +38,7 @@ export class ApplicationAddComponent implements OnInit {
         });
         this.grantTypes = this.route.snapshot.data['grantTypes'];
         for (var i = 0, len = this.grantTypes.length; i < len; i++) {
-            this.grantTypesDropDownList.push({ value: this.grantTypes[i].id, label: this.grantTypes[i].name });
+            this.grantTypesDropDownList.push({ value: this.grantTypes[i].grantTypeId, label: this.grantTypes[i].grantTypeName });
         }
     }
 

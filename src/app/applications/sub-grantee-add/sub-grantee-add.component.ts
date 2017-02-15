@@ -48,7 +48,7 @@ export class SubGranteeAddComponent implements OnInit {
         });
         this.states = this.route.snapshot.data['states'];
         for (var i = 0, len = this.states.length; i < len; i++) {
-            this.stateDropDownList.push({ value: this.states[i].abbreviation, label: this.states[i].name });
+            this.stateDropDownList.push({ value: this.states[i].stateId, label: this.states[i].stateName });
         }
         this.applicantTypes = this.route.snapshot.data['applicantTypes'];
         for (var i = 0, len = this.applicantTypes.length; i < len; i++) {

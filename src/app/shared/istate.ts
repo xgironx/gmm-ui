@@ -1,4 +1,6 @@
 export interface IState {
-    abbreviation: string;
-    name: string;
+    stateId: string;
+    stateName: string;
+    stateAbbreviation: string;
+    urbanArea: string;
 }

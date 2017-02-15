@@ -14,7 +14,6 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ApplicationService {
     private _getApplicationsUrl = environment.serviceBase + "getApplications";
-    //private _applicationUrl = 'http://localhost:8080/applications';
 
     private headers:Headers;
         

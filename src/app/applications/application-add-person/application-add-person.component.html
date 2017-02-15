@@ -1,0 +1,273 @@
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>{{pageTitle}}</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="x_panel">
+            <div class="x_content">
+
+
+
+<form class="form-horizontal" (ngSubmit)="save(applicationForm.value)" [formGroup]="applicationForm">
+    <fieldset>
+        <div class="row">
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('employee').touched || 
+                                                applicationForm.get('employee').dirty) &&
+                                                !applicationForm.get('employee').valid }">
+                <label for="employeeId">Employee ID</label>
+                <input type="text" class="form-control" id="employeeId" aria-describedby="employeeIdHelp" placeholder="Enter Employee ID" formControlName="employee">
+                <span class="form-text" *ngIf="(applicationForm.get('employee').touched || 
+                                                                applicationForm.get('employee').dirty) && 
+                                                                applicationForm.get('employee').errors">
+                    <span *ngIf="applicationForm.get('employee').errors.required" class="form-control-feedback">
+                        Please enter your Employee ID.
+                    </span>
+                </span>
+            </div>
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('state').touched || 
+                                                applicationForm.get('state').dirty) &&
+                                                !applicationForm.get('state').valid }">
+                <label for="stateId">State</label>
+                <ng-select
+                    formControlName="state"
+                    placeholder="State (required)"
+                    [allowClear]="true"
+                    [options]="stateDropDownList"
+                    aria-describedby="stateIdHelp">
+                </ng-select>
+                <span class="form-text" *ngIf="(applicationForm.get('state').touched || 
+                                                                    applicationForm.get('state').dirty) && 
+                                                                    applicationForm.get('state').errors">
+                    <span *ngIf="applicationForm.get('state').errors.required" class="form-control-feedback">
+                        Please enter State.
+                    </span>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('congressionalDistrict').touched || 
+                                                applicationForm.get('congressionalDistrict').dirty) &&
+                                                !applicationForm.get('congressionalDistrict').valid }">
+                <label for="congressionalDistrictId">Congressional District</label>
+                <input type="text" class="form-control" id="congressionalDistrictId" aria-describedby="congressionalDistrictIdHelp" placeholder="Congressional District" formControlName="congressionalDistrict">
+                <span class="form-text" *ngIf="(applicationForm.get('congressionalDistrict').touched || 
+                                                                applicationForm.get('congressionalDistrict').dirty) && 
+                                                                applicationForm.get('congressionalDistrict').errors">
+                    <span *ngIf="applicationForm.get('congressionalDistrict').errors.required" class="form-control-feedback">
+                        Please enter Congressional District.
+                    </span>
+                </span>
+            </div>
+
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('projectTitle').touched || 
+                                                applicationForm.get('projectTitle').dirty) &&
+                                                !applicationForm.get('projectTitle').valid }">
+                <label for="projectTitleId">Project Title</label>
+                <input type="text" class="form-control" id="projectTitleId" aria-describedby="projectTitleIdHelp" placeholder="Enter Project Title" formControlName="projectTitle">
+                <span class="form-text" *ngIf="(applicationForm.get('projectTitle').touched || 
+                                                                applicationForm.get('projectTitle').dirty) && 
+                                                                applicationForm.get('projectTitle').errors">
+                    <span *ngIf="applicationForm.get('projectTitle').errors.required" class="form-control-feedback">
+                        Please enter Project Title.
+                    </span>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('projectNumber').touched || 
+                                                applicationForm.get('projectNumber').dirty) &&
+                                                !applicationForm.get('projectNumber').valid }">
+                <label for="projectNumberId">Project Number</label>
+                <input type="text" class="form-control" id="projectNumberId" aria-describedby="projectNumberIdHelp" placeholder="Enter Project Number" formControlName="projectNumber">
+                <span class="form-text" *ngIf="(applicationForm.get('projectNumber').touched || 
+                                                                applicationForm.get('projectNumber').dirty) && 
+                                                                applicationForm.get('projectNumber').errors">
+                    <span *ngIf="applicationForm.get('projectNumber').errors.required" class="form-control-feedback">
+                        Please enter your Project Number.
+                    </span>
+                </span>
+            </div>
+
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('projectYear').touched || 
+                                                applicationForm.get('projectYear').dirty) &&
+                                                !applicationForm.get('projectYear').valid }">
+                <label for="projectYearId">Project Application Year</label>
+                <input type="text" class="form-control" id="projectYearId" aria-describedby="projectYearIdHelp" placeholder="Enter Project Application Year" formControlName="projectYear">
+                <span class="form-text" *ngIf="(applicationForm.get('projectYear').touched || 
+                                                                applicationForm.get('projectYear').dirty) && 
+                                                                applicationForm.get('projectYear').errors">
+                    <span *ngIf="applicationForm.get('projectYear').errors.required" class="form-control-feedback">
+                        Please enter Project Application Year.
+                    </span>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('poc').touched || 
+                                                applicationForm.get('poc').dirty) &&
+                                                !applicationForm.get('poc').valid }">
+                <label for="pocId">POC</label>
+                <input type="text" class="form-control" id="pocId" aria-describedby="pocIdHelp" placeholder="Enter POC" formControlName="poc">
+                <span class="form-text" *ngIf="(applicationForm.get('poc').touched || 
+                                                                applicationForm.get('poc').dirty) && 
+                                                                applicationForm.get('poc').errors">
+                    <span *ngIf="applicationForm.get('poc').errors.required" class="form-control-feedback">
+                        Please enter POC.
+                    </span>
+                </span>
+            </div>
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('grantType').touched || 
+                                                applicationForm.get('grantType').dirty) &&
+                                                !applicationForm.get('grantType').valid }">
+                <label for="grantTypeId">Grant Type</label>
+                <ng-select
+                    formControlName="grantType"
+                    placeholder="Grant Type (required)"
+                    [allowClear]="true"
+                    [options]="grantTypesDropDownList">
+                </ng-select>
+                <span class="form-text" *ngIf="(applicationForm.get('grantType').touched || 
+                                                                applicationForm.get('grantType').dirty) && 
+                                                                applicationForm.get('grantType').errors">
+                    <span *ngIf="applicationForm.get('grantType').errors.required" class="form-control-feedback">
+                        Please enter Grant Type.
+                    </span>
+                </span>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="card">
+                <div class="card-header">
+                    Grantee
+                </div>
+                <div class="card-block">
+                    <button (click)="openGranteeModal('Add Grantee')" *ngIf="grantee == null" class="btn">Add Grantee</button>
+                    <template #customModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
+                        <app-grantee-add-modal [dialogRef]="dialogRef"></app-grantee-add-modal>
+                    </template>
+                    <table class="table table-sm" *ngIf="grantee != null">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Address 1</th>
+                                <th>Address 2</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>DUNS ID</th>
+                                <th>Tax ID</th>
+                                <th>Financial Report Date</th>
+                                <th>Applicant Type
+                                    <th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <i class="fa fa-pencil fa-fw" aria-hidden="true" (click)="openGranteeModal('Edit Grantee')"></i>
+                                    <td>
+                                        <i class="fa fa-times" aria-hidden="true" (click)="onRemoveGrantee()"></i>
+                                    </td>
+                                    <td>{{grantee.firstName}}</td>
+                                    <td>{{grantee.lastName}}</td>
+                                    <td>{{grantee.street1}}</td>
+                                    <td>{{grantee.street2}}</td>
+                                    <td>{{grantee.city}}</td>
+                                    <td>{{grantee.state}}</td>
+                                    <td>{{grantee.dunsId}}</td>
+                                    <td>{{grantee.taxId}}</td>
+                                    <td>{{grantee.financialReportDate}}</td>
+                                    <td>{{grantee.applicantType}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="card">
+                <div class="card-header">
+                    Sub-Grantee
+                </div>
+                <div class="card-block">
+                    <button (click)="openSubGranteeModal('Add Sub-Grantee')" class="btn">Add Sub-Grantee</button>
+                    <template #customModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
+                        <app-grantee-add-modal [dialogRef]="dialogRef"></app-grantee-add-modal>
+                    </template>
+
+                    <table class="table table-sm" *ngIf="subGrantees.length != 0">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Address 1</th>
+                                <th>Address 2</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>DUNS ID</th>
+                                <th>Tax ID</th>
+                                <th>Financial Report Date</th>
+                                <th>Applicant Type
+                                    <th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let sg of subGrantees; let idx = index;">
+                                <td>
+                                    <i class="fa fa-pencil fa-fw" aria-hidden="true" (click)="editSubGranteeModal(idx, 'Edit Sub-Grantee')"></i>
+                                    <td>
+                                        <i class="fa fa-times" aria-hidden="true" (click)="onRemoveSubGrantee(idx)"></i>
+                                    </td>
+                                    <td>{{sg.firstName}}</td>
+                                    <td>{{sg.lastName}}</td>
+                                    <td>{{sg.street1}}</td>
+                                    <td>{{sg.street2}}</td>
+                                    <td>{{sg.city}}</td>
+                                    <td>{{sg.state}}</td>
+                                    <td>{{sg.dunsId}}</td>
+                                    <td>{{sg.taxId}}</td>
+                                    <td>{{sg.financialReportDate}}</td>
+                                    <td>{{sg.applicantType}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <button class="btn btn-primary" type="button" (click)="save(applicationForm.value)" [disabled]="!applicationForm.valid">Save</button>
+            </div>
+        </div>
+
+        
+    </fieldset>
+</form>
+
+
+                
+
+
+
+                
+
+            </div>
+        </div>
+    </div>
+</div>
