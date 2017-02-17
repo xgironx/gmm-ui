@@ -23,5 +23,5 @@ RUN ng build --prod
 
 WORKDIR /usr/src/app/dist
 
-EXPOSE 4200
+EXPOSE 8080
 CMD [ "http-server" ]
