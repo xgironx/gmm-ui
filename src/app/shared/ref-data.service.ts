@@ -11,7 +11,7 @@ import { IGrantType } from './igrant-type';
 export class RefDataService {
     private _stateUrl = environment.serviceBase + "getStates";
     private _grantTypeUrl = environment.serviceBase + "getGrantTypes";
-    private _applicantTypeUrl = '/api/refData/applicantType.json';
+    private _applicantTypeUrl = environment.serviceBase + 'getApplicantTypes';
 
     constructor(private _http: Http) { }
 

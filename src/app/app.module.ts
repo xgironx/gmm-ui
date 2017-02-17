@@ -3,18 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MockBackend } from "@angular/http/testing";
-import { BaseRequestOptions, Http } from "@angular/http";
+import { Http } from "@angular/http";
 
 import { routing, appRoutingProviders } from './app-routing.module';
 import { RefDataService } from './shared/ref-data.service';
 import { StateResolver, ApplicantTypeResolver, GrantTypeResolver } from './shared/ref-data-resolver.service';
 
 /* Third Party */
-import { Ng2TableModule } from 'ng2-table/ng2-table';
 import { SelectModule } from 'angular2-select';
 import { TabsModule, ModalModule } from 'ng2-bootstrap';
-import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 /* Feature Modules */
 import { ApplicationModule } from './applications/application/application.module';
@@ -31,9 +29,6 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home/home.component';
 
-export function optionsFactory(backend: MockBackend, options: BaseRequestOptions) {
- return new Http(backend, options);
-}
 
 @NgModule({
   declarations: [
@@ -50,25 +45,17 @@ export function optionsFactory(backend: MockBackend, options: BaseRequestOptions
     ApplicationModule,
     DashboardModule,
     TaskModule,
-    Ng2TableModule,
     SelectModule,
     SharedModule,
-    CoreModule
+    CoreModule,
+    NgxDatatableModule
   ],
   providers: [
     RefDataService,
     StateResolver,
     ApplicantTypeResolver,
     GrantTypeResolver,
-    appRoutingProviders/*,
-    BootstrapModalModule.getProviders(),
-    MockBackend,
-    BaseRequestOptions,
-    {
-      provide: Http,
-      deps: [MockBackend, BaseRequestOptions],
-      useFactory: optionsFactory
-    }*/
+    appRoutingProviders
   ],
   bootstrap: [ AppComponent ]
 })

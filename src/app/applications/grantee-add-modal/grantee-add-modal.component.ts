@@ -14,6 +14,7 @@ export class GranteeModalContext extends BSModalContext {
   public grantee: IGrantee;
   public title: string;
   public states: IState[];
+  public applicantTypes: IApplicantType[];
 }
 
 @Component({
@@ -26,7 +27,6 @@ export class GranteeAddModalComponent implements OnDestroy, OnInit, AfterViewIni
   applicationForm: FormGroup;
   characters: Array<any>;
   stateDropDownList: any[] = [];
-  applicantTypes: IApplicantType[];
   applicantTypesDropDownList: any[] = [];
   context: GranteeModalContext;
   grantee: IGrantee;
@@ -58,8 +58,8 @@ export class GranteeAddModalComponent implements OnDestroy, OnInit, AfterViewIni
             state: ['', [Validators.required]],
             dunsId: ['', [Validators.required]],
             taxId: ['', [Validators.required]],
-            financialReportDate: ['', [Validators.required]]
-            //applicantType: ['', [Validators.required]]
+            financialReportDate: ['', [Validators.required]],
+            applicantType: ['', [Validators.required]]
         });
         if(this.context.grantee != null){
           this.grantee = this.context.grantee;
@@ -69,10 +69,9 @@ export class GranteeAddModalComponent implements OnDestroy, OnInit, AfterViewIni
         for (var i = 0, len = this.context.states.length; i < len; i++) {
             this.stateDropDownList.push({ value: this.context.states[i].stateId, label: this.context.states[i].stateName + ":" +  this.context.states[i].urbanArea });
         }
-        /*this.applicantTypes = this.route.snapshot.data['applicantTypes'];
-        for (var i = 0, len = this.applicantTypes.length; i < len; i++) {
-            this.applicantTypesDropDownList.push({ value: this.applicantTypes[i].id, label: this.applicantTypes[i].name });
-        }*/
+        for (var i = 0, len = this.context.applicantTypes.length; i < len; i++) {
+            this.applicantTypesDropDownList.push({ value: this.context.applicantTypes[i].applicantTypeId, label: this.context.applicantTypes[i].applicantTypeName });
+        }
   }
 
   save(formValues) {

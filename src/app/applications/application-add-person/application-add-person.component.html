@@ -14,6 +14,12 @@
 
 <form class="form-horizontal" (ngSubmit)="save(applicationForm.value)" [formGroup]="applicationForm">
     <fieldset>
+<div class="row">
+        <div class="card">
+                <div class="card-header">
+                    General Information
+                </div>
+                <div class="card-block">
         <div class="row">
             <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('employee').touched || 
                                                 applicationForm.get('employee').dirty) &&
@@ -110,19 +116,6 @@
         </div>
 
         <div class="row">
-            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('poc').touched || 
-                                                applicationForm.get('poc').dirty) &&
-                                                !applicationForm.get('poc').valid }">
-                <label for="pocId">POC</label>
-                <input type="text" class="form-control" id="pocId" aria-describedby="pocIdHelp" placeholder="Enter POC" formControlName="poc">
-                <span class="form-text" *ngIf="(applicationForm.get('poc').touched || 
-                                                                applicationForm.get('poc').dirty) && 
-                                                                applicationForm.get('poc').errors">
-                    <span *ngIf="applicationForm.get('poc').errors.required" class="form-control-feedback">
-                        Please enter POC.
-                    </span>
-                </span>
-            </div>
             <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('grantType').touched || 
                                                 applicationForm.get('grantType').dirty) &&
                                                 !applicationForm.get('grantType').valid }">
@@ -141,8 +134,28 @@
                     </span>
                 </span>
             </div>
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('applicantType').touched || 
+                                                applicationForm.get('applicantType').dirty) &&
+                                                !applicationForm.get('applicantType').valid }">
+                <label for="applicantTypeId">Type of Applicant</label>
+                <ng-select
+                    formControlName="applicantType"
+                    placeholder="Applicant Type (required)"
+                    [allowClear]="true"
+                    [options]="applicantTypesDropDownList">
+                </ng-select>
+                <span class="form-text" *ngIf="(applicationForm.get('applicantType').touched || 
+                                                                applicationForm.get('applicantType').dirty) && 
+                                                                applicationForm.get('applicantType').errors">
+                    <span *ngIf="applicationForm.get('applicantType').errors.required" class="form-control-feedback">
+                        Please enter Applicant Type.
+                    </span>
+                </span>
+            </div>
         </div>
-
+        </div>
+        </div>
+</div>
 
         <div class="row">
             <div class="card">
@@ -252,7 +265,7 @@
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-4">
-                <button class="btn btn-primary" type="button" (click)="save(applicationForm.value)" [disabled]="!applicationForm.valid">Save</button>
+                <button class="btn btn-primary" type="button" (click)="saveApp(applicationForm.value)" >Save</button>
             </div>
         </div>
 

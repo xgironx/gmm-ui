@@ -6,7 +6,6 @@
   </div>
   <div class="row" [ngClass]="{'myclass' : shouldUseMyClass}">
                 <div class="col-xs-12">
-                    <div class="jumbotron">
                         
                         <form class="form-horizontal" (ngSubmit)="save(applicationForm.value)" [formGroup]="applicationForm">
                     <fieldset>
@@ -140,7 +139,7 @@
                                 </span>
                             </div>
 
-                            <!--<div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('applicantType').touched || 
+                            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('applicantType').touched || 
                                                 applicationForm.get('applicantType').dirty) &&
                                                 !applicationForm.get('applicantType').valid }">
                                 <label class="control-label" for="applicantTypeId">Applicant Type</label>
@@ -158,7 +157,7 @@
                                     </span>
                                 </span>
                                 
-                            </div>-->
+                            </div>
 
                         </div>
 
@@ -166,7 +165,7 @@
                         <div class="row">
                             <div class="col-md-2"></div>
                             <div class="col-md-4">
-                              <button class="btn btn-primary" type="button" (click)="save(applicationForm.value)" [disabled]="!applicationForm.valid">Save and Continue</button>
+                              <button class="btn btn-primary" type="button" (click)="save(applicationForm.value)" [disabled]="!applicationForm.valid">Save</button>
                             </div>
                             <div class="col-md-4">
                               <button class="btn btn-primary" type="button" (click)="close()">Cancel</button>
@@ -175,7 +174,6 @@
                         
                     </fieldset>
                 </form>
-                    </div>
                 </div>
             </div>
 </div>

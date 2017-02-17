@@ -8,6 +8,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IState } from '../../shared/istate';
 import { ActivatedRoute } from '@angular/router';
 import { IGrantType } from '../../shared/igrant-type';
+import { IApplicantType } from '../../shared/iapplicant-type';
+import { ApplicationService } from '../application.service';
+import { IApplication } from '../iapplication';
+import { Application } from '../application';
 
 @Component({
   selector: 'app-application-add-person',
@@ -25,6 +29,8 @@ export class ApplicationAddPersonComponent implements OnInit {
   stateDropDownList: any[] = [];
   grantTypes: IGrantType[];
   grantTypesDropDownList: any[] = [];
+  applicantTypes: IApplicantType[];
+  applicantTypesDropDownList: any[] = [];
 
   dialog: DialogRef<BSModalContext>;
 
@@ -32,7 +38,8 @@ export class ApplicationAddPersonComponent implements OnInit {
       vcRef: ViewContainerRef, 
       public modal: Modal, 
       private fb: FormBuilder,
-      private route: ActivatedRoute) {
+      private route: ActivatedRoute,
+      private _applicationService: ApplicationService) {
     modal.overlay.defaultViewContainer = vcRef;
   }
 
@@ -44,8 +51,8 @@ export class ApplicationAddPersonComponent implements OnInit {
         projectTitle: ['', [Validators.required]],
         projectNumber: ['', [Validators.required]],
         projectYear: ['', [Validators.required]],
-        poc:  ['', [Validators.required]],
-        grantType: ['', [Validators.required]]
+        grantType: ['', [Validators.required]],
+        applicantType: ['', [Validators.required]]
     });
     this.states = this.route.snapshot.data['states'];
     for (var i = 0, len = this.states.length; i < len; i++) {
@@ -55,13 +62,37 @@ export class ApplicationAddPersonComponent implements OnInit {
     for (var i = 0, len = this.grantTypes.length; i < len; i++) {
         this.grantTypesDropDownList.push({ value: this.grantTypes[i].grantTypeId, label: this.grantTypes[i].grantTypeName });
     }
+    this.applicantTypes = this.route.snapshot.data['applicantTypes'];
+    for (var i = 0, len = this.applicantTypes.length; i < len; i++) {
+        this.applicantTypesDropDownList.push({ value: this.applicantTypes[i].applicantTypeId, label: this.applicantTypes[i].applicantTypeName });
+    }
   }
 
-  save(formValues) {
+  saveApp(formValues) {
+    var application = new Application();
+    application.fiscalYear = formValues.projectYear;
+    application.grantType = formValues.grantType;
+    application.poc = formValues.poc;
+    application.programId = 22;
+    application.status = "Applied";
+    application.subGrantee = "No";
+    application.amount = undefined;
+    application.poc = "testing";
+    application.amount = 234;
+    application.applicant = "testing";
+  
+  console.log(application);
+    this._applicationService.saveApplication(application)
+      .subscribe(
+      (applications) => {
+        console.log(applications);
+      },
+      error => console.log(error)
+      );
   }
 
   openGranteeModal(title: string) {
-    var g = this.modal.open(GranteeAddModalComponent, overlayConfigFactory({ grantee: this.grantee, title: title, states: this.states }, BSModalContext))
+    var g = this.modal.open(GranteeAddModalComponent, overlayConfigFactory({ grantee: this.grantee, title: title, states: this.states, applicantTypes: this.applicantTypes }, BSModalContext))
       .then((result) => {
         return result;
       });
@@ -75,7 +106,7 @@ export class ApplicationAddPersonComponent implements OnInit {
   }
 
   openSubGranteeModal(title: string){
-    var g = this.modal.open(GranteeAddModalComponent, overlayConfigFactory({ grantee: null, title: title, states: this.states }, BSModalContext))
+    var g = this.modal.open(GranteeAddModalComponent, overlayConfigFactory({ grantee: null, title: title, states: this.states, applicantTypes: this.applicantTypes }, BSModalContext))
       .then((result) => {
         return result;
       });
@@ -89,7 +120,7 @@ export class ApplicationAddPersonComponent implements OnInit {
   }
 
   editSubGranteeModal(i:number, title: string){
-    var g = this.modal.open(GranteeAddModalComponent, overlayConfigFactory({ grantee: this.subGrantees[i], title: title, states: this.states }, BSModalContext))
+    var g = this.modal.open(GranteeAddModalComponent, overlayConfigFactory({ grantee: this.subGrantees[i], title: title, states: this.states, applicantTypes: this.applicantTypes }, BSModalContext))
       .then((result) => {
         return result;
       });
@@ -116,6 +147,4 @@ export class ApplicationAddPersonComponent implements OnInit {
       this.dialog = null;
     }
   }
-
-
 }
