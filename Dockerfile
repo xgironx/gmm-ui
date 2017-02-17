@@ -19,7 +19,7 @@ RUN npm install
 #Set some volumes
 VOLUME ["/usr/src/app", "/usr/src/app/node_modules"]
 RUN ng -v
-RUN ng build --prod
+RUN ng build --env=prod
 
 WORKDIR /usr/src/app/dist
 
