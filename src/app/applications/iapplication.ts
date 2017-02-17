@@ -6,4 +6,6 @@ export interface IApplication {
     programId: number;
     status: string;
     subGrantee: string;
+    amount: number;
+
 }

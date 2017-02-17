@@ -3,6 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { IApplication } from './iapplication';
+import { Application } from './application';
 import { IGrantee } from './igrantee';
 import { environment } from '../../environments/environment';
 
@@ -14,6 +15,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ApplicationService {
     private _getApplicationsUrl = environment.serviceBase + "getApplications";
+    private _saveApplicationsUrl = environment.serviceBase + "saveApplication";
+    //private _saveApplicationsUrl = "http://application-dev.apps.gmm.bahincubator.com/saveApplication/";
 
     private headers:Headers;
         
@@ -42,14 +45,15 @@ export class ApplicationService {
         }).catch(this.handleError);
     }
 
-    saveApplication(application: IApplication): Observable<IApplication> {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        return this._http.post('/api/applications', JSON.stringify(application), options)
+    saveApplication(application: Application): Observable<IApplication> {        
+        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        let options = new RequestOptions({ headers: headers});
+        console.log(this._saveApplicationsUrl);
+        return this._http.post(this._saveApplicationsUrl + application.getPostJsonUrlString(), options)
             .map((response: Response) => {
-            return response.json();
-        }).catch(this.handleError);
+                console.log(response);
+                return response.json();
+        });
     }
 
     private handleError(error: Response) {

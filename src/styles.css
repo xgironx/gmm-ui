@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-
+.datatable-row-odd{
+  background-color: #dfe7f2;
+  color: #000000;
+}
 
 .full-circle {
  height: 10px;
