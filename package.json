@@ -1,15 +1,21 @@
 {
   "name": "fema-bpm-demo",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0 -lr false",
+    "start": "node dist/server.js",
     "lint": "tslint \"src/**/*.ts\" --project src/tsconfig.json --type-check && tslint \"e2e/**/*.ts\" --project e2e/tsconfig.json --type-check",
     "test": "ng test",
     "pree2e": "node ./node_modules/protractor/bin/webdriver-manager update",
-    "e2e": "protractor"
+    "e2e": "protractor",
+    "build:nodeserver-dev": "ng build --env=dev && cp node-server/* dist",
+    "build:nodeserver-local": "ng build --env=local && xcopy /s node-server/*.* dist",
+    "build:nodeserver-prod": "ng build --env=prod && cp node-server/* dist",
+    "serve-build-dev": "npm run build:nodeserver-dev && cd dist && node server.js",
+    "serve-build-local": "npm run build:nodeserver-local && cd dist && node server.js",
+    "serve-build-prod": "npm run build:nodeserver-prod && cd dist && node server.js"
   },
   "private": true,
   "dependencies": {
@@ -29,6 +35,7 @@
     "bootstrap": "4.0.0-alpha.5",
     "core-js": "^2.4.1",
     "d3": "^4.5.0",
+    "express": "^4.14.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.1.1",
     "moment": "^2.17.1",
