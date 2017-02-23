@@ -19,9 +19,9 @@ RUN npm install
 #Set some volumes
 VOLUME ["/usr/src/app", "/usr/src/app/node_modules"]
 RUN ng -v
-RUN ng build --env=prod
+RUN ng build --env=dev && cp node-server\* dist
 
 WORKDIR /usr/src/app/dist
 
 EXPOSE 8080
-CMD [ "http-server" ]
+CMD [ "npm", "start" ]
