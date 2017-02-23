@@ -21,8 +21,7 @@ VOLUME ["/usr/src/app", "/usr/src/app/node_modules"]
 RUN ng -v
 RUN ng build --env=dev
 
-WORKDIR /usr/src/app/node-server
-COPY server.js /usr/src/app/dist/
+COPY node-server/server.js  /usr/src/app/dist/
 
 WORKDIR /usr/src/app/
 
