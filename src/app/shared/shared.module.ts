@@ -10,13 +10,26 @@ import { PieChartSeriesCustomComponent } from './charts/pie-chart-series-custom/
 import { PieChartGuageCustomComponent } from './charts/pie-chart-guage-custom/pie-chart-guage-custom.component';
 import { PieChartGuageSeriesCustomComponent } from './charts/pie-chart-guage-series-custom/pie-chart-guage-series-custom.component';
 import { NgxChartsModule } from "@swimlane/ngx-charts";
+import { ChartModule } from 'angular2-highcharts';
+import {HighchartsStatic} from 'angular2-highcharts/dist/HighchartsService';
+export function highchartsFactory() {
+    var hc = require('highcharts');
+    var hcf = require('highcharts/modules/funnel');
+    var exp = require('highcharts/modules/exporting');
+
+    hcf(hc);
+    exp(hc);
+    return hc;
+}
+import { FunnelChartComponent } from './charts/funnel-chart/funnel-chart.component';
 
 
 @NgModule({
   imports: [
     CommonModule, 
     FormsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    ChartModule
   ],
   declarations: [
     FilterTextComponent,
@@ -26,10 +39,15 @@ import { NgxChartsModule } from "@swimlane/ngx-charts";
     PieChartSeriesCustomComponent,
     ApprovedGrantsPieChartComponent,
     PieChartGuageCustomComponent,
-    PieChartGuageSeriesCustomComponent
+    PieChartGuageSeriesCustomComponent,
+    FunnelChartComponent
   ],
   providers: [
-    FilterTextService
+    FilterTextService,
+    {
+      provide: HighchartsStatic,
+      useFactory: highchartsFactory
+    }
   ],
   exports: [
     CommonModule,
@@ -40,7 +58,8 @@ import { NgxChartsModule } from "@swimlane/ngx-charts";
     PieChartSeriesCustomComponent,
     ApprovedGrantsPieChartComponent,
     PieChartGuageCustomComponent,
-    PieChartGuageSeriesCustomComponent
+    PieChartGuageSeriesCustomComponent,
+    FunnelChartComponent
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,271 @@
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>{{pageTitle}}</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="x_panel">
+            <div class="x_content">
+
+
+
+
+
+<form class="form-horizontal" (ngSubmit)="save(applicationForm.value)" [formGroup]="applicationForm">
+    <fieldset>
+      <div class="row">
+        <div class="card">
+          <div class="card-header">
+              General Information
+          </div>
+          <div class="card-block">
+
+            <div class="row">
+              <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('orgName').touched || applicationForm.get('orgName').dirty) && !applicationForm.get('orgName').valid }">
+                <label for="orgNameId">Organization Name</label>
+                <input type="text" class="form-control" id="orgNameId" aria-describedby="orgNameIdHelp" placeholder="Enter Organization Name" formControlName="orgName">
+                <span class="form-text" *ngIf="(applicationForm.get('orgName').touched || applicationForm.get('orgName').dirty) && applicationForm.get('orgName').errors">
+                  <span *ngIf="applicationForm.get('orgName').errors.required" class="form-control-feedback">Please enter your Organization Name.</span>
+                </span>
+              </div>
+              <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('address1').touched || applicationForm.get('address1').dirty) && !applicationForm.get('address1').valid }">
+                <label for="address1Id">Address 1</label>
+                <input type="text" class="form-control" id="address1Id" aria-describedby="address1IdHelp" placeholder="Enter Address 1" formControlName="address1">
+                <span class="form-text" *ngIf="(applicationForm.get('address1').touched || applicationForm.get('address1').dirty) && applicationForm.get('address1').errors">
+                  <span *ngIf="applicationForm.get('address1').errors.required" class="form-control-feedback">Please enter your Address 1.</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('state').touched || applicationForm.get('state').dirty) && !applicationForm.get('state').valid }">
+                <label for="stateId">State</label>
+                <ng-select formControlName="state" placeholder="State (required)" [allowClear]="true" [options]="stateDropDownList" aria-describedby="stateIdHelp"></ng-select>
+                <span class="form-text" *ngIf="(applicationForm.get('state').touched || applicationForm.get('state').dirty) && applicationForm.get('state').errors">
+                    <span *ngIf="applicationForm.get('state').errors.required" class="form-control-feedback">Please enter State.</span>
+                </span>
+              </div>
+              <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('applicantType').touched || applicationForm.get('applicantType').dirty) && !applicationForm.get('applicantType').valid }">
+                <label for="applicantTypeId">Type of Application</label>
+                <ng-select formControlName="applicantType" placeholder="Application Type (required)" [allowClear]="true" [options]="applicantTypesDropDownList"></ng-select>
+                <span class="form-text" *ngIf="(applicationForm.get('applicantType').touched || applicationForm.get('applicantType').dirty) && applicationForm.get('applicantType').errors">
+                    <span *ngIf="applicationForm.get('applicantType').errors.required" class="form-control-feedback">Please enter Application Type.</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('congressionalDistrict').touched || applicationForm.get('congressionalDistrict').dirty) && !applicationForm.get('congressionalDistrict').valid }">
+                <label for="congressionalDistrictId">Congressional District</label>
+                <input type="text" class="form-control" id="congressionalDistrictId" aria-describedby="congressionalDistrictIdHelp" placeholder="Congressional District" formControlName="congressionalDistrict">
+                <span class="form-text" *ngIf="(applicationForm.get('congressionalDistrict').touched || applicationForm.get('congressionalDistrict').dirty) && applicationForm.get('congressionalDistrict').errors">
+                    <span *ngIf="applicationForm.get('congressionalDistrict').errors.required" class="form-control-feedback">Please enter Congressional District.</span>
+                </span>
+              </div>
+              <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('projectTitle').touched || applicationForm.get('projectTitle').dirty) && !applicationForm.get('projectTitle').valid }">
+                <label for="projectTitleId">Project Title</label>
+                <input type="text" class="form-control" id="projectTitleId" aria-describedby="projectTitleIdHelp" placeholder="Enter Project Title" formControlName="projectTitle">
+                <span class="form-text" *ngIf="(applicationForm.get('projectTitle').touched || applicationForm.get('projectTitle').dirty) && applicationForm.get('projectTitle').errors">
+                    <span *ngIf="applicationForm.get('projectTitle').errors.required" class="form-control-feedback">Please enter Project Title.</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('projectNumber').touched || applicationForm.get('projectNumber').dirty) && !applicationForm.get('projectNumber').valid }">
+                <label for="projectNumberId">Project Number</label>
+                <input type="text" class="form-control" id="projectNumberId" aria-describedby="projectNumberIdHelp" placeholder="Enter Project Number" formControlName="projectNumber">
+                <span class="form-text" *ngIf="(applicationForm.get('projectNumber').touched || applicationForm.get('projectNumber').dirty) && applicationForm.get('projectNumber').errors">
+                    <span *ngIf="applicationForm.get('projectNumber').errors.required" class="form-control-feedback">Please enter Project Number.</span>
+                </span>
+              </div>
+              <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('projectYear').touched || applicationForm.get('projectYear').dirty) && !applicationForm.get('projectYear').valid }">
+                <label for="projectYearId">Project Year</label>
+                <input type="text" class="form-control" id="projectYearId" aria-describedby="projectYearIdHelp" placeholder="Enter Project Year" formControlName="projectYear">
+                <span class="form-text" *ngIf="(applicationForm.get('projectYear').touched || applicationForm.get('projectYear').dirty) && applicationForm.get('projectYear').errors">
+                    <span *ngIf="applicationForm.get('projectYear').errors.required" class="form-control-feedback">Please enter Project Year.</span>
+                    <span *ngIf="applicationForm.get('projectYear').errors.invalidYear" class="form-control-feedback">Please enter valid Year.</span>
+                </span>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="card">
+          <div class="card-header">
+              Grantee
+          </div>
+          <div class="card-block">
+            <button (click)="openGranteeModal('Add Grantee')" *ngIf="grantee == null" class="btn">Add Grantee</button>
+            <template #customModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
+                <app-grantee-add-modal [dialogRef]="dialogRef"></app-grantee-add-modal>
+            </template>
+            <table class="table table-sm" *ngIf="grantee != null">
+              <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Address 1</th>
+                    <th>Address 2</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>DUNS ID</th>
+                    <th>Tax ID</th>
+                    <th>Financial Report Date</th>
+                    <th>Applicant Type<th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <i class="fa fa-pencil fa-fw" aria-hidden="true" (click)="openGranteeModal('Edit Grantee')"></i>
+                  <td><i class="fa fa-times" aria-hidden="true" (click)="onRemoveGrantee()"></i></td>
+                  <td>{{grantee.firstName}}</td>
+                  <td>{{grantee.lastName}}</td>
+                  <td>{{grantee.street1}}</td>
+                  <td>{{grantee.street2}}</td>
+                  <td>{{grantee.city}}</td>
+                  <td>{{grantee.state}}</td>
+                  <td>{{grantee.dunsId}}</td>
+                  <td>{{grantee.taxId}}</td>
+                  <td>{{grantee.financialReportDate}}</td>
+                  <td>{{grantee.applicantType}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="card">
+          <div class="card-header">
+              Sub-Grantee
+          </div>
+          <div class="card-block">
+            <button (click)="openSubGranteeModal('Add Sub-Grantee')" class="btn">Add Sub-Grantee</button>
+            <template #customModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
+                <app-grantee-add-modal [dialogRef]="dialogRef"></app-grantee-add-modal>
+            </template>
+            <table class="table table-sm" *ngIf="subGrantees.length != 0">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Address 1</th>
+                  <th>Address 2</th>
+                  <th>City</th>
+                  <th>State</th>
+                  <th>DUNS ID</th>
+                  <th>Tax ID</th>
+                  <th>Financial Report Date</th>
+                  <th>Applicant Type<th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let sg of subGrantees; let idx = index;">
+                  <i class="fa fa-pencil fa-fw" aria-hidden="true" (click)="editSubGranteeModal(idx, 'Edit Sub-Grantee')"></i>
+                  <td><i class="fa fa-times" aria-hidden="true" (click)="onRemoveSubGrantee(idx)"></i></td>
+                  <td>{{sg.firstName}}</td>
+                  <td>{{sg.lastName}}</td>
+                  <td>{{sg.street1}}</td>
+                  <td>{{sg.street2}}</td>
+                  <td>{{sg.city}}</td>
+                  <td>{{sg.state}}</td>
+                  <td>{{sg.dunsId}}</td>
+                  <td>{{sg.taxId}}</td>
+                  <td>{{sg.financialReportDate}}</td>
+                  <td>{{sg.applicantType}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="card">
+          <div class="card-header">
+              POC
+          </div>
+          <div class="card-block">
+            <button (click)="openPocModal('Add POC')" class="btn">Add POC</button>
+            <template #pocModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
+                <app-poc-add-modal [dialogRef]="dialogRef"></app-poc-add-modal>
+            </template>
+            <table class="table table-sm" *ngIf="pocs.length != 0">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th>Title</th>
+                  <th>F Name</th>
+                  <th>MI</th>
+                  <th>L Name</th>
+                  <th>AgencyOrg</th>
+                  <th>Address 1</th>
+                  <th>Address 2</th>
+                  <th>City</th>
+                  <th>State</th>
+                  <th>ZIP</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let poc of pocs; let idx = index;">
+                  <i class="fa fa-pencil fa-fw" aria-hidden="true" (click)="editPocModal(idx, 'Edit POC')"></i>
+                  <td><i class="fa fa-times" aria-hidden="true" (click)="onRemovePoc(idx)"></i></td>
+                  <td>{{poc.title}}</td>
+                  <td>{{poc.firstName}}</td>
+                  <td>{{poc.middleInitial}}</td>
+                  <td>{{poc.lastName}}</td>
+                  <td>{{poc.organization}}</td>
+                  <td>{{poc.address1}}</td>
+                  <td>{{poc.address2}}</td>
+                  <td>{{poc.city}}</td>
+                  <td>{{poc.state}}</td>
+                  <td>{{poc.zip}}</td>
+                  <td>{{poc.phone}}</td>
+                  <td>{{poc.email}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <button class="btn btn-primary" type="button" (click)="saveApp(applicationForm.value)" [disabled]="!applicationForm.valid" >Save</button>
+        </div>
+      </div>
+
+
+    
+        
+    </fieldset>
+</form>
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

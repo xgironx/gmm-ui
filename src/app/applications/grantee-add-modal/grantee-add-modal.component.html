@@ -83,7 +83,8 @@
                                     formControlName="state"
                                     placeholder="State (required)"
                                     [allowClear]="true"
-                                    [options]="stateDropDownList">
+                                    [options]="stateDropDownList"
+                                    [(ngModel)]="selectedState">
                                 </ng-select>
                                 <span class="form-text" *ngIf="(applicationForm.get('state').touched || 
                                                                 applicationForm.get('state').dirty) && 
@@ -147,7 +148,8 @@
                                     formControlName="applicantType"
                                     placeholder="Applicant Type (required)"
                                     [allowClear]="true"
-                                    [options]="applicantTypesDropDownList">
+                                    [options]="applicantTypesDropDownList"
+                                    [(ngModel)]="selectedApplicantType">
                                 </ng-select>
                                 <span class="form-text" *ngIf="(applicationForm.get('applicantType').touched || 
                                                                 applicationForm.get('applicantType').dirty) && 

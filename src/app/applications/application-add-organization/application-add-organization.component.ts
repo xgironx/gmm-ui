@@ -1,4 +1,5 @@
 import { Component, TemplateRef, ViewChild, ViewContainerRef, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { ModalComponent, DialogRef } from 'angular2-modal';
@@ -12,26 +13,30 @@ import { IApplicantType } from '../../shared/iapplicant-type';
 import { ApplicationService } from '../application.service';
 import { IApplication } from '../iapplication';
 import { Application } from '../application';
+import { CustomValidators } from '../../core/custom.validators';
+import { PocAddModalComponent } from '../poc-add-modal/poc-add-modal.component';
+import { IPoc } from '../ipoc';
+
+
 
 @Component({
-  selector: 'app-application-add-person',
-  templateUrl: './application-add-person.component.html',
-  styleUrls: ['./application-add-person.component.css'],
+  selector: 'app-application-add-organization',
+  templateUrl: './application-add-organization.component.html',
+  styleUrls: ['./application-add-organization.component.css'],
   providers: [Modal]
 })
-export class ApplicationAddPersonComponent implements OnInit {
-  public pageTitle: string = 'Add Application Person';
-  @ViewChild('customModalRef') customModalRef: TemplateRef<any>;
-  grantee: IGrantee = null;
-  subGrantees: IGrantee[] = [];
+export class ApplicationAddOrganizationComponent implements OnInit {
+  public pageTitle: string = 'Add Application Organization';
   applicationForm: FormGroup;
   states: IState[];
   stateDropDownList: any[] = [];
-  grantTypes: IGrantType[];
-  grantTypesDropDownList: any[] = [];
   applicantTypes: IApplicantType[];
   applicantTypesDropDownList: any[] = [];
-
+  @ViewChild('customModalRef') customModalRef: TemplateRef<any>;
+  @ViewChild('pocModalRef') pocModalRef: TemplateRef<any>;
+  grantee: IGrantee = null;
+  subGrantees: IGrantee[] = [];
+  pocs: IPoc[] = [];
   dialog: DialogRef<BSModalContext>;
 
   constructor(
@@ -45,50 +50,23 @@ export class ApplicationAddPersonComponent implements OnInit {
 
   ngOnInit() {
     this.applicationForm = this.fb.group({
-        employee: ['', [Validators.required]],
+        orgName: ['', [Validators.required]],
+        address1: ['', [Validators.required]],
         state: ['', [Validators.required]],
+        applicantType: ['', [Validators.required]],
         congressionalDistrict: ['', [Validators.required]],
         projectTitle: ['', [Validators.required]],
         projectNumber: ['', [Validators.required]],
-        projectYear: ['', [Validators.required]],
-        grantType: ['', [Validators.required]],
-        applicantType: ['', [Validators.required]]
+        projectYear: ['', Validators.compose([Validators.required, CustomValidators.yearValidator])]   
     });
     this.states = this.route.snapshot.data['states'];
     for (var i = 0, len = this.states.length; i < len; i++) {
         this.stateDropDownList.push({ value: this.states[i].stateId, label: this.states[i].stateName + ":" +  this.states[i].urbanArea});
     }
-    this.grantTypes = this.route.snapshot.data['grantTypes'];
-    for (var i = 0, len = this.grantTypes.length; i < len; i++) {
-        this.grantTypesDropDownList.push({ value: this.grantTypes[i].grantTypeId, label: this.grantTypes[i].grantTypeName });
-    }
     this.applicantTypes = this.route.snapshot.data['applicantTypes'];
     for (var i = 0, len = this.applicantTypes.length; i < len; i++) {
         this.applicantTypesDropDownList.push({ value: this.applicantTypes[i].applicantTypeId, label: this.applicantTypes[i].applicantTypeName });
     }
-  }
-
-  saveApp(formValues) {
-    var application = new Application();
-    application.fiscalYear = formValues.projectYear;
-    application.grantType = formValues.grantType;
-    application.poc = formValues.poc;
-    application.programId = 22;
-    application.status = "Applied";
-    application.subGrantee = "No";
-    application.amount = undefined;
-    application.poc = "testing";
-    application.amount = 234;
-    application.applicant = "testing";
-  
-  console.log(application);
-    this._applicationService.saveApplication(application)
-      .subscribe(
-      (applications) => {
-        console.log(applications);
-      },
-      error => console.log(error)
-      );
   }
 
   openGranteeModal(title: string) {
@@ -103,6 +81,10 @@ export class ApplicationAddPersonComponent implements OnInit {
             this.grantee = result;
         });
       });
+  }
+
+  onRemoveGrantee() {
+    this.grantee = null;
   }
 
   openSubGranteeModal(title: string){
@@ -137,8 +119,36 @@ export class ApplicationAddPersonComponent implements OnInit {
     this.subGrantees.splice(i, 1);
   }
 
-  onRemoveGrantee() {
-    this.grantee = null;
+  openPocModal(title: string){
+    var g = this.modal.open(PocAddModalComponent, overlayConfigFactory({ poc: null, title: title, states: this.states }, BSModalContext))
+      .then((result) => {
+        return result;
+      });
+    g
+      .then((resultPromise) => {
+        resultPromise.result.then((result) => {
+          if(result != null)
+            this.pocs.push(result);
+        });
+      });
+  }
+
+  editPocModal(i:number, title: string){
+    var g = this.modal.open(PocAddModalComponent, overlayConfigFactory({ poc: this.pocs[i], title: title, states: this.states }, BSModalContext))
+      .then((result) => {
+        return result;
+      });
+    g
+      .then((resultPromise) => {
+        resultPromise.result.then((result) => {
+          if(result != null)
+            this.pocs[i] = result;
+        });
+      });
+  }
+
+  onRemovePoc(i: number){
+    this.pocs.splice(i, 1);
   }
 
   private destroyModal() {
@@ -148,5 +158,9 @@ export class ApplicationAddPersonComponent implements OnInit {
     }
   }
 
+  saveApp(formValues) {
+  }
+
   save(){}
+
 }

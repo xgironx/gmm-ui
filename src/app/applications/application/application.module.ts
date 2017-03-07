@@ -11,6 +11,8 @@ import { ApplicationService } from '../application.service';
 import { StateResolver, ApplicantTypeResolver, GrantTypeResolver } from '../../shared/ref-data-resolver.service';
 import { ApplicationAddPersonComponent } from '../application-add-person/application-add-person.component';
 import { GranteeAddModalComponent } from '../grantee-add-modal/grantee-add-modal.component';
+import { ApplicationAddOrganizationComponent } from '../application-add-organization/application-add-organization.component';
+import { PocAddModalComponent } from '../poc-add-modal/poc-add-modal.component';
 
 
 /* Third Party */
@@ -53,9 +55,14 @@ const MODAL_PROVIDERS = [
     ApplicationComponent,
     ApplicationsListComponent,
     ApplicationAddPersonComponent,
-    GranteeAddModalComponent
+    GranteeAddModalComponent,
+    ApplicationAddOrganizationComponent,
+    PocAddModalComponent
   ],
   providers: [ApplicationService, MODAL_PROVIDERS],
-  entryComponents: [ GranteeAddModalComponent ]
+  entryComponents: [ 
+    GranteeAddModalComponent,
+    PocAddModalComponent
+  ]
 })
 export class ApplicationModule { }

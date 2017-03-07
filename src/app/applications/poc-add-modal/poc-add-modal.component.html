@@ -1,0 +1,126 @@
+<div class="container-fluid custom-modal-container">
+  <div class="row custom-modal-header">
+    <div class="col-sm-12">
+      <h1>{{context.title}}</h1>
+    </div>
+  </div>
+  <div class="row" [ngClass]="{'myclass' : shouldUseMyClass}">
+    <div class="col-xs-12">
+      <form class="form-horizontal" (ngSubmit)="save(applicationForm.value)" [formGroup]="applicationForm">
+        <fieldset>
+          <div class="row">
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('title').touched || applicationForm.get('title').dirty) && !applicationForm.get('title').valid }">
+              <label class="control-label" for="titleId">Title</label>
+              <input [(ngModel)]="editPoc.title" class="form-control" id="titleId" type="text" placeholder="Title (required)" formControlName="title" />
+              <span class="form-text" *ngIf="(applicationForm.get('title').touched || applicationForm.get('title').dirty) && applicationForm.get('title').errors">
+                  <span *ngIf="applicationForm.get('title').errors.required" class="form-control-feedback">Please enter title.</span>
+              </span>
+            </div>
+            <div class="form-group col-md-4" [ngClass]="{'has-danger': (applicationForm.get('firstName').touched || applicationForm.get('firstName').dirty) && !applicationForm.get('firstName').valid }">
+              <label class="control-label" for="firstNameId">First Name</label>
+              <input [(ngModel)]="editPoc.firstName" class="form-control" id="firstNameId" type="text" placeholder="First Name (required)" formControlName="firstName" />
+              <span class="form-text" *ngIf="(applicationForm.get('firstName').touched || applicationForm.get('firstName').dirty) && applicationForm.get('firstName').errors">
+                  <span *ngIf="applicationForm.get('firstName').errors.required" class="form-control-feedback">Please enter first name.</span>
+              </span>
+            </div>
+            <div class="form-group col-md-2">
+              <label class="control-label" for="middleInitialId">Middle Initial</label>
+              <input [(ngModel)]="editPoc.middleInitial" class="form-control" id="middleInitialId" type="text" placeholder="M Int" formControlName="middleInitial" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('lastName').touched || applicationForm.get('lastName').dirty) && !applicationForm.get('lastName').valid }">
+              <label class="control-label" for="lastNameId">Last Name</label>
+              <input [(ngModel)]="editPoc.lastName" class="form-control" id="lastNameId" type="text" placeholder="Last Name (required)" formControlName="lastName" />
+              <span class="form-text" *ngIf="(applicationForm.get('lastName').touched || applicationForm.get('lastName').dirty) && applicationForm.get('lastName').errors">
+                  <span *ngIf="applicationForm.get('lastName').errors.required" class="form-control-feedback">Please enter last name.</span>
+              </span>
+            </div>
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('organization').touched || applicationForm.get('organization').dirty) && !applicationForm.get('organization').valid }">
+              <label class="control-label" for="organizationId">Organization</label>
+              <input [(ngModel)]="editPoc.organization" class="form-control" id="organizationId" type="text" placeholder="Organization (required)" formControlName="organization" />
+              <span class="form-text" *ngIf="(applicationForm.get('organization').touched || applicationForm.get('organization').dirty) && applicationForm.get('organization').errors">
+                  <span *ngIf="applicationForm.get('organization').errors.required" class="form-control-feedback">Please enter organization.</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('address1').touched || applicationForm.get('address1').dirty) && !applicationForm.get('address1').valid }">
+              <label class="control-label" for="address1Id">Address 1</label>
+              <input [(ngModel)]="editPoc.address1" class="form-control" id="address1Id" type="text" placeholder="Address 1 (required)" formControlName="address1" />
+              <span class="form-text" *ngIf="(applicationForm.get('address1').touched || applicationForm.get('address1').dirty) && applicationForm.get('address1').errors">
+                  <span *ngIf="applicationForm.get('address1').errors.required" class="form-control-feedback">Please enter address 1.</span>
+              </span>
+            </div>
+            <div class="form-group col-md-6">
+              <label class="control-label" for="address2Id">Address 2</label>
+              <input [(ngModel)]="editPoc.address2" class="form-control" id="address2Id" type="text" placeholder="Address 2" formControlName="address2" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('city').touched || applicationForm.get('city').dirty) && !applicationForm.get('city').valid }">
+              <label class="control-label" for="cityId">City</label>
+              <input [(ngModel)]="editPoc.city" class="form-control" id="cityId" type="text" placeholder="City (required)" formControlName="city" />
+              <span class="form-text" *ngIf="(applicationForm.get('city').touched || applicationForm.get('city').dirty) && applicationForm.get('city').errors">
+                  <span *ngIf="applicationForm.get('city').errors.required" class="form-control-feedback">Please enter city.</span>
+              </span>
+            </div>
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('state').touched ||  applicationForm.get('state').dirty) && !applicationForm.get('state').valid }">
+              <label class="control-label" for="stateId">State</label>
+              <ng-select
+                formControlName="state"
+                placeholder="State (required)"
+                [allowClear]="true"
+                [options]="stateDropDownList"
+                [(ngModel)]="selectedState">
+              </ng-select>
+              <span class="form-text" *ngIf="(applicationForm.get('state').touched || applicationForm.get('state').dirty) && applicationForm.get('state').errors">
+                <span *ngIf="applicationForm.get('state').errors.required" class="form-control-feedback">Please enter state.</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('zip').touched || applicationForm.get('zip').dirty) && !applicationForm.get('zip').valid }">
+              <label class="control-label" for="zipId">ZIP Code</label>
+              <input [(ngModel)]="editPoc.zip" class="form-control" id="zipId" type="text" placeholder="ZIP Code (required)" formControlName="zip" />
+              <span class="form-text" *ngIf="(applicationForm.get('zip').touched || applicationForm.get('zip').dirty) && applicationForm.get('zip').errors">
+                  <span *ngIf="applicationForm.get('zip').errors.required" class="form-control-feedback">Please enter ZIP Code.</span>
+              </span>
+            </div>
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('phone').touched || applicationForm.get('phone').dirty) && !applicationForm.get('phone').valid }">
+              <label class="control-label" for="phoneId">Phone</label>
+              <input [(ngModel)]="editPoc.phone" class="form-control" id="phoneId" type="text" placeholder="Phone (required)" formControlName="phone" />
+              <span class="form-text" *ngIf="(applicationForm.get('phone').touched || applicationForm.get('phone').dirty) && applicationForm.get('phone').errors">
+                  <span *ngIf="applicationForm.get('phone').errors.required" class="form-control-feedback">Please enter phone.</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('email').touched || applicationForm.get('email').dirty) && !applicationForm.get('email').valid }">
+              <label class="control-label" for="emailId">Email</label>
+              <input [(ngModel)]="editPoc.email" class="form-control" id="emailId" type="text" placeholder="Email (required)" formControlName="email" />
+              <span class="form-text" *ngIf="(applicationForm.get('email').touched || applicationForm.get('email').dirty) && applicationForm.get('email').errors">
+                  <span *ngIf="applicationForm.get('email').errors.required" class="form-control-feedback">Please enter email.</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-4">
+                <button class="btn btn-primary" type="button" (click)="save(applicationForm.value)" [disabled]="!applicationForm.valid">Save</button>
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-primary" type="button" (click)="close()">Cancel</button>
+              </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

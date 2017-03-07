@@ -1,0 +1,73 @@
+<div class="right_col" role="main">
+    <div class="page-header">
+        <h1>{{pageTitle}}</h1>
+    </div>
+
+
+<div class="row">
+<div class="col-sm-6">
+    <div class="card">
+  <div class="card-header">
+    <i class="fa fa-cog pull-right" data-toggle="modal" data-target="#exampleModalLong"></i>
+    APPLICATION STATUS
+  </div>
+  <div class="card-block">
+    <app-funnel-chart
+      [series]="series"
+    ></app-funnel-chart>
+  </div>
+</div>
+</div>
+
+<div class="col-sm-6">
+    <div class="card">
+  <div class="card-header">
+    <i class="fa fa-cog pull-right"></i>
+    TASK PERFORMANCE METRICS
+  </div>
+  <div class="card-block">
+  </div>
+</div>
+
+</div>
+
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Select Data to Include</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+        <div class="form-group">
+  <label class="custom-control custom-checkbox">
+    <input type="checkbox" checked="{{dataA}}" class="custom-control-input">
+    <span class="custom-control-indicator"></span>
+    <span class="custom-control-description">Include Data A</span>
+  </label>
+
+  <div class="form-group">
+  <label class="custom-control custom-checkbox">
+    <input type="checkbox" checked="{{dataB}}" class="custom-control-input">
+    <span class="custom-control-indicator"></span>
+    <span class="custom-control-description">Include Data B</span>
+  </label>
+
+
+</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="clicked($event)" data-dismiss="modal">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

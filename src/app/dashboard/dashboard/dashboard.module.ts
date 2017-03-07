@@ -6,6 +6,7 @@ import { Dashboard1Component } from '../dashboard1/dashboard1.component';
 import { TaskModule } from '../../tasks/task/task.module';
 import { TabsModule } from 'ng2-bootstrap';
 //import { ReportsReceivedPieChartComponent } from '../../shared/charts/reports-received-pie-chart/reports-received-pie-chart.component';
+import { BranchChiefDashboardComponent } from '../branch-chief-dashboard/branch-chief-dashboard.component';
 
 /* Shared Module */
 import { SharedModule } from '../../shared/shared.module';
@@ -20,7 +21,8 @@ import { SharedModule } from '../../shared/shared.module';
   ],
   declarations: [
     DashboardComponent,
-    Dashboard1Component//,
+    Dashboard1Component,
+    BranchChiefDashboardComponent//,
     //ReportsReceivedPieChartComponent
   ]
 })
