@@ -4,7 +4,7 @@ import {
   NgZone
 } from '@angular/core';
 
-import { Location } from '@angular/common';
+import { LocationStrategy } from '@angular/common';
 
 import d3 from '../d3';
 import {NgxChartsModule, PieArcComponent , calculateViewDimensions, ViewDimensions, ColorHelper, BaseChartComponent, trimLabel, gridLayout, formatLabel} from "@swimlane/ngx-charts";
@@ -47,7 +47,7 @@ export class PieChartGuageCustomComponent extends BaseChartComponent {
   total: number;
   percent: number;
 
-  constructor(chartElement: ElementRef, zone: NgZone, cd: ChangeDetectorRef, location: Location){
+  constructor(chartElement: ElementRef, zone: NgZone, cd: ChangeDetectorRef, location: LocationStrategy){
        super(chartElement, zone, cd, location);
    }
 
