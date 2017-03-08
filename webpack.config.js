@@ -52,23 +52,23 @@ module.exports = function(env) {
   },
   "entry": {
     "main": [
-      "./src\\main.ts"
+      "./src/main.ts"
     ],
     "polyfills": [
-      "./src\\polyfills.ts"
+      "./src/polyfills.ts"
     ],
     "scripts": [
-      "script-loader!./node_modules\\jquery\\dist\\jquery.js",
-      "script-loader!./node_modules\\tether\\dist\\js\\tether.js",
-      "script-loader!./node_modules\\bootstrap\\dist\\js\\bootstrap.js"
+      "script-loader!./node_modules/jquery/dist/jquery.js",
+      "script-loader!./node_modules/tether/dist/js/tether.js",
+      "script-loader!./node_modules/bootstrap/dist/js/bootstrap.js"
     ],
     "styles": [
-      "./node_modules\\bootstrap\\dist\\css\\bootstrap.css",
-      "./node_modules\\font-awesome\\css\\font-awesome.css",
-      "./node_modules\\@swimlane\\ngx-datatable\\release\\index.css",
-      "./node_modules\\@swimlane\\ngx-datatable\\release\\themes\\material.css",
-      "./node_modules\\@swimlane\\ngx-datatable\\release\\assets\\icons.css",
-      "./src\\styles.css"
+      "./node_modules/bootstrap/dist/css/bootstrap.css",
+      "./node_modules/font-awesome/css/font-awesome.css",
+      "./node_modules/@swimlane/ngx-datatable/release/index.css",
+      "./node_modules/@swimlane/ngx-datatable/release/themes/material.css",
+      "./node_modules/@swimlane/ngx-datatable/release/assets/icons.css",
+      "./src/styles.css"
     ]
   },
   "output": {
@@ -104,12 +104,12 @@ module.exports = function(env) {
       },
       {
         "exclude": [
-          path.join(process.cwd(), "node_modules\\bootstrap\\dist\\css\\bootstrap.css"),
-          path.join(process.cwd(), "node_modules\\font-awesome\\css\\font-awesome.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\index.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\themes\\material.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\assets\\icons.css"),
-          path.join(process.cwd(), "src\\styles.css")
+          path.join(process.cwd(), "node_modules/bootstrap/dist/css/bootstrap.css"),
+          path.join(process.cwd(), "node_modules/font-awesome/css/font-awesome.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/index.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/themes/material.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/assets/icons.css"),
+          path.join(process.cwd(), "src/styles.css")
         ],
         "test": /\.css$/,
         "loaders": [
@@ -120,12 +120,12 @@ module.exports = function(env) {
       },
       {
         "exclude": [
-          path.join(process.cwd(), "node_modules\\bootstrap\\dist\\css\\bootstrap.css"),
-          path.join(process.cwd(), "node_modules\\font-awesome\\css\\font-awesome.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\index.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\themes\\material.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\assets\\icons.css"),
-          path.join(process.cwd(), "src\\styles.css")
+          path.join(process.cwd(), "node_modules/bootstrap/dist/css/bootstrap.css"),
+          path.join(process.cwd(), "node_modules/font-awesome/css/font-awesome.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/index.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/themes/material.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/assets/icons.css"),
+          path.join(process.cwd(), "src/styles.css")
         ],
         "test": /\.scss$|\.sass$/,
         "loaders": [
@@ -137,12 +137,12 @@ module.exports = function(env) {
       },
       {
         "exclude": [
-          path.join(process.cwd(), "node_modules\\bootstrap\\dist\\css\\bootstrap.css"),
-          path.join(process.cwd(), "node_modules\\font-awesome\\css\\font-awesome.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\index.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\themes\\material.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\assets\\icons.css"),
-          path.join(process.cwd(), "src\\styles.css")
+          path.join(process.cwd(), "node_modules/bootstrap/dist/css/bootstrap.css"),
+          path.join(process.cwd(), "node_modules/font-awesome/css/font-awesome.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/index.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/themes/material.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/assets/icons.css"),
+          path.join(process.cwd(), "src/styles.css")
         ],
         "test": /\.less$/,
         "loaders": [
@@ -154,12 +154,12 @@ module.exports = function(env) {
       },
       {
         "exclude": [
-          path.join(process.cwd(), "node_modules\\bootstrap\\dist\\css\\bootstrap.css"),
-          path.join(process.cwd(), "node_modules\\font-awesome\\css\\font-awesome.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\index.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\themes\\material.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\assets\\icons.css"),
-          path.join(process.cwd(), "src\\styles.css")
+          path.join(process.cwd(), "node_modules/bootstrap/dist/css/bootstrap.css"),
+          path.join(process.cwd(), "node_modules/font-awesome/css/font-awesome.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/index.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/themes/material.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/assets/icons.css"),
+          path.join(process.cwd(), "src/styles.css")
         ],
         "test": /\.styl$/,
         "loaders": [
@@ -171,12 +171,12 @@ module.exports = function(env) {
       },
       {
         "include": [
-          path.join(process.cwd(), "node_modules\\bootstrap\\dist\\css\\bootstrap.css"),
-          path.join(process.cwd(), "node_modules\\font-awesome\\css\\font-awesome.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\index.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\themes\\material.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\assets\\icons.css"),
-          path.join(process.cwd(), "src\\styles.css")
+          path.join(process.cwd(), "node_modules/bootstrap/dist/css/bootstrap.css"),
+          path.join(process.cwd(), "node_modules/font-awesome/css/font-awesome.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/index.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/themes/material.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/assets/icons.css"),
+          path.join(process.cwd(), "src/styles.css")
         ],
         "test": /\.css$/,
         "loaders": ExtractTextPlugin.extract({
@@ -190,12 +190,12 @@ module.exports = function(env) {
       },
       {
         "include": [
-          path.join(process.cwd(), "node_modules\\bootstrap\\dist\\css\\bootstrap.css"),
-          path.join(process.cwd(), "node_modules\\font-awesome\\css\\font-awesome.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\index.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\themes\\material.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\assets\\icons.css"),
-          path.join(process.cwd(), "src\\styles.css")
+          path.join(process.cwd(), "node_modules/bootstrap/dist/css/bootstrap.css"),
+          path.join(process.cwd(), "node_modules/font-awesome/css/font-awesome.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/index.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/themes/material.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/assets/icons.css"),
+          path.join(process.cwd(), "src/styles.css")
         ],
         "test": /\.scss$|\.sass$/,
         "loaders": ExtractTextPlugin.extract({
@@ -210,12 +210,12 @@ module.exports = function(env) {
       },
       {
         "include": [
-          path.join(process.cwd(), "node_modules\\bootstrap\\dist\\css\\bootstrap.css"),
-          path.join(process.cwd(), "node_modules\\font-awesome\\css\\font-awesome.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\index.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\themes\\material.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\assets\\icons.css"),
-          path.join(process.cwd(), "src\\styles.css")
+          path.join(process.cwd(), "node_modules/bootstrap/dist/css/bootstrap.css"),
+          path.join(process.cwd(), "node_modules/font-awesome/css/font-awesome.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/index.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/themes/material.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/assets/icons.css"),
+          path.join(process.cwd(), "src/styles.css")
         ],
         "test": /\.less$/,
         "loaders": ExtractTextPlugin.extract({
@@ -230,12 +230,12 @@ module.exports = function(env) {
       },
       {
         "include": [
-          path.join(process.cwd(), "node_modules\\bootstrap\\dist\\css\\bootstrap.css"),
-          path.join(process.cwd(), "node_modules\\font-awesome\\css\\font-awesome.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\index.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\themes\\material.css"),
-          path.join(process.cwd(), "node_modules\\@swimlane\\ngx-datatable\\release\\assets\\icons.css"),
-          path.join(process.cwd(), "src\\styles.css")
+          path.join(process.cwd(), "node_modules/bootstrap/dist/css/bootstrap.css"),
+          path.join(process.cwd(), "node_modules/font-awesome/css/font-awesome.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/index.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/themes/material.css"),
+          path.join(process.cwd(), "node_modules/@swimlane/ngx-datatable/release/assets/icons.css"),
+          path.join(process.cwd(), "src/styles.css")
         ],
         "test": /\.styl$/,
         "loaders": ExtractTextPlugin.extract({
@@ -267,14 +267,14 @@ module.exports = function(env) {
         "favicon.ico"
       ],
       "globOptions": {
-        "cwd": "C:\\Users\\536231\\Documents\\Projects\\bahgmm\\bahgmm-ui\\src",
+        "cwd": "C:/Users/536231/Documents/Projects/bahgmm/bahgmm-ui/src",
         "dot": true,
         "ignore": "**/.gitkeep"
       }
     }),
     new ProgressPlugin(),
     new HtmlWebpackPlugin({
-      "template": "./src\\index.html",
+      "template": "./src/index.html",
       "filename": "./index.html",
       "hash": false,
       "inject": true,
