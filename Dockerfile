@@ -10,7 +10,7 @@ WORKDIR /usr/src/app
 
 COPY . /usr/src/app
 # Install app dependencies
-RUN npm install -g webpack aspnet-webpack http-server angular-cli
+RUN npm install -g webpack aspnet-webpack http-server
 RUN npm uninstall -g angular-cli @angular/cli
 RUN npm uninstall --save angular-cli
 RUN npm cache clean
