@@ -367,7 +367,7 @@ env = env||null;
         'environments/environment.ts': 'environments/environment.dev.ts'
       },
       "exclude": [],
-      "tsConfigPath": "src\\tsconfig.app.json",
+      "tsConfigPath": "./src/tsconfig.app.json",
       "skipCodeGeneration": false
     })
 ); 
@@ -381,7 +381,7 @@ env = env||null;
         'environments/environment.ts': 'environments/environment.prod.ts'
       },
       "exclude": [],
-      "tsConfigPath": "src\\tsconfig.app.json",
+      "tsConfigPath": "./src/tsconfig.app.json",
       "skipCodeGeneration": false
     })
 ); 
@@ -395,7 +395,7 @@ env = env||null;
         'environments/environment.ts': 'environments/environment.ts'
       },
       "exclude": [],
-      "tsConfigPath": "src\\tsconfig.app.json",
+      "tsConfigPath": "./src/tsconfig.app.json",
       "skipCodeGeneration": false
     })
 ); 
