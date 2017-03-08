@@ -12,6 +12,7 @@ COPY . /usr/src/app
 # Install app dependencies
 RUN npm install -g webpack aspnet-webpack http-server angular-cli
 RUN npm uninstall -g angular-cli @angular/cli
+RUN npm uninstall --save angular-cli
 RUN npm cache clean
 RUN npm install -g @angular/cli@latest
 RUN npm install
