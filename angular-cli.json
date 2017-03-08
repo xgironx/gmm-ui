@@ -1,7 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "fema-bpm-demo"
+    "name": "fema-bpm-demo",
+    "ejected": true
   },
   "apps": [
     {
@@ -32,17 +33,13 @@
         "../node_modules/bootstrap/dist/js/bootstrap.js"
       ],
       "environmentSource": "environments/environment.ts",
-
       "environments": {
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts",
         "local": "environments/environment.local.ts"
       }
-      
     }
-    
   ],
-  
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"
@@ -66,8 +63,24 @@
   },
   "defaults": {
     "styleExt": "css",
+    "class": {
+      "spec": false
+    },
     "component": {
-      "inlineTemplate": false,
+      "spec": true,
+      "inlineStyle": false,
+      "inlineTemplate": false
+    },
+    "directive": {
+      "spec": true
+    },
+    "module": {
+      "spec": false
+    },
+    "pipe": {
+      "spec": true
+    },
+    "service": {
       "spec": true
     }
   }

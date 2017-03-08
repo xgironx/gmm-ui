@@ -13,11 +13,18 @@ module.exports = function (config) {
       require('karma-jasmine-html-reporter'),
       require('@angular/cli/plugins/karma')
     ],
+    exclude: [],
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
+    query: {
+        esModules: false
+    },
     files: [
-      { pattern: './src/test.ts', watched: false }
+      { pattern: './src/test.ts', watched: false },
+      './node_modules/phantomjs-polyfill/bind-polyfill.js',
+      './node_modules/systemjs/dist/system.src.js',
+      './node_modules/systemjs/dist/system-polyfills.js'
     ],
     preprocessors: {
       './src/test.ts': ['@angular/cli']
@@ -26,12 +33,17 @@ module.exports = function (config) {
       'text/x-typescript': ['ts','tsx']
     },
     coverageIstanbulReporter: {
-      reports: {
-        html: 'coverage',
-        lcovonly: './coverage/coverage.lcov',
-        cobertura: './coverage/cobertura.txt'
-      },
-      fixWebpackSourcePaths: true
+      reports: ['html', 'lcovonly', 'cobertura'],
+      dir: './coverage',
+      fixWebpackSourcePaths: true,
+      'report-config': {
+        cobertura: {
+          file : 'cobertura.txt'
+        },
+        lcovonly: {
+          file : 'coverage.lcov'
+        }
+      }
     },
     angularCli: {
       environment: 'dev'

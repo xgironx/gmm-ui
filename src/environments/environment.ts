@@ -4,6 +4,6 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  production: true,
-  serviceBase: "application-svc-dev.gmm.bahincubator.com/"
+  production: false,
+  serviceBase: "http://localhost:8402/"
 };
