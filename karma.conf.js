@@ -4,39 +4,55 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine', 'angular-cli'],
+    frameworks: ['jasmine', '@angular/cli'],
     plugins: [
       require('karma-jasmine'),
       require('karma-phantomjs-launcher'),
       require('karma-junit-reporter'),
-      require('karma-remap-istanbul'),
-      require('angular-cli/plugins/karma')
+      require('karma-coverage-istanbul-reporter'),
+      require('karma-jasmine-html-reporter'),
+      require('@angular/cli/plugins/karma')
     ],
+    exclude: [],
+    client:{
+      clearContext: false // leave Jasmine Spec Runner output visible in browser
+    },
+    query: {
+        esModules: false
+    },
     files: [
-      { pattern: './src/test.ts', watched: false }
+      { pattern: './src/test.ts', watched: false },
+      './node_modules/phantomjs-polyfill/bind-polyfill.js',
+      './node_modules/systemjs/dist/system.src.js',
+      './node_modules/systemjs/dist/system-polyfills.js'
     ],
     preprocessors: {
-      './src/test.ts': ['angular-cli']
+      './src/test.ts': ['@angular/cli']
     },
     mime: {
       'text/x-typescript': ['ts','tsx']
     },
-    remapIstanbulReporter: {
-      reports: {
-        html: 'coverage',
-        lcovonly: './coverage/coverage.lcov',
-        cobertura: './coverage/cobertura.txt'
+    coverageIstanbulReporter: {
+      reports: ['html', 'lcovonly', 'cobertura'],
+      dir: './coverage',
+      fixWebpackSourcePaths: true,
+      'report-config': {
+        cobertura: {
+          file : 'cobertura.txt'
+        },
+        lcovonly: {
+          file : 'coverage.lcov'
+        }
       }
     },
     angularCli: {
-      config: './angular-cli.json',
       environment: 'dev'
     },
     junitReporter: {
       outputDir: 'reports'
     },
     reporters: config.angularCli && config.angularCli.codeCoverage
-              ? ['progress', 'junit', 'karma-remap-istanbul']
+              ? ['progress', 'junit', 'coverage-istanbul']
               : ['progress', 'junit'],
     port: 9876,
     colors: true,

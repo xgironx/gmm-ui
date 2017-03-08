@@ -17,7 +17,6 @@ import { RouterModule } from '@angular/router';
   declarations: [
     SidebarComponent,
     TopnavbarComponent, 
-    SpinnerComponent, 
     SpinnerComponent
   ],
   providers: [

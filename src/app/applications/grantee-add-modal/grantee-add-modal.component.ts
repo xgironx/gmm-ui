@@ -10,7 +10,7 @@ import { IGrantee } from '../igrantee';
 import { RefDataService } from '../../shared/ref-data.service';
 import { ApplicationService } from '../application.service';
 
-export class GranteeModalContext extends BSModalContext {
+export declare class GranteeModalContext extends BSModalContext {
   public grantee: IGrantee;
   public title: string;
   public states: IState[];
@@ -32,6 +32,8 @@ export class GranteeAddModalComponent implements OnDestroy, OnInit, AfterViewIni
   grantee: IGrantee;
   editGrantee: IGrantee = <IGrantee>{};
   title: string;
+  selectedState: string = null;
+  selectedApplicantType:string = null;
 
   constructor(
         private fb: FormBuilder, 
@@ -67,47 +69,64 @@ export class GranteeAddModalComponent implements OnDestroy, OnInit, AfterViewIni
         }
         
         for (var i = 0, len = this.context.states.length; i < len; i++) {
-            this.stateDropDownList.push({ value: this.context.states[i].stateId, label: this.context.states[i].stateName + ":" +  this.context.states[i].urbanArea });
+          let option = { value: this.context.states[i].stateId, label: this.context.states[i].stateName };
+          this.stateDropDownList.push(option);
+          if(this.grantee != null && this.selectedState == null && this.context.states[i].stateName == this.grantee.state){
+            this.selectedState = this.context.states[i].stateId;
+          }
         }
         for (var i = 0, len = this.context.applicantTypes.length; i < len; i++) {
-            this.applicantTypesDropDownList.push({ value: this.context.applicantTypes[i].applicantTypeId, label: this.context.applicantTypes[i].applicantTypeName });
+          let option = { value: this.context.applicantTypes[i].applicantTypeId, label: this.context.applicantTypes[i].applicantTypeName };
+          this.applicantTypesDropDownList.push(option);
+          if(this.grantee != null && this.selectedApplicantType == null && this.context.applicantTypes[i].applicantTypeName == this.grantee.applicantType){
+            this.selectedApplicantType = this.context.applicantTypes[i].applicantTypeId;
+          }
         }
   }
 
   save(formValues) {
-        let grantee:IGrantee = {
-            id: undefined,
-            firstName: formValues.firstName,
-            lastName: formValues.lastName,
-            street1: formValues.street1,
-            street2: formValues.street2,
-            city: formValues.city,
-            state: null,//formValues.state,
-            dunsId: formValues.dunsId,
-            taxId: formValues.taxId,
-            financialReportDate: formValues.financialReportDate,
-            applicantType: null//formValues.applicantType
-        };
-        this.dialog.close(grantee);
-        /*this._applicationService.saveGrantee(grantee).subscribe(
-            grantee => {
-                    console.log('Saved:' + JSON.stringify(grantee));
-                    this.router.navigate(['/Application/addApplication', grantee.id]);
-                },
-            err => {
-                console.error(err);
-                this.router.navigate(['/Application/addApplication', 1]); //REMOVE THIS ONCE WE GET API HOOKED UP
-                }
-        );*/
+    let stateName: string = null;
+    for (var i = 0, len = this.context.states.length; i < len; i++) {
+      if(formValues.state == this.context.states[i].stateId){
+        stateName = this.context.states[i].stateName;
+      }
+    }
+    let applicantTypeName: string = null;
+    for (var i = 0, len = this.context.applicantTypes.length; i < len; i++) {
+      if(formValues.applicantType == this.context.applicantTypes[i].applicantTypeId){
+        applicantTypeName = this.context.applicantTypes[i].applicantTypeName;
+      }
+    }
+    let grantee:IGrantee = {
+        id: undefined,
+        firstName: formValues.firstName,
+        lastName: formValues.lastName,
+        street1: formValues.street1,
+        street2: formValues.street2,
+        city: formValues.city,
+        state: stateName,
+        dunsId: formValues.dunsId,
+        taxId: formValues.taxId,
+        financialReportDate: formValues.financialReportDate,
+        applicantType: applicantTypeName
+    };
+    this.dialog.close(grantee);
+    /*this._applicationService.saveGrantee(grantee).subscribe(
+        grantee => {
+                console.log('Saved:' + JSON.stringify(grantee));
+                this.router.navigate(['/Application/addApplication', grantee.id]);
+            },
+        err => {
+            console.error(err);
+            this.router.navigate(['/Application/addApplication', 1]); //REMOVE THIS ONCE WE GET API HOOKED UP
+            }
+    );*/
     }
 
-    close(){
-      //this.dialogRef.close();
-      console.log(this.dialog);
+  close(){
       this.dialog.close(null);
-    }
+  }
 
   ngOnDestroy() {
-    console.log('app-grantee-add-modal: ngOnDestroy');
   }
 }

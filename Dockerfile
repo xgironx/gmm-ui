@@ -10,8 +10,9 @@ WORKDIR /usr/src/app
 
 COPY . /usr/src/app
 # Install app dependencies
-RUN npm install -g webpack aspnet-webpack http-server angular-cli
+RUN npm install -g webpack aspnet-webpack http-server
 RUN npm uninstall -g angular-cli @angular/cli
+RUN npm uninstall --save angular-cli
 RUN npm cache clean
 RUN npm install -g @angular/cli@latest
 RUN npm install
@@ -19,11 +20,11 @@ RUN npm install
 #Set some volumes
 VOLUME ["/usr/src/app", "/usr/src/app/node_modules"]
 RUN ng -v
-RUN ng build --env=dev
+RUN npm run build -- --env.dev true
 
 COPY node-server/server.js  /usr/src/app/dist/
 
 WORKDIR /usr/src/app/
 
 EXPOSE 8080
-CMD [ "npm", "start" ]
+CMD [ "npm", "start:server" ]
