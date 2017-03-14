@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  serviceBase: "http://localhost:8402/"
+  serviceBase: "http://localhost:8402/",
+  serviceBaseActiviti: "http://activiti-svc-dev.apps.gmm.bahincubator.com:80/"
 };

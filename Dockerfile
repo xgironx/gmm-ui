@@ -17,8 +17,6 @@ RUN npm cache clean
 RUN npm install -g @angular/cli@latest
 RUN npm install
 
-#Set some volumes
-VOLUME ["/usr/src/app", "/usr/src/app/node_modules"]
 RUN ng -v
 # Build and optimize app
 RUN npm run build -- --env.dev true
@@ -26,6 +24,9 @@ RUN npm run build -- --env.dev true
 COPY node-server/server.js  /usr/src/app/dist/
 
 WORKDIR /usr/src/app/
+
+#Set some volumes
+VOLUME ["/usr/src/app", "/usr/src/app/node_modules"]
 
 EXPOSE 8080
 # defined in package.json
