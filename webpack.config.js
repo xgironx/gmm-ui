@@ -267,7 +267,7 @@ module.exports = function(env) {
         "favicon.ico"
       ],
       "globOptions": {
-        "cwd": "C:/Users/536231/Documents/Projects/bahgmm/bahgmm-ui/src",
+        "cwd": "./src",
         "dot": true,
         "ignore": "**/.gitkeep"
       }
