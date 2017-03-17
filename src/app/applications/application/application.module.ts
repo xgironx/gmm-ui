@@ -17,7 +17,7 @@ import { PocAddModalComponent } from '../poc-add-modal/poc-add-modal.component';
 
 /* Third Party */
 import { PaginationModule, ModalModule } from 'ng2-bootstrap';
-import {SelectModule} from 'angular2-select';
+import {SelectModule} from 'ng-select';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import { OverlayRenderer, DOMOverlayRenderer, Overlay } from 'angular2-modal';
 import { Modal } from 'angular2-modal/plugins/bootstrap';
@@ -25,6 +25,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 /* Shared Module */
 import { SharedModule } from '../../shared/shared.module';
+import { CurrencyPipePipe } from '../../shared/pipes/currency-pipe.pipe';
 
 const MODAL_PROVIDERS = [
   Modal,
@@ -59,7 +60,11 @@ const MODAL_PROVIDERS = [
     ApplicationAddOrganizationComponent,
     PocAddModalComponent
   ],
-  providers: [ApplicationService, MODAL_PROVIDERS],
+  providers: [
+    ApplicationService, 
+    MODAL_PROVIDERS, 
+    CurrencyPipePipe
+  ],
   entryComponents: [ 
     GranteeAddModalComponent,
     PocAddModalComponent

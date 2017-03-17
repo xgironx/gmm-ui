@@ -100,6 +100,32 @@
       <div class="row">
         <div class="card">
           <div class="card-header">
+            Grant Information
+          </div>
+          <div class="card-block">
+            <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('grantType').touched || applicationForm.get('grantType').dirty) && !applicationForm.get('grantType').valid }">
+                <label for="grantTypeId">Grant Type</label>
+                <ng-select formControlName="grantType" placeholder="Grant Type (required)" [allowClear]="true" [options]="grantTypesDropDownList" aria-describedby="grantTypeIdHelp"></ng-select>
+                <span class="form-text" *ngIf="(applicationForm.get('grantType').touched || applicationForm.get('grantType').dirty) && applicationForm.get('grantType').errors">
+                    <span *ngIf="applicationForm.get('grantType').errors.required" class="form-control-feedback">Please enter Grant Type.</span>
+                </span>
+              </div>
+              <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('grantValue').touched || applicationForm.get('grantValue').dirty) && !applicationForm.get('grantValue').valid }">
+                <label for="grantValueId">Grant Value</label>
+                <input type="text" class="form-control" id="grantValueId" aria-describedby="grantValueIdHelp" placeholder="Enter Grant Value" formControlName="grantValue"  (ngModelChange)="grantValueChangeModel($event)" appCurrencyFormatter>
+                <span class="form-text" *ngIf="(applicationForm.get('grantValue').touched || applicationForm.get('grantValue').dirty) && applicationForm.get('grantValue').errors">
+                    <span *ngIf="applicationForm.get('grantValue').errors.required" class="form-control-feedback">Please enter Grant Value.</span>
+                    <span *ngIf="applicationForm.get('grantValue').errors.invalidCurrency" class="form-control-feedback">Please enter valid Grant Value(a number with 2 decimal places).</span>
+                </span>
+              </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="card">
+          <div class="card-header">
               Grantee
           </div>
           <div class="card-block">
@@ -245,10 +271,25 @@
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" *ngIf="isDraft()" >
         <div class="col-md-2"></div>
         <div class="col-md-4">
-            <button class="btn btn-primary" type="button" (click)="saveApp(applicationForm.value)" [disabled]="!applicationForm.valid" >Save</button>
+            <button class="btn btn-primary" type="button" (click)="saveApp(applicationForm.value)" [disabled]="!applicationForm.valid && !applicationForm.dirty" >Save Draft</button>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-primary" type="button" (click)="saveApp(applicationForm.value)" [disabled]="!applicationForm.valid && !applicationForm.dirty" >Submit Application</button>
+        </div>
+      </div>
+      <div class="row" *ngIf="isNew()" >
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <button class="btn btn-primary" type="button" (click)="saveApp(applicationForm.value)" [disabled]="!applicationForm.valid && !applicationForm.dirty" >Save Draft</button>
+        </div>
+      </div>
+      <div class="row" *ngIf="isSubmitted()" >
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <button class="btn btn-primary" type="button" (click)="approveApp()" >Approve Application</button>
         </div>
       </div>
 

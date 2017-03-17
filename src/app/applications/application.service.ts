@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { IApplication } from './iapplication';
-import { Application } from './application';
-import { IGrantee } from './igrantee';
 import { environment } from '../../environments/environment';
+import { IApplication, IGrantee, IOrganization, IPointOfContact, ISubGrantee } from './iapplication';
+import { Application, Organization, PointOfContact, Grantee } from './application';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
@@ -15,8 +14,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ApplicationService {
     private _getApplicationsUrl = environment.serviceBase + "getApplications";
+    private _getApplicationByApplicationNumberUrl = environment.serviceBase + "getApplicationByApplicationNumber";
     private _saveApplicationsUrl = environment.serviceBase + "saveApplication";
-    //private _saveApplicationsUrl = "http://application-dev.apps.gmm.bahincubator.com/saveApplication/";
 
     private headers:Headers;
         
@@ -35,6 +34,13 @@ export class ApplicationService {
             .catch(this.handleError);
     }
 
+    getApplicationByApplicationNumber(applicationNumber: number): Observable<IApplication> {
+        return this._http.get(this._getApplicationByApplicationNumberUrl + "?applicationNumber=" + applicationNumber.toString(), {headers: this.headers})
+            .map((response: Response) => <IApplication>response.json())
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
     saveGrantee(grantee: IGrantee): Observable<IGrantee> {
         let headers = new Headers({ 'Content-Type': 'grantee/json' });
         let options = new RequestOptions({ headers: headers });
@@ -46,10 +52,11 @@ export class ApplicationService {
     }
 
     saveApplication(application: Application): Observable<IApplication> {        
-        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers});
         console.log(this._saveApplicationsUrl);
-        return this._http.post(this._saveApplicationsUrl + application.getPostJsonUrlString(), options)
+        console.log(application);
+        return this._http.post(this._saveApplicationsUrl, application, options)
             .map((response: Response) => {
                 console.log(response);
                 return response.json();

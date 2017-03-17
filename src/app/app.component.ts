@@ -1,14 +1,27 @@
-import { Component } from '@angular/core';
-//import { MockBackendService } from './mock-backend/mock-backend.service';
+import { Component, OnInit } from '@angular/core';
+
+import {Router, RoutesRecognized} from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  //providers: [MockBackendService]
+  templateUrl: './app.component.html'
 })
-export class AppComponent {
-  //constructor(private mockBackendService: MockBackendService) {
-    //if(!this.mockBackendService.isStarted)
-      //this.mockBackendService.start();
-  //}
+export class AppComponent  implements OnInit  {
+
+  constructor(
+      private router:Router) {
+    
+  }
+
+  ngOnInit() {
+    this.router.events
+      .filter(e => e instanceof RoutesRecognized)
+      .pairwise()
+      .subscribe((e: any[]) => {
+        //console.log(e);
+      });
+    this.router.events.pairwise().subscribe((e) => {
+            //console.log(e);
+    })
+  }
 }

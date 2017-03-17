@@ -8,14 +8,14 @@ import { Component, OnInit } from '@angular/core';
 
 export class SidebarComponent {
     // TypeScript public modifiers
-    private $BODY;
-    private $MENU_TOGGLE;
-    private $SIDEBAR_MENU;
-    private $SIDEBAR_FOOTER;
-    private $LEFT_COL;
-    private $RIGHT_COL;
-    private $NAV_MENU;
-    private $FOOTER;
+    private $BODY: any;
+    private $MENU_TOGGLE: any;
+    private $SIDEBAR_MENU: any;
+    private $SIDEBAR_FOOTER: any;
+    private $LEFT_COL: any;
+    private $RIGHT_COL: any;
+    private $NAV_MENU: any;
+    private $FOOTER: any;
 
     constructor() {
 

@@ -1,16 +1,38 @@
-<table class="table table-striped">
-    <tbody>
-      <tr *ngFor='let task of myTasks'>
-          <td>{{ task.taskName }}</td>
-          <td>{{ task.taskState }}</td>
-          <td>
-            <a href="#">
-                <span class="glyphicon glyphicon-play-circle"></span>
-            </a>
-            <a href="#">
-              <span class="glyphicon glyphicon-remove"></span>
-            </a>
-          </td>
-      </tr>
-    </tbody>
-</table>
+<div class="card">
+    <div class="card-header">
+        <i class="fa fa-cog pull-right" data-toggle="modal" ></i>
+        MY TASKS
+    </div>
+    <div class="card-block">
+        <ngx-datatable
+            class="material"
+                [rows]="tasks"
+                [columnMode]="Force-fill"
+                [headerHeight]="40"
+                [footerHeight]="0"
+                [rowHeight]="40"
+                [limit]="10"
+        >
+          <ngx-datatable-column name="Task" sortable="true" prop="applicationNumber" width="400">
+            <template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+              {{column.name}}
+            </template>
+            <template let-row="row" ngx-datatable-cell-template>
+              <div>
+                <button class="btn btn-link" (click)="navigateToApplication(row)" type="button">Approve Task {{row.applicationNumber}}</button>
+              </div>
+            </template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Due Date" sortable="true" prop="dueDate" width="400">
+            <template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+              {{column.name}}
+            </template>
+            <template let-row="row" ngx-datatable-cell-template>
+              <div>
+                 Due in {{ row.dueDate | dateDifference : row.currentDate : 'days'}} days
+              </div>
+            </template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
+</div>

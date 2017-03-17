@@ -22,6 +22,11 @@ export function highchartsFactory() {
     return hc;
 }
 import { FunnelChartComponent } from './charts/funnel-chart/funnel-chart.component';
+import { CurrencyPipePipe } from './pipes/currency-pipe.pipe';
+import { CurrencyFormatterDirective } from './directives/currency-formatter.directive';
+import { DateDifferencePipe } from './pipes/date-difference.pipe';
+
+import { YearValidatorDirective } from './directives/year-validator.directive';
 
 
 @NgModule({
@@ -40,7 +45,11 @@ import { FunnelChartComponent } from './charts/funnel-chart/funnel-chart.compone
     ApprovedGrantsPieChartComponent,
     PieChartGuageCustomComponent,
     PieChartGuageSeriesCustomComponent,
-    FunnelChartComponent
+    FunnelChartComponent,
+    CurrencyPipePipe,
+    CurrencyFormatterDirective,
+    DateDifferencePipe,
+    YearValidatorDirective
   ],
   providers: [
     FilterTextService,
@@ -59,7 +68,10 @@ import { FunnelChartComponent } from './charts/funnel-chart/funnel-chart.compone
     ApprovedGrantsPieChartComponent,
     PieChartGuageCustomComponent,
     PieChartGuageSeriesCustomComponent,
-    FunnelChartComponent
+    FunnelChartComponent,
+    CurrencyPipePipe,
+    CurrencyFormatterDirective,
+    DateDifferencePipe
   ]
 })
 export class SharedModule { }

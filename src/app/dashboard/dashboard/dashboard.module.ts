@@ -7,6 +7,7 @@ import { TaskModule } from '../../tasks/task/task.module';
 import { TabsModule } from 'ng2-bootstrap';
 //import { ReportsReceivedPieChartComponent } from '../../shared/charts/reports-received-pie-chart/reports-received-pie-chart.component';
 import { BranchChiefDashboardComponent } from '../branch-chief-dashboard/branch-chief-dashboard.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 /* Shared Module */
 import { SharedModule } from '../../shared/shared.module';
@@ -17,7 +18,8 @@ import { SharedModule } from '../../shared/shared.module';
     dashboardRouting,
     TaskModule,
     TabsModule,
-    SharedModule
+    SharedModule,
+    NgxDatatableModule
   ],
   declarations: [
     DashboardComponent,
