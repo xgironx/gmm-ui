@@ -10,7 +10,7 @@ import { RefDataService } from './shared/ref-data.service';
 import { StateResolver, ApplicantTypeResolver, GrantTypeResolver } from './shared/ref-data-resolver.service';
 
 /* Third Party */
-import { SelectModule } from 'angular2-select';
+import { SelectModule } from 'ng-select';
 import { TabsModule, ModalModule } from 'ng2-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
@@ -28,12 +28,14 @@ import { CoreModule } from './core/core.module';
 /* Components */
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home/home.component';
+import { GranteeHomeComponent } from './home/grantee-home/grantee-home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    GranteeHomeComponent
   ],
   imports: [
     TabsModule.forRoot(),

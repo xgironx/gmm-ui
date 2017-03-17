@@ -36,6 +36,9 @@ const dev = process.argv.indexOf('-d') !== -1;
 module.exports = function(env) {
   const config = {
     "devtool": "source-map",
+    "devServer": {
+    "historyApiFallback": true
+  },
   "resolve": {
     "extensions": [
       ".ts",
@@ -361,6 +364,10 @@ module.exports = function(env) {
 config.plugins = config.plugins||[];
 env = env||null;
  if(env != null && env.dev != undefined && env.dev == "true"){
+   console.log('dev');
+   config.module.rules.push(
+            { test: /\.ts$/, loaders: ['@ngtools/webpack'] }
+        );
        config.plugins.push(new AotPlugin({
       "mainPath": "main.ts",
       "hostReplacementPaths": {
@@ -369,12 +376,28 @@ env = env||null;
       "exclude": [],
       "tsConfigPath": "./src/tsconfig.app.json",
       "skipCodeGeneration": false
-    })
+    }),
+
+    new webpack.optimize.UglifyJsPlugin({
+                beautify: false,
+                mangle: {
+                    screw_ie8: true,
+                    keep_fnames: true
+                },
+                compress: {
+                    warnings: false,
+                    screw_ie8: true
+                },
+                comments: false
+            })
 ); 
   }
 
   else if(env != null && env.prod != undefined && env.prod == "true"){
     console.log('prod');
+    config.module.rules.push(
+            { test: /\.ts$/, loaders: ['@ngtools/webpack'] }
+        );
        config.plugins.push(new AotPlugin({
       "mainPath": "main.ts",
       "hostReplacementPaths": {
@@ -383,14 +406,28 @@ env = env||null;
       "exclude": [],
       "tsConfigPath": "./src/tsconfig.app.json",
       "skipCodeGeneration": false
-    })
+    }),
+
+    new webpack.optimize.UglifyJsPlugin({
+                beautify: false,
+                mangle: {
+                    screw_ie8: true,
+                    keep_fnames: true
+                },
+                compress: {
+                    warnings: false,
+                    screw_ie8: true
+                },
+                comments: false
+            })
 ); 
   }
 
   else{
-    console.log('dev');
+    console.log('local');
+    
        config.plugins.push(new AotPlugin({
-      "mainPath": "main.ts",
+         "mainPath": "main.ts",
       "hostReplacementPaths": {
         'environments/environment.ts': 'environments/environment.ts'
       },

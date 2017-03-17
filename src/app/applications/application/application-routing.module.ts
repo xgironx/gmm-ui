@@ -19,6 +19,11 @@ const lazyRoutes: Routes = [
         path: 'addApplicationOrganization',
         component: ApplicationAddOrganizationComponent,
         resolve: { states: StateResolver, grantTypes: GrantTypeResolver, applicantTypes: ApplicantTypeResolver }
+      },
+      {
+        path: 'addApplicationOrganization/:id',
+        component: ApplicationAddOrganizationComponent,
+        resolve: { states: StateResolver, grantTypes: GrantTypeResolver, applicantTypes: ApplicantTypeResolver }
       }
     ]
   }

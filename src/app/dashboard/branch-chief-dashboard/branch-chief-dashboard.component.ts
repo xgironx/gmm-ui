@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ITask } from '../../tasks/itask';
+import { Task } from '../../tasks/task';
 
 @Component({
   selector: 'app-branch-chief-dashboard',
@@ -10,6 +12,14 @@ export class BranchChiefDashboardComponent implements OnInit {
   series: any[] = [];
   dataA: boolean = true;
   dataB: boolean = false;
+  tasks: ITask[] = [];
+  tasksTemp: ITask[] = [];
+  columns = [
+    { prop: 'assignee', name: "Assignee", maxWidth: 100 },
+    { prop: 'description', name: "Description", maxWidth: 100 },
+    { prop: 'name', name: "Name", maxWidth: 100 },
+    { prop: 'owner', name: "Owner", maxWidth: 100 }
+  ];
 
   constructor() { 
     this.series = [{
@@ -25,6 +35,8 @@ export class BranchChiefDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.tasks.push(new Task("abcd", "Joe", "description test", "name test", "owner test", "processInstanceId", 1));
+    this.tasksTemp.push(new Task("abcd", "Joe", "description test", "name test", "owner test", "processInstanceId", 2));
     this.series = [{
                 name: 'BUS FUN',
                 data: [
@@ -38,7 +50,7 @@ export class BranchChiefDashboardComponent implements OnInit {
     
   }
 
-  clicked(event){
+  clicked(event: any){
     this.series = [{
                 name: 'BUS FUN',
                 data: [
@@ -49,6 +61,18 @@ export class BranchChiefDashboardComponent implements OnInit {
                     ['BUS FUN 5', 821]
                 ]
             }];
+  }
+
+  updateFilter(event: any) {
+    let val = (<string>event.target.value).toLowerCase();
+    let tasksTemp = this.tasksTemp.filter(function(d) {
+      return (d.assignee.toLowerCase().indexOf(val) !== -1 ||
+             d.description.toLowerCase().indexOf(val) !== -1 ||
+             d.name.toLowerCase().indexOf(val) !== -1 ||
+             d.owner.toLowerCase().indexOf(val) !== -1 
+      )
+    });
+    this.tasks = tasksTemp;
   }
 
 }

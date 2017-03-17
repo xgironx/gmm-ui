@@ -5,7 +5,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './core/sidebar/sidebar.component';
 import { TopnavbarComponent } from './core/topnavbar/topnavbar.component';
-import { MockBackendService } from './mock-backend/mock-backend.service';
 import { By } from '@angular/platform-browser';
 
 let fixture: ComponentFixture<AppComponent>;
@@ -24,7 +23,6 @@ describe('AppComponent', () => {
         SidebarComponent,
         TopnavbarComponent
       ],
-      providers: [MockBackendService],
       schemas: [ NO_ERRORS_SCHEMA ]
     });
     TestBed.compileComponents();

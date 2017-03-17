@@ -1,5 +1,11 @@
 export interface ITask {
-    taskId: string;
-    taskName: string;
-    taskState: string;
+    id: string;
+    assignee: string;
+    description: string;
+    name: string;
+    owner: string;
+    processInstanceId: string;
+    applicationNumber: number;
+    dueDate: Date;
+    currentDate: Date;
 }
