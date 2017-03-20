@@ -112,7 +112,7 @@
               </div>
               <div class="form-group col-md-6" [ngClass]="{'has-danger': (applicationForm.get('grantValue').touched || applicationForm.get('grantValue').dirty) && !applicationForm.get('grantValue').valid }">
                 <label for="grantValueId">Grant Value</label>
-                <input type="text" class="form-control" id="grantValueId" aria-describedby="grantValueIdHelp" placeholder="Enter Grant Value" formControlName="grantValue"  (ngModelChange)="grantValueChangeModel($event)" appCurrencyFormatter>
+                <input type="text" class="form-control" id="grantValueId" aria-describedby="grantValueIdHelp" placeholder="Enter Grant Value" formControlName="grantValue" appCurrencyFormatter>
                 <span class="form-text" *ngIf="(applicationForm.get('grantValue').touched || applicationForm.get('grantValue').dirty) && applicationForm.get('grantValue').errors">
                     <span *ngIf="applicationForm.get('grantValue').errors.required" class="form-control-feedback">Please enter Grant Value.</span>
                     <span *ngIf="applicationForm.get('grantValue').errors.invalidCurrency" class="form-control-feedback">Please enter valid Grant Value(a number with 2 decimal places).</span>
@@ -126,20 +126,23 @@
       <div class="row">
         <div class="card">
           <div class="card-header">
-              Grantee
-          </div>
-          <div class="card-block">
-            <button (click)="openGranteeModal('Add Grantee')" *ngIf="grantee == null" class="btn">Add Grantee</button>
+            <a [routerLink]="">
+                  <i class="fa fa-plus-square-o  fa-pull-right" (click)="openGranteeModal('Add Grantee')" aria-hidden="true"></i>
+              </a>
             <template #customModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
                 <app-grantee-add-modal [dialogRef]="dialogRef"></app-grantee-add-modal>
             </template>
+              Grantee
+          </div>
+          <div class="card-block">
+            
             <table class="table table-sm" *ngIf="grantee != null">
               <thead>
                 <tr>
                     <th></th>
                     <th></th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>First</th>
+                    <th>Last</th>
                     <th>Address 1</th>
                     <th>Address 2</th>
                     <th>City</th>
@@ -152,8 +155,8 @@
               </thead>
               <tbody>
                 <tr>
-                  <i class="fa fa-pencil fa-fw" aria-hidden="true" (click)="openGranteeModal('Edit Grantee')"></i>
-                  <td><i class="fa fa-times" aria-hidden="true" (click)="onRemoveGrantee()"></i></td>
+                  <td><i class="fa fa-pencil fa-fw" aria-hidden="true" (click)="openGranteeModal('Edit Grantee')" *ngIf="enableEdit == true"></i></td>
+                  <td><i class="fa fa-times" aria-hidden="true" (click)="onRemoveGrantee()" *ngIf="enableEdit == true"></i></td>
                   <td>{{grantee.firstName}}</td>
                   <td>{{grantee.lastName}}</td>
                   <td>{{grantee.street1}}</td>
@@ -174,20 +177,22 @@
       <div class="row">
         <div class="card">
           <div class="card-header">
-              Sub-Grantee
-          </div>
-          <div class="card-block">
-            <button (click)="openSubGranteeModal('Add Sub-Grantee')" class="btn">Add Sub-Grantee</button>
+              <a [routerLink]="">
+                  <i class="fa fa-plus-square-o  fa-pull-right" (click)="openSubGranteeModal('Add Sub-Grantee')" aria-hidden="true"></i>
+              </a>
             <template #customModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
                 <app-grantee-add-modal [dialogRef]="dialogRef"></app-grantee-add-modal>
             </template>
+              Sub-Grantee
+          </div>
+          <div class="card-block">
             <table class="table table-sm" *ngIf="subGrantees.length != 0">
               <thead>
                 <tr>
                   <th></th>
                   <th></th>
-                  <th>First Name</th>
-                  <th>Last Name</th>
+                  <th>First</th>
+                  <th>Last</th>
                   <th>Address 1</th>
                   <th>Address 2</th>
                   <th>City</th>
@@ -200,8 +205,8 @@
               </thead>
               <tbody>
                 <tr *ngFor="let sg of subGrantees; let idx = index;">
-                  <i class="fa fa-pencil fa-fw" aria-hidden="true" (click)="editSubGranteeModal(idx, 'Edit Sub-Grantee')"></i>
-                  <td><i class="fa fa-times" aria-hidden="true" (click)="onRemoveSubGrantee(idx)"></i></td>
+                  <td><i class="fa fa-pencil fa-fw" aria-hidden="true" (click)="editSubGranteeModal(idx, 'Edit Sub-Grantee')" *ngIf="enableEdit == true"></i></td>
+                  <td><i class="fa fa-times" aria-hidden="true" (click)="onRemoveSubGrantee(idx)" *ngIf="enableEdit == true"></i></td>
                   <td>{{sg.firstName}}</td>
                   <td>{{sg.lastName}}</td>
                   <td>{{sg.street1}}</td>
@@ -222,22 +227,21 @@
       <div class="row">
         <div class="card">
           <div class="card-header">
-              POC
-          </div>
-          <div class="card-block">
-            <button (click)="openPocModal('Add POC')" class="btn">Add POC</button>
+                <a [routerLink]=""><i class="fa fa-plus-square-o fa-pull-right" (click)="openPocModal('Add POC')" aria-hidden="true"></i></a>
             <template #pocModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
                 <app-poc-add-modal [dialogRef]="dialogRef"></app-poc-add-modal>
             </template>
-            <table class="table table-sm" *ngIf="pocs.length != 0">
+            POC
+          </div>
+          <div class="card-block">
+            <table class="table table-condensed" *ngIf="pocs.length != 0">
               <thead>
                 <tr>
                   <th></th>
-                  <th></th>
                   <th>Title</th>
-                  <th>F Name</th>
+                  <th>First</th>
                   <th>MI</th>
-                  <th>L Name</th>
+                  <th>Last</th>
                   <th>AgencyOrg</th>
                   <th>Address 1</th>
                   <th>Address 2</th>
@@ -250,8 +254,17 @@
               </thead>
               <tbody>
                 <tr *ngFor="let poc of pocs; let idx = index;">
-                  <i class="fa fa-pencil fa-fw" aria-hidden="true" (click)="editPocModal(idx, 'Edit POC')"></i>
-                  <td><i class="fa fa-times" aria-hidden="true" (click)="onRemovePoc(idx)"></i></td>
+                  <td>
+                    <div class="btn-group btn-group-sm" role="group" >
+                        <button class="btn btn-link" >
+                      <i class="fa fa-pencil fa-fw" aria-hidden="true" (click)="editPocModal(idx, 'Edit POC')" *ngIf="enableEdit == true">
+                      </i></button>
+                       <button class="btn btn-link">
+                    <i class="fa fa-times" aria-hidden="true" (click)="onRemovePoc(idx)" *ngIf="enableEdit == true"></i></button>
+                    </div>
+                    
+                 
+                  </td>
                   <td>{{poc.title}}</td>
                   <td>{{poc.firstName}}</td>
                   <td>{{poc.middleInitial}}</td>
@@ -284,6 +297,9 @@
         <div class="col-md-2"></div>
         <div class="col-md-4">
             <button class="btn btn-primary" type="button" (click)="saveApp(applicationForm.value)" [disabled]="!applicationForm.valid && !applicationForm.dirty" >Save Draft</button>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-primary" type="button" (click)="saveApp(applicationForm.value)" [disabled]="!applicationForm.valid && !applicationForm.dirty" >Submit Application</button>
         </div>
       </div>
       <div class="row" *ngIf="isSubmitted()" >

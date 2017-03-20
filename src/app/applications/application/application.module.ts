@@ -16,7 +16,6 @@ import { PocAddModalComponent } from '../poc-add-modal/poc-add-modal.component';
 
 
 /* Third Party */
-import { PaginationModule, ModalModule } from 'ng2-bootstrap';
 import {SelectModule} from 'ng-select';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import { OverlayRenderer, DOMOverlayRenderer, Overlay } from 'angular2-modal';
@@ -35,8 +34,6 @@ const MODAL_PROVIDERS = [
 
 @NgModule({
   imports: [
-    PaginationModule.forRoot(),
-    ModalModule,
     BootstrapModalModule,
     //BrowserModule,
     CommonModule,

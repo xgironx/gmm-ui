@@ -15,6 +15,7 @@ import 'rxjs/add/operator/map';
 export class ApplicationService {
     private _getApplicationsUrl = environment.serviceBase + "getApplications";
     private _getApplicationByApplicationNumberUrl = environment.serviceBase + "getApplicationByApplicationNumber";
+    private _getApplicationsByUser = environment.serviceBase + "getApplicationsByUser";
     private _saveApplicationsUrl = environment.serviceBase + "saveApplication";
 
     private headers:Headers;
@@ -37,6 +38,13 @@ export class ApplicationService {
     getApplicationByApplicationNumber(applicationNumber: number): Observable<IApplication> {
         return this._http.get(this._getApplicationByApplicationNumberUrl + "?applicationNumber=" + applicationNumber.toString(), {headers: this.headers})
             .map((response: Response) => <IApplication>response.json())
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    getApplicationsByUser(user: string): Observable<IApplication[]> {
+        return this._http.get(this._getApplicationsByUser + "?user=" + user, {headers: this.headers})
+            .map((response: Response) => <IApplication[]>response.json())
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }

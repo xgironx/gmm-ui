@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { IApplication } from '../iapplication';
 import { ApplicationService } from '../application.service';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { IGrantType } from '../../shared/igrant-type';
 import { IApplicantType } from '../../shared/iapplicant-type';
+import { Globals } from '../../globals';
 
 @Component({
   selector: 'app-applications-list',
@@ -18,6 +19,10 @@ export class ApplicationsListComponent implements OnInit {
   selected: any[] = [];
   grantTypes: IGrantType[];
   applicantTypes: IApplicantType[];
+  messages:any = {
+    emptyMessage: "No data to display",
+    totalMessage: "total"
+  };
 
   columns = [
     { prop: 'applicationNumber', name: "App Number", width: 200 },
@@ -35,7 +40,7 @@ export class ApplicationsListComponent implements OnInit {
     this.applicantTypes = this.route.snapshot.data['applicantTypes'];
     this.grantTypes = this.route.snapshot.data['grantTypes'];
     console.log(this.grantTypes);
-    this._applicationService.getApplications()
+    this._applicationService.getApplicationsByUser(Globals.defaultApplicantUser)
       .subscribe(
       (applications) => {
         this.appData = applications;
@@ -88,15 +93,8 @@ export class ApplicationsListComponent implements OnInit {
     this.applications = applicationsTemp;
   }
 
-  onSelect(event) {
-    console.log('Event: select', event, this.selected);
-  }
-
-  onActivate(event) {
-    console.log('Event: activate', event);
-    if(event.column.prop == "applicationNumber"){
-      this.router.navigate(['/Application/addApplicationOrganization'], { queryParams: { id: event.row.applicationNumber } });
-    }
+  navigateToApplication(row: IApplication){
+    this.router.navigate(['/Application/addApplicationOrganization'], { queryParams: { id: row.applicationNumber } });
   }
 
 }

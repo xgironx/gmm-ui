@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ITask } from '../itask';
 import { TaskService } from '../task.service';
 import { Observable } from 'rxjs/Observable';
@@ -10,31 +10,26 @@ import { DateDifferencePipe } from '../../shared/pipes/date-difference.pipe';
   templateUrl: './my-task-list.component.html'
 })
 export class MyTaskListComponent implements OnInit {
+  @Input() user:string;
   errorMessage: string;
-  taskData: ITask[] = null;
-  tasks: ITask[] = [];
-  tasksTemp: ITask[] = [];
-  columns = [
-    { prop: 'applicationNumber', name: "Task"},
-    { prop: 'dueDate', name: "Due Date" },
-    { name: "User Actions" }
-  ];
+  tasks: ITask[];
+  tasksTemp: ITask[];
+  messages:any = {
+    emptyMessage: "No data to display",
+    totalMessage: "total"
+  };
 
   constructor(private _taskService: TaskService,private route: ActivatedRoute,
-    private router: Router) {}
+    private router: Router, private ddpipe: DateDifferencePipe) {
+      this.ddpipe = new DateDifferencePipe();
+    }
 
   ngOnInit() {
-    this._taskService.getTasks()
+    this._taskService.getTasksByUser(this.user)
       .subscribe(
       (tasks) => {
-        this.taskData = tasks;
-        console.log(this.taskData);
-        for (let t of this.taskData) {
-            this.tasks.push(t);
-            this.tasksTemp.push(t);
-          //this.tasks.push(new TaskTableData(t.name + " " + t.applicationNumber.toString() + ": Task ready for approval", t.dueDate.toString(), t.applicationNumber));
-          //this.tasksTemp.push(new TaskTableData(t.name + " " + t.applicationNumber.toString() + ": Task ready for approval", t.dueDate.toString(), t.applicationNumber));
-        }
+        this.tasks = tasks;
+        this.tasksTemp = tasks;
       },
       error => this.errorMessage = <any>error
       );
@@ -42,21 +37,31 @@ export class MyTaskListComponent implements OnInit {
 
   onActivate(event: any) {
     console.log('Event: activate', event);
-    if(event.column.prop == "applicationNumber"){
-      this.router.navigate(['/Application/addApplicationOrganization'], { queryParams: { id: event.row.applicationNumber } });
+    if(event.column.prop == "processCorrelationId"){
+      this.router.navigate(['/Application/addApplicationOrganization'], { queryParams: { id: event.row.processCorrelationId } });
     }
   }
 
   navigateToApplication(row: ITask){
-    this.router.navigate(['/Application/addApplicationOrganization'], { queryParams: { id: row.applicationNumber } });
+    this.router.navigate(['/Application/addApplicationOrganization'], { queryParams: { id: row.processCorrelationId } });
+  }
+
+  updateFilter(event) {
+    let val = (<string>event.target.value).toLowerCase();
+    let tasksTemp = this.tasksTemp.filter(function(d) {
+      let pipe: DateDifferencePipe = new DateDifferencePipe();
+      let a = pipe.transform(d.dueDate, d.currentDate);
+      console.log(a);
+      return (d.name.toLowerCase().indexOf(val) !== -1 ||
+             d.processCorrelationId.toString().toLowerCase().indexOf(val) !== -1 ||
+             ("Due " + pipe.transform(d.dueDate, d.currentDate).toString()).toLowerCase().indexOf(val) !== -1
+      )
+    });
+    this.tasks = tasksTemp;
+  }
+
+  editTask(){
+    
   }
  
-}
-
-class TaskTableData {
-    constructor(
-        public task: string = "",
-        public dueDate: string = "",
-        public applicationNumber: number = null)
-     {}
 }

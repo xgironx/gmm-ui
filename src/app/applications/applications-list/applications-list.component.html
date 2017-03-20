@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <i class="fa fa-cog pull-right" data-toggle="modal" data-target="#exampleModalLong"></i>
+                <i class="fa fa-cog pull-right"></i>
                 Applications
             </div>
             <div class="card-block">
@@ -19,26 +19,34 @@
       />
       </div>
     <div class="form-group col-md-2">
-      <a (click)="onAddApplicationOrganization()">
-        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-        New Application Organization
-      </a>
+      <button class="btn btn-link btn-sm" (click)="onAddApplicationOrganization()">
+        <i class="fa fa-plus-square-o fa_custom fa-3x" aria-hidden="true"></i>
+      </button>
     </div>
   </div>
 <ngx-datatable
   class="material table-striped"
         [rows]="applications"
-        [columns]="columns"
         [columnMode]="force"
         [headerHeight]="50"
         [footerHeight]="50"
         [rowHeight]="30"
         [limit]="10"
-        [selectionType]="'cell'"
-        (select)="onSelect($event)"
-        (activate)="onActivate($event)"
+        [messages]="messages"
         >
-      </ngx-datatable>
+          <ngx-datatable-column name="App Number" sortable="true" prop="applicationNumber" width="200">
+            <template let-row="row" ngx-datatable-cell-template>
+              <small>
+                <button class="btn btn-link btn-sm" (click)="navigateToApplication(row)" type="button">{{row.applicationNumber}}</button>
+              </small>
+            </template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Grant Type" sortable="true" prop="grantType" width="200"></ngx-datatable-column>
+          <ngx-datatable-column name="POC" sortable="true" prop="poc" width="200"></ngx-datatable-column>
+          <ngx-datatable-column name="Application Type" sortable="true" prop="applicationType" width="200"></ngx-datatable-column>
+          <ngx-datatable-column name="Status" sortable="true" prop="status" width="150"></ngx-datatable-column>
+          <ngx-datatable-column name="Date" sortable="true" prop="date" width="150"></ngx-datatable-column>
+        </ngx-datatable>
 
 
                 

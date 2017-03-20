@@ -11,7 +11,6 @@ import { StateResolver, ApplicantTypeResolver, GrantTypeResolver } from './share
 
 /* Third Party */
 import { SelectModule } from 'ng-select';
-import { TabsModule, ModalModule } from 'ng2-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 /* Feature Modules */
@@ -27,19 +26,19 @@ import { CoreModule } from './core/core.module';
 
 /* Components */
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home/home.component';
 import { GranteeHomeComponent } from './home/grantee-home/grantee-home.component';
+import { BranchChiefHomeComponent } from './home/branch-chief-home/branch-chief-home.component';
+import { GrantSpecialistHomeComponent } from './home/grant-specialist-home/grant-specialist-home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    GranteeHomeComponent
+    GranteeHomeComponent,
+    BranchChiefHomeComponent,
+    GrantSpecialistHomeComponent
   ],
   imports: [
-    TabsModule.forRoot(),
-    ModalModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
