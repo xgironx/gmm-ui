@@ -5,7 +5,7 @@ export interface ITask {
     name: string;
     owner: string;
     processInstanceId: string;
-    applicationNumber: number;
+    processCorrelationId: number;
     dueDate: Date;
     currentDate: Date;
 }

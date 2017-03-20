@@ -7,9 +7,8 @@ export class Task  implements ITask  {
         public name: string = '',
         public owner: string = '',
         public processInstanceId: string = '',
-        public applicationNumber: number = null,
+        public processCorrelationId: number = null,
         public dueDate: Date = null,
-        public currentDate: Date = new Date()) { 
-
+        public currentDate: Date = new Date()) {
         }
 }

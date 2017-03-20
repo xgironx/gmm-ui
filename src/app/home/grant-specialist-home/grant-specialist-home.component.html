@@ -1,0 +1,27 @@
+<div class="right_col" role="main">
+    <div class="page-header">
+        <h1>{{pageTitle}}</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-7">
+            <app-my-task-list
+              [user]="user"
+            ></app-my-task-list>
+        </div>
+        <div class="col-sm-5">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-cog pull-right" data-toggle="modal" ></i>
+                    Application Status
+                </div>
+                <div class="card-block">
+                    <app-donut-chart
+                        [series]="dcSeries"
+                        [width]="dcWidth"
+                        [centerText]="dcCenterText">
+                    </app-donut-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,32 +4,46 @@
         MY TASKS
     </div>
     <div class="card-block">
+      <div class="row">
+  <div class="form-group col-md-12">
+<input
+        type='text'
+        style='padding:8px;margin:15px auto;width:30%;'
+        placeholder='Type to filter on all columns...'
+        (keyup)='updateFilter($event)'
+      />
+      </div>
+  </div>
         <ngx-datatable
             class="material"
                 [rows]="tasks"
                 [columnMode]="Force-fill"
                 [headerHeight]="40"
-                [footerHeight]="0"
-                [rowHeight]="40"
+                [footerHeight]="40"
+                [rowHeight]="30"
                 [limit]="10"
+                [messages]="messages"
         >
-          <ngx-datatable-column name="Task" sortable="true" prop="applicationNumber" width="400">
-            <template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-              {{column.name}}
+          <ngx-datatable-column name="Task" sortable="true" prop="processCorrelationId" width="250">
+            <template let-row="row" ngx-datatable-cell-template>
+              <small>
+                <button class="btn btn-link btn-sm" (click)="navigateToApplication(row)" type="button">{{row.name}} {{row.processCorrelationId}}</button>
+              </small>
             </template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Due Date" sortable="true" prop="dueDate" width="200">
             <template let-row="row" ngx-datatable-cell-template>
               <div>
-                <button class="btn btn-link" (click)="navigateToApplication(row)" type="button">Approve Task {{row.applicationNumber}}</button>
+                 Due {{ row.dueDate | dateDifference : row.currentDate}}
               </div>
             </template>
           </ngx-datatable-column>
-          <ngx-datatable-column name="Due Date" sortable="true" prop="dueDate" width="400">
-            <template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-              {{column.name}}
-            </template>
+          <ngx-datatable-column name="Actions" sortable="false" width="150">
             <template let-row="row" ngx-datatable-cell-template>
               <div>
-                 Due in {{ row.dueDate | dateDifference : row.currentDate : 'days'}} days
+                <a (click)="editTask()" data-toggle="tooltip" data-placement="top" title="Edit Task">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </a>
               </div>
             </template>
           </ngx-datatable-column>

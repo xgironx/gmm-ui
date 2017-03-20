@@ -8,14 +8,12 @@ const momentConstructor: (value?: any) => moment.Moment = (<any>moment).default 
 })
 export class DateDifferencePipe implements PipeTransform {
   transform(value: Date | moment.Moment,
-            otherValue: Date | moment.Moment,
-            unit?: moment.unitOfTime.Diff,
-            precision?: boolean): number {
+            otherValue: Date | moment.Moment): string {
 
     let date = momentConstructor(value);
     let date2 = (otherValue !== null) ? momentConstructor(otherValue) : momentConstructor();
-
-    return date.diff(date2, unit, precision);
+    return date.from(date2);
+    //return date.diff(date2, unit, precision);
   }
 
 }

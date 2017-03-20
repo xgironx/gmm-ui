@@ -6,11 +6,11 @@ import { DebugElement } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpModule } from '@angular/http';
 
-import { HomeComponent } from '../home/home.component';
+import { BranchChiefHomeComponent } from '../branch-chief-home/branch-chief-home.component';
 
 describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+  let component: BranchChiefHomeComponent;
+  let fixture: ComponentFixture<BranchChiefHomeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -18,19 +18,19 @@ describe('HomeComponent', () => {
         RouterTestingModule,
         HttpModule
       ],
-      declarations: [ HomeComponent ],
+      declarations: [ BranchChiefHomeComponent ],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(BranchChiefHomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create HomeComponent', () => {
+  it('should create BranchChiefHomeComponent', () => {
     expect(component).toBeTruthy();
   });
 

@@ -2,10 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { dashboardRouting } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
-import { Dashboard1Component } from '../dashboard1/dashboard1.component';
 import { TaskModule } from '../../tasks/task/task.module';
-import { TabsModule } from 'ng2-bootstrap';
-//import { ReportsReceivedPieChartComponent } from '../../shared/charts/reports-received-pie-chart/reports-received-pie-chart.component';
 import { BranchChiefDashboardComponent } from '../branch-chief-dashboard/branch-chief-dashboard.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
@@ -17,15 +14,12 @@ import { SharedModule } from '../../shared/shared.module';
     CommonModule,
     dashboardRouting,
     TaskModule,
-    TabsModule,
     SharedModule,
     NgxDatatableModule
   ],
   declarations: [
     DashboardComponent,
-    Dashboard1Component,
-    BranchChiefDashboardComponent//,
-    //ReportsReceivedPieChartComponent
+    BranchChiefDashboardComponent
   ]
 })
 export class DashboardModule { }

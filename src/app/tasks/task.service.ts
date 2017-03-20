@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 
 import { ITask } from './itask';
 
@@ -11,8 +12,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class TaskService {
-    private _getTasksUrl = "dist/api/applications/tasks.json";
-    //private _getTasksUrl = environment.serviceBaseActiviti + "tasks";
+    //private _getTasksUrl = "dist/api/tasks/tasks.json";
+    private _getTasksUrl = environment.serviceBaseActiviti + "tasks";
 
     private headers:Headers;
 
@@ -23,8 +24,8 @@ export class TaskService {
         this.headers.append('Access-Control-Allow-Origin', '*');
     }
 
-    getTasks(): Observable<ITask[]> {
-        return this._http.get(this._getTasksUrl, {headers: this.headers})
+    getTasksByUser(user: string): Observable<ITask[]> {
+        return this._http.get(this._getTasksUrl + "tasks?assignee=" + user, {headers: this.headers})
             .map((response: Response) => <ITask[]> response.json())
             .do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);

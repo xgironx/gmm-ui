@@ -18,6 +18,7 @@ import { IApplication, IGrantee, IOrganization, IPointOfContact, ISubGrantee } f
 import { Application, Organization, PointOfContact, Grantee, SubGrantee } from '../application';
 import { CurrencyPipePipe } from '../../shared/pipes/currency-pipe.pipe';
 import 'rxjs/add/operator/pairwise';
+import { Globals } from '../../globals';
 
 
 @Component({
@@ -129,6 +130,7 @@ export class ApplicationAddOrganizationComponent implements OnInit {
     }
     else{
       this.origApplication = new Application();
+      this.origApplication.applicant = Globals.defaultApplicantUser;
       this.applicationState = ApplicationState.New;
       this.setFormControlEnableByState();
     }
@@ -155,10 +157,6 @@ export class ApplicationAddOrganizationComponent implements OnInit {
       this.applicationForm.disable();
       this.enableEdit = false;
     }
-  }
-
-  private grantValueChangeModel(ev: any){
-    console.log(ev);
   }
 
   openGranteeModal(title: string) {
@@ -250,7 +248,7 @@ export class ApplicationAddOrganizationComponent implements OnInit {
     }
   }
 
-  getApplicationFromForm(): IApplication{
+  getApplicationForm(): IApplication{
     let formData = this.applicationForm.getRawValue();
     let application: IApplication = this.origApplication;
     application.amount = formData.grantValue;
@@ -290,7 +288,7 @@ export class ApplicationAddOrganizationComponent implements OnInit {
       application.grantee1.state = this.grantee.state;
       application.grantee1.dunsID = this.grantee.dunsID;
       application.grantee1.taxID = this.grantee.taxID;
-      application.grantee1.finReportDate = this.grantee.finReportDate.toString();
+      application.grantee1.finReportDate = this.grantee.finReportDate;
       application.grantee1.applicantType = this.grantee.applicantType;
     }
     if(this.subGrantees.length > 0){
@@ -303,7 +301,7 @@ export class ApplicationAddOrganizationComponent implements OnInit {
       application.subGrantee1.state = this.subGrantees[0].state;
       application.subGrantee1.dunsID = this.subGrantees[0].dunsID;
       application.subGrantee1.taxID = this.subGrantees[0].taxID;
-      application.subGrantee1.finReportDate = this.subGrantees[0].finReportDate.toString();
+      application.subGrantee1.finReportDate = this.subGrantees[0].finReportDate;
       application.subGrantee1.applicantType = this.subGrantees[0].applicantType;
     }
     if(this.subGrantees.length > 1){
@@ -317,7 +315,7 @@ export class ApplicationAddOrganizationComponent implements OnInit {
       application.subGrantee2.state = this.subGrantees[1].state;
       application.subGrantee2.dunsID = this.subGrantees[1].dunsID;
       application.subGrantee2.taxID = this.subGrantees[1].taxID;
-      application.subGrantee2.finReportDate = this.subGrantees[1].finReportDate.toString();
+      application.subGrantee2.finReportDate = this.subGrantees[1].finReportDate;
       application.subGrantee2.applicantType = this.subGrantees[1].applicantType;
     }
 
@@ -326,7 +324,7 @@ export class ApplicationAddOrganizationComponent implements OnInit {
   }
 
   saveApp(formValues) {
-    let application: IApplication = this.getApplicationFromForm();
+    let application: IApplication = this.getApplicationForm();
 
     this._applicationService.saveApplication(application)
       .subscribe(
@@ -342,7 +340,7 @@ export class ApplicationAddOrganizationComponent implements OnInit {
   }
 
   approveApp(){
-    let application: IApplication = this.getApplicationFromForm();
+    let application: IApplication = this.getApplicationForm();
 
     this._applicationService.saveApplication(application)
       .subscribe(
