@@ -287,19 +287,19 @@
       <div class="row" *ngIf="isDraft()" >
         <div class="col-md-2"></div>
         <div class="col-md-4">
-            <button class="btn btn-primary" type="button" (click)="saveApp(applicationForm.value)" [disabled]="!applicationForm.valid && !applicationForm.dirty" >Save Draft</button>
+            <button class="btn btn-primary" type="button" (click)="saveApp(applicationForm.value)" [disabled]="!applicationForm.valid" >Save Draft</button>
         </div>
         <div class="col-md-4">
-            <button class="btn btn-primary" type="button" (click)="saveApp(applicationForm.value)" [disabled]="!applicationForm.valid && !applicationForm.dirty" >Submit Application</button>
+            <button class="btn btn-primary" type="button" (click)="saveApp(applicationForm.value)" [disabled]="!applicationForm.valid" >Submit Application</button>
         </div>
       </div>
       <div class="row" *ngIf="isNew()" >
         <div class="col-md-2"></div>
         <div class="col-md-4">
-            <button class="btn btn-primary" type="button" (click)="saveApp(applicationForm.value)" [disabled]="!applicationForm.valid && !applicationForm.dirty" >Save Draft</button>
+            <button class="btn btn-primary" type="button" (click)="saveApp(applicationForm.value)" [disabled]="!applicationForm.valid" >Save Draft</button>
         </div>
         <div class="col-md-4">
-            <button class="btn btn-primary" type="button" (click)="saveApp(applicationForm.value)" [disabled]="!applicationForm.valid && !applicationForm.dirty" >Submit Application</button>
+            <button class="btn btn-primary" type="button" (click)="saveApp(applicationForm.value)" [disabled]="!applicationForm.valid" >Submit Application</button>
         </div>
       </div>
       <div class="row" *ngIf="isSubmitted()" >
