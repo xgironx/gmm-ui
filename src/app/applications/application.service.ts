@@ -3,8 +3,8 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { environment } from '../../environments/environment';
-import { IApplication, IGrantee, IOrganization, IPointOfContact, ISubGrantee } from './iapplication';
-import { Application, Organization, PointOfContact, Grantee } from './application';
+import { IApplication, IGrantee, IOrganization, IPointOfContact, ISubGrantee } from './models/iapplication';
+import { Application, Organization, PointOfContact, Grantee } from './models/application';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
@@ -47,16 +47,6 @@ export class ApplicationService {
             .map((response: Response) => <IApplication[]>response.json())
             .do(data => console.log('All: ' + JSON.stringify(data)))
             .catch(this.handleError);
-    }
-
-    saveGrantee(grantee: IGrantee): Observable<IGrantee> {
-        let headers = new Headers({ 'Content-Type': 'grantee/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        return this._http.post('/api/grantees', JSON.stringify(grantee), options)
-            .map((response: Response) => {
-            return response.json();
-        }).catch(this.handleError);
     }
 
     saveApplication(application: Application): Observable<IApplication> {        

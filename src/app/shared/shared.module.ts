@@ -1,9 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { FormsModule }   from '@angular/forms';
-import { FilterTextComponent } from './filter-text/filter-text.component';
-import { FilterTextService }   from './filter-text/filter-text.service';
-import { InitCapsPipe }        from './init-caps.pipe';
 import { ChartModule } from 'angular2-highcharts';
 import {HighchartsStatic} from 'angular2-highcharts/dist/HighchartsService';
 export function highchartsFactory() {
@@ -32,9 +29,6 @@ import { DonutChartComponent } from './charts/donut-chart/donut-chart.component'
     ChartModule
   ],
   declarations: [
-    FilterTextComponent,
-    InitCapsPipe,
-    InitCapsPipe,
     FunnelChartComponent,
     CurrencyPipePipe,
     CurrencyFormatterDirective,
@@ -42,7 +36,6 @@ import { DonutChartComponent } from './charts/donut-chart/donut-chart.component'
     DonutChartComponent
   ],
   providers: [
-    FilterTextService,
     {
       provide: HighchartsStatic,
       useFactory: highchartsFactory
@@ -51,8 +44,6 @@ import { DonutChartComponent } from './charts/donut-chart/donut-chart.component'
   exports: [
     CommonModule,
     FormsModule,
-    FilterTextComponent,
-    InitCapsPipe,
     FunnelChartComponent,
     CurrencyPipePipe,
     CurrencyFormatterDirective,

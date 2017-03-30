@@ -129,9 +129,9 @@
             <a [routerLink]="">
                   <i class="fa fa-plus-square-o  fa-pull-right" (click)="openGranteeModal('Add Grantee')" aria-hidden="true" *ngIf="enableEdit == true"></i>
               </a>
-            <template #customModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
+            <ng-template #customModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
                 <app-grantee-add-modal [dialogRef]="dialogRef"></app-grantee-add-modal>
-            </template>
+            </ng-template>
               Grantee
           </div>
           <div class="card-block">
@@ -183,9 +183,9 @@
               <a [routerLink]="">
                   <i class="fa fa-plus-square-o  fa-pull-right" (click)="openSubGranteeModal('Add Sub-Grantee')" aria-hidden="true"  *ngIf="enableEdit == true"></i>
               </a>
-            <template #customModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
+            <ng-template #customModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
                 <app-grantee-add-modal [dialogRef]="dialogRef"></app-grantee-add-modal>
-            </template>
+            </ng-template>
               Sub-Grantee
           </div>
           <div class="card-block">
@@ -234,9 +234,9 @@
         <div class="card">
           <div class="card-header">
                 <a [routerLink]=""><i class="fa fa-plus-square-o fa-pull-right" (click)="openPocModal('Add POC')" aria-hidden="true" *ngIf="enableEdit == true"></i></a>
-            <template #pocModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
+            <ng-template #pocModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
                 <app-poc-add-modal [dialogRef]="dialogRef"></app-poc-add-modal>
-            </template>
+            </ng-template>
             POC
           </div>
           <div class="card-block">

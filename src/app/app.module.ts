@@ -14,9 +14,9 @@ import { SelectModule } from 'ng-select';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 /* Feature Modules */
-import { ApplicationModule } from './applications/application/application.module';
-import { DashboardModule } from './dashboard/dashboard/dashboard.module';
-import { TaskModule } from './tasks/task/task.module';
+import { ApplicationModule } from './applications/application.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { TaskModule } from './tasks/task.module';
 
 /* Shared Module */
 import { SharedModule } from './shared/shared.module';

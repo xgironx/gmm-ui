@@ -1,7 +1,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
-import {BranchChiefDashboardComponent} from '../branch-chief-dashboard/branch-chief-dashboard.component'
+import {BranchChiefDashboardComponent} from './branch-chief-dashboard/branch-chief-dashboard.component'
 
 const lazyRoutes: Routes = [
   {

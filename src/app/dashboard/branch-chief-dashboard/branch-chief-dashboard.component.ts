@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ITask } from '../../tasks/itask';
-import { Task } from '../../tasks/task';
+import { ITask } from '../../tasks/models/itask';
+import { Task } from '../../tasks/models/task';
 
 @Component({
   selector: 'app-branch-chief-dashboard',

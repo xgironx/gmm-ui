@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MyTaskListComponent } from '../my-task-list/my-task-list.component';
-import { TaskService } from '../task.service';
+import { MyTaskListComponent } from './my-task-list/my-task-list.component';
+import { TaskService } from './task.service';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { DateDifferencePipe } from '../../shared/pipes/date-difference.pipe';
+import { DateDifferencePipe } from '../shared/pipes/date-difference.pipe';
 
 /* Shared Module */
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
