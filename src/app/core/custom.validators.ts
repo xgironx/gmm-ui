@@ -18,9 +18,9 @@ export class CustomValidators {
 
     static yearValidator(control: FormControl): ValidatorFn {
         return (control: AbstractControl): {[key: string]: any} => {
-            let pattern:RegExp = /(?:(?:19|20)[0-9]{2})/;
+            let yearRegEx = /[1-2]\d{3}$/;
             const year = control.value;
-            return pattern.test(control.value) ? null : {'invalidYear': {year}};
+            return yearRegEx.test(year) ? null : {'invalidYear': {year}};
         };
         /*console.log(control);
         if(typeof window[control.value.match] == 'function') return;

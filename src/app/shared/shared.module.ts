@@ -22,7 +22,6 @@ import { CurrencyPipePipe } from './pipes/currency-pipe.pipe';
 import { CurrencyFormatterDirective } from './directives/currency-formatter.directive';
 import { DateDifferencePipe } from './pipes/date-difference.pipe';
 
-import { YearValidatorDirective } from './directives/year-validator.directive';
 import { DonutChartComponent } from './charts/donut-chart/donut-chart.component';
 
 
@@ -40,7 +39,6 @@ import { DonutChartComponent } from './charts/donut-chart/donut-chart.component'
     CurrencyPipePipe,
     CurrencyFormatterDirective,
     DateDifferencePipe,
-    YearValidatorDirective,
     DonutChartComponent
   ],
   providers: [

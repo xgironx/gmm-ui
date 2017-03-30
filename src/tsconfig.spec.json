@@ -16,7 +16,9 @@
     "types": [
       "jasmine",
       "node",
-      "es6-shim"
+      "es6-shim",
+      "jquery",
+      "d3"
     ]
   },
   "files": [
