@@ -7,7 +7,7 @@ import { Globals } from '../../globals';
   styleUrls: ['./grant-specialist-home.component.css']
 })
 export class GrantSpecialistHomeComponent implements OnInit {
-  public pageTitle: string = 'Branch Cheif Home';
+  public pageTitle: string = 'Grant Specialist Home';
   user:string = Globals.defaultGrantSpecialistUser;
   dcWidth:number = 400;
   dcCenterText:string = "2016";
