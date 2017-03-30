@@ -13,7 +13,6 @@ export class DateDifferencePipe implements PipeTransform {
     let date = momentConstructor(value);
     let date2 = (otherValue !== null) ? momentConstructor(otherValue) : momentConstructor();
     return date.from(date2);
-    //return date.diff(date2, unit, precision);
   }
 
 }

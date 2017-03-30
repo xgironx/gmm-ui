@@ -3,15 +3,15 @@ import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { ModalComponent, DialogRef } from 'angular2-modal';
 import { GranteeAddModalComponent } from '../grantee-add-modal/grantee-add-modal.component';
-import { IGrantee } from '../igrantee';
+import { IGrantee } from '../models/igrantee';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { IState } from '../../shared/istate';
+import { IState } from '../../shared/models/istate';
 import { ActivatedRoute } from '@angular/router';
-import { IGrantType } from '../../shared/igrant-type';
-import { IApplicantType } from '../../shared/iapplicant-type';
+import { IGrantType } from '../../shared/models/igrant-type';
+import { IApplicantType } from '../../shared/models/iapplicant-type';
 import { ApplicationService } from '../application.service';
-import { IApplication } from '../iapplication';
-import { Application } from '../application';
+import { IApplication } from '../models/iapplication';
+import { Application } from '../models/application';
 
 @Component({
   selector: 'app-application-add-person',

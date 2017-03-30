@@ -4,7 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { ApplicationComponent } from '../application/application.component';
+import { ApplicationComponent } from '../application.component';
 
 describe('ApplicationComponent', () => {
   let component: ApplicationComponent;

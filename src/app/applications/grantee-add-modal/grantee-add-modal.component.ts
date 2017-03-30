@@ -4,9 +4,9 @@ import { ModalComponent, DialogRef } from 'angular2-modal';
  
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IState } from '../../shared/istate';
-import { IApplicantType } from '../../shared/iapplicant-type';
-import { IGrantee } from '../igrantee';
+import { IState } from '../../shared/models/istate';
+import { IApplicantType } from '../../shared/models/iapplicant-type';
+import { IGrantee } from '../models/igrantee';
 import { RefDataService } from '../../shared/ref-data.service';
 import { ApplicationService } from '../application.service';
 

@@ -5,7 +5,7 @@ import { DebugElement } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { DashboardComponent } from '../dashboard/dashboard.component';
+import { DashboardComponent } from '../dashboard.component';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;

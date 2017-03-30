@@ -14,8 +14,8 @@ const routes: Routes = [
         resolve: { grantTypes: GrantTypeResolver, applicantTypes: ApplicantTypeResolver },
     },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'Dashboard', loadChildren: './dashboard/dashboard/dashboard.module#DashboardModule' },
-    { path: 'Application', loadChildren: './applications/application/application.module#ApplicationModule' },
+    { path: 'Dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
+    { path: 'Application', loadChildren: './applications/application.module#ApplicationModule' },
     { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 

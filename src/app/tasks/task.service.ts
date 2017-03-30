@@ -3,7 +3,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
 
-import { ITask } from './itask';
+import { ITask } from './models/itask';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';

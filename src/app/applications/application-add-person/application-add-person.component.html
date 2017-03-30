@@ -164,9 +164,9 @@
                 </div>
                 <div class="card-block">
                     <button (click)="openGranteeModal('Add Grantee')" *ngIf="grantee == null" class="btn">Add Grantee</button>
-                    <template #customModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
+                    <ng-template #customModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
                         <app-grantee-add-modal [dialogRef]="dialogRef"></app-grantee-add-modal>
-                    </template>
+                    </ng-template>
                     <table class="table table-sm" *ngIf="grantee != null">
                         <thead>
                             <tr>
@@ -216,9 +216,9 @@
                 </div>
                 <div class="card-block">
                     <button (click)="openSubGranteeModal('Add Sub-Grantee')" class="btn">Add Sub-Grantee</button>
-                    <template #customModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
+                    <ng-template #customModalRef let-dialogRef="dialogRef" let-ctx="dialogRef.ctx">
                         <app-grantee-add-modal [dialogRef]="dialogRef"></app-grantee-add-modal>
-                    </template>
+                    </ng-template>
 
                     <table class="table table-sm" *ngIf="subGrantees.length != 0">
                         <thead>

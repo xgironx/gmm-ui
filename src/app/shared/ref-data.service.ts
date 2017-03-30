@@ -3,9 +3,9 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
 
-import { IState } from './istate';
-import { IApplicantType } from './iapplicant-type';
-import { IGrantType } from './igrant-type';
+import { IState } from './models/istate';
+import { IApplicantType } from './models/iapplicant-type';
+import { IGrantType } from './models/igrant-type';
 
 @Injectable()
 export class RefDataService {

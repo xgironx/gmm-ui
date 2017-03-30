@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IApplication } from '../iapplication';
+import { IApplication } from '../models/iapplication';
 import { ApplicationService } from '../application.service';
 import { Observable } from 'rxjs/Observable';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { IGrantType } from '../../shared/igrant-type';
-import { IApplicantType } from '../../shared/iapplicant-type';
+import { IGrantType } from '../../shared/models/igrant-type';
+import { IApplicantType } from '../../shared/models/iapplicant-type';
 import { Globals } from '../../globals';
 
 @Component({
