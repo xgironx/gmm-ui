@@ -35,7 +35,7 @@ export class ApplicationAddPersonComponent implements OnInit {
   dialog: DialogRef<BSModalContext>;
 
   constructor(
-      vcRef: ViewContainerRef, 
+      private vcRef: ViewContainerRef, 
       public modal: Modal, 
       private fb: FormBuilder,
       private route: ActivatedRoute,

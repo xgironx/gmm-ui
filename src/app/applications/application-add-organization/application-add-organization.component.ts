@@ -51,7 +51,7 @@ export class ApplicationAddOrganizationComponent implements OnInit {
 
   constructor(
       private router:Router,
-      vcRef: ViewContainerRef, 
+      private vcRef: ViewContainerRef, 
       public modal: Modal, 
       private fb: FormBuilder,
       private route: ActivatedRoute,
