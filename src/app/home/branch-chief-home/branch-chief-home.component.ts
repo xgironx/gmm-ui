@@ -7,16 +7,16 @@ import { Globals } from '../../globals';
   styleUrls: ['./branch-chief-home.component.css']
 })
 export class BranchChiefHomeComponent implements OnInit {
-  public pageTitle: string = 'Branch Cheif Home';
+  public pageTitle: string = 'Branch Chief Home';
   user:string = Globals.defaultBranchChiefUser;
   dcWidth:number = 400;
   dcCenterText:string = "2016";
   dcSeries:any[];
 
-  
 
-  constructor() { 
-      
+
+  constructor() {
+
   }
 
   ngOnInit() {
