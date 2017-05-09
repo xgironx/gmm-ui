@@ -13,9 +13,10 @@ import { GranteeAddModalComponent } from './grantee-add-modal/grantee-add-modal.
 import { ApplicationAddOrganizationComponent } from './application-add-organization/application-add-organization.component';
 import { PocAddModalComponent } from './poc-add-modal/poc-add-modal.component';
 
+import { DynamicContentModule } from './application-dynamic-ui/application-dynamic-ui.module'
 
 /* Third Party */
-import {SelectModule} from 'ng-select';
+import { SelectModule } from 'ng-select';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap';
 import { OverlayRenderer, DOMOverlayRenderer, Overlay } from 'angular2-modal';
 import { Modal } from 'angular2-modal/plugins/bootstrap';
@@ -41,11 +42,12 @@ const MODAL_PROVIDERS = [
     lazyRouting,
     SelectModule,
     SharedModule,
-    NgxDatatableModule
-    
+    NgxDatatableModule,
+    DynamicContentModule
   ],
   exports: [
-    ApplicationsListComponent
+    ApplicationsListComponent,
+    DynamicContentModule
   ],
   declarations: [
     ApplicationComponent,
@@ -56,11 +58,11 @@ const MODAL_PROVIDERS = [
     PocAddModalComponent
   ],
   providers: [
-    ApplicationService, 
-    MODAL_PROVIDERS, 
+    ApplicationService,
+    MODAL_PROVIDERS,
     CurrencyPipePipe
   ],
-  entryComponents: [ 
+  entryComponents: [
     GranteeAddModalComponent,
     PocAddModalComponent
   ]
