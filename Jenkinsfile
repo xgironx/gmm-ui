@@ -25,6 +25,7 @@ pipeline
       steps
       {
         sh 'npm --version'
+        sh 'ng -v'
         // sh '''
         //   echo "PATH = ${PATH}"
         //   echo "M2_HOME = ${M2_HOME}"
@@ -42,7 +43,7 @@ pipeline
           'Unit Testing':
           {
             echo "some testing"
-            //sh 'mvn test'
+            sh 'npm test -- --code-coverage --single-run'
           },
           'Code Coverage*':
           {
