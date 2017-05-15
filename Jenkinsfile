@@ -12,6 +12,7 @@ pipeline
   tools
   {
     //maven 'Maven 3.3.9'
+    nodejs 'Node 7.4.0'
     jdk 'jdk8'
   }
 
@@ -23,7 +24,7 @@ pipeline
     {
       steps
       {
-        echo " "
+        sh 'npm --version'
         // sh '''
         //   echo "PATH = ${PATH}"
         //   echo "M2_HOME = ${M2_HOME}"
