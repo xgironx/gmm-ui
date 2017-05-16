@@ -4,6 +4,10 @@ pipeline
 {
   agent any //specifies jenkins execution environment, executor and checks out a repository
 
+  environment {
+    OPENSHIFT_AUTH_TOKEN = credentials('OPENSHIFT_AUTH_TOKEN')
+  }
+  
   options
   {
     buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10'))
@@ -88,7 +92,7 @@ pipeline
         withEnv(["SKIP_TLS=1"])
         {
           echo 'Deploying....'
-          openshiftBuild apiURL: 'https://10.10.23.87:8443', authToken: '3AzrqlA4lcj4oCrGOyCYsAgojauP99to-I8AYW1Hc0E', bldCfg: 'bahgmm-ui', buildName: '', checkForTriggeredDeployments: 'true', commitID: '', namespace: 'bahgmm-dev', showBuildLogs: 'true', verbose: 'false', waitTime: '', waitUnit: 'sec'
+          openshiftBuild apiURL: 'https://10.10.23.87:8443', authToken: "${env.OPENSHIFT_AUTH_TOKEN}", bldCfg: 'bahgmm-ui', buildName: '', checkForTriggeredDeployments: 'true', commitID: '', namespace: 'bahgmm-dev', showBuildLogs: 'true', verbose: 'false', waitTime: '', waitUnit: 'sec'
         }
       }
     }
