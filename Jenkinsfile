@@ -92,7 +92,7 @@ pipeline
         withEnv(["SKIP_TLS=1"])
         {
           echo 'Deploying....'
-          openshiftBuild apiURL: 'https://10.10.23.87:8443', authToken: "${env.OPENSHIFT_AUTH_TOKEN}", bldCfg: 'bahgmm-ui', buildName: '', checkForTriggeredDeployments: 'true', commitID: '', namespace: 'bahgmm-dev', showBuildLogs: 'true', verbose: 'false', waitTime: '', waitUnit: 'sec'
+          openshiftBuild apiURL: "${env.OPENSHIFT_API_URL}", authToken: "${env.OPENSHIFT_AUTH_TOKEN}", bldCfg: 'bahgmm-ui', buildName: '', checkForTriggeredDeployments: 'true', commitID: '', namespace: 'bahgmm-dev', showBuildLogs: 'true', verbose: 'false', waitTime: '', waitUnit: 'sec'
         }
       }
     }
