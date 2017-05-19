@@ -5,6 +5,7 @@ pipeline
   agent any //specifies jenkins execution environment, executor and checks out a repository
 
   environment {
+    PROJECT_NAME = "${env.JOB_NAME.replaceAll(/\\/.*$/, '')}"
     OPENSHIFT_AUTH_TOKEN = credentials('OPENSHIFT_AUTH_TOKEN')
   }
   
@@ -67,8 +68,8 @@ pipeline
               //sh "${scannerHome}/bin/sonar-scanner"
               //def sonar.projectKey=Sonar:Scan
               //sh "/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/Default/bin/sonar-scanner"
-              sh "/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/Default/bin/sonar-scanner -Dsonar.host.url=${env.SONAR_HOST_URL} -Dsonar.login=${env.SONAR_AUTH_TOKEN} -Dsonar.projectName=${env.JOB_BASE_NAME} -Dsonar.projectKey=${env.JOB_BASE_NAME}"
-              echo "Results are here: ${env.SONAR_RESULTS_URL}${env.JOB_BASE_NAME}"
+              sh "/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/Default/bin/sonar-scanner -Dsonar.host.url=${env.SONAR_HOST_URL} -Dsonar.login=${env.SONAR_AUTH_TOKEN} -Dsonar.projectName=${env.PROJECT_NAME} -Dsonar.projectKey=${env.PROJECT_NAME}"
+              echo "Results are here: ${env.SONAR_RESULTS_URL}${env.PROJECT_NAME}"
             }
           }
         )
