@@ -1,4 +1,4 @@
 export interface IApplicantType {
-    applicantTypeId: string;
-    applicantTypeName: string;
+    id: string;
+    name: string;
 }

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { ModalComponent, DialogRef } from 'angular2-modal';
- 
+
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IState } from '../../shared/models/istate';
@@ -30,9 +30,9 @@ export class PocAddModalComponent implements OnDestroy, OnInit, AfterViewInit, M
   selectedState: string = null;
 
   constructor(
-        private fb: FormBuilder, 
-        private _refDataService: RefDataService, 
-        private _applicationService: ApplicationService, 
+        private fb: FormBuilder,
+        private _refDataService: RefDataService,
+        private _applicationService: ApplicationService,
         private route: ActivatedRoute,
         private router: Router,
         public dialog: DialogRef<PocModalContext>
@@ -61,23 +61,23 @@ export class PocAddModalComponent implements OnDestroy, OnInit, AfterViewInit, M
     }
 
     for (var i = 0, len = this.context.states.length; i < len; i++) {
-      let option = { value: this.context.states[i].stateId, label: this.context.states[i].stateName };
+      let option = { value: this.context.states[i].id, label: this.context.states[i].name };
       this.stateDropDownList.push(option);
-      if(this.poc != null && this.selectedState == null && this.context.states[i].stateName == this.poc.state){
-        this.selectedState = this.context.states[i].stateId;
+      if(this.poc != null && this.selectedState == null && this.context.states[i].name == this.poc.state){
+        this.selectedState = this.context.states[i].id;
       }
     }
   }
 
   ngAfterViewInit(){
-    
+
   }
 
   save(formValues) {
-    let stateName: string = null;
+    let name: string = null;
     for (var i = 0, len = this.context.states.length; i < len; i++) {
-      if(formValues.state == this.context.states[i].stateId){
-        stateName = this.context.states[i].stateName;
+      if(formValues.state == this.context.states[i].id){
+        name = this.context.states[i].name;
       }
     }
     let poc:IPoc = {
@@ -90,7 +90,7 @@ export class PocAddModalComponent implements OnDestroy, OnInit, AfterViewInit, M
       address1: formValues.address1,
       address2: formValues.address2,
       city: formValues.city,
-      state: stateName,
+      state: name,
       zip: formValues.zip,
       phone: formValues.phone,
       email: formValues.email

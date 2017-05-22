@@ -1,4 +1,4 @@
 import { IGrantType } from './igrant-type';
 export class GrantType implements IGrantType {
-  constructor(public grantTypeId: string, public grantTypeName: string) { }
+  constructor(public id: string, public name: string) { }
 }

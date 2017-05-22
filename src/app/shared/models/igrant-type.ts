@@ -1,4 +1,4 @@
 export interface IGrantType {
-    grantTypeId: string;
-    grantTypeName: string;
+    id: string;
+    name: string;
 }
