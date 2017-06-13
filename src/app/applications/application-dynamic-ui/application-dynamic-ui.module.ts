@@ -6,7 +6,6 @@ import { DynamicSample1Component, DynamicSample2Component, UnknownDynamicCompone
 import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from "angular2-schema-form";
 
 
-
 @NgModule({
   imports: [
     BrowserModule,
@@ -32,7 +31,8 @@ import { SchemaFormModule, WidgetRegistry, DefaultWidgetRegistry } from "angular
   entryComponents: [
     DynamicSample1Component,
     DynamicSample2Component,
-    UnknownDynamicComponent
+    UnknownDynamicComponent,
+    DynamicFormComponent
   ],
   providers: [{provide: WidgetRegistry, useClass: DefaultWidgetRegistry}],
   bootstrap: [ DynamicContentComponentDemo ]

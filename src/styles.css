@@ -24,8 +24,32 @@
   background-color: #ddebf7;
 }
 
+sf-form-object fieldset div{
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 10px;
+  position: relative;
+  min-height: 1px;
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
-
+sf-form-object fieldset{
+  position: relative;
+  display: block;
+  margin-bottom: 0.75rem;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+sf-form-object fieldset legend{
+  border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0 !important;
+  padding: 0.75rem 1.25rem;
+  /*margin-bottom: 0;*/
+  background-color: #f5f5f5;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
 
 .chart {
         display: block;
@@ -44,7 +68,7 @@ color: #0099CC
  -moz-border-radius:75px;
  -webkit-border-radius: 75px;
  width: 10px;
- 
+
 }
 
 .icon-red {color: #F20C0C}
@@ -223,7 +247,7 @@ color: #0099CC
 .nav-sm .menu_section {
   margin: 0;
 }
-.nav-sm span.fa, 
+.nav-sm span.fa,
 .nav-sm .menu_section h3 {
   display: none;
 }
@@ -232,11 +256,17 @@ color: #0099CC
 }
 .nav_menu {
   float: left;
-  background: #EDEDED;
-  border-bottom: 1px solid #D9DEE4;
+  background: #11c1f3;/* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(left, #11c1f3 , #00cccc); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #11c1f3, #00cccc); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #11c1f3, #00cccc); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #11c1f3 , #00cccc); /* Standard syntax */
+  border-bottom: 1px solid #ffffff;
   margin-bottom: 10px;
   width: 100%;
   position: relative;
+  color: white !important;
+  font-size: large;
 }
 @media (min-width: 480px) {
   .nav_menu {
@@ -388,6 +418,7 @@ body .container.body .right_col {
 }
 .top_nav .nav>li>a:focus, .top_nav .nav>li>a:hover, .top_nav .nav .open>a, .top_nav .nav .open>a:focus, .top_nav .nav .open>a:hover {
   background: #D9DEE4;
+  color: #5A738E;
 }
 body {
   color: #73879C;
@@ -605,11 +636,11 @@ a:hover, a:focus {
   color: #E7E7E7;
   font-weight: 500;
 }
-.nav.child_menu li li:hover, 
+.nav.child_menu li li:hover,
 .nav.child_menu li li.active {
   background: none;
 }
-.nav.child_menu li li a:hover, 
+.nav.child_menu li li a:hover,
 .nav.child_menu li li a.active {
   color: #fff;
 }
@@ -617,6 +648,7 @@ a:hover, a:focus {
   position: relative;
   display: block;
   padding: 13px 15px 12px;
+  color: white;
 }
 .nav.side-menu> li.current-page, .nav.side-menu> li.active {
   border-right: 5px solid #1ABB9C;
@@ -737,7 +769,7 @@ footer {
 }
 
 .nav-sm footer {
-  margin-left: 70px ;  
+  margin-left: 70px ;
 }
 .footer_fixed footer {
   position: fixed;
@@ -1435,7 +1467,7 @@ ul.msg_list li a .message {
   border: 1px solid #D9DEE4;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  
+
 }
 .dropdown-menu>li>a {
   color: #5A738E;
@@ -1628,9 +1660,9 @@ span.right {
   }
 }
 .tile_count .tile_stats_count:before {
-  content:""; 
-  position: absolute; 
-  left: 0; 
+  content:"";
+  position: absolute;
+  left: 0;
   height: 65px;
   border-left: 2px solid #ADB2B5;
   margin-top: 10px;
@@ -1679,10 +1711,11 @@ a.user-profile {
   color: #5E6974 !important;
 }
 .user-profile img {
-  width: 29px;
-  height: 29px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-right: 25px;
+  margin-left: 25px;
 }
 ul.top_profiles {
   height: 330px;
@@ -2077,7 +2110,7 @@ button,
   display: inline-block;
 }
 
-.compose {  
+.compose {
   padding: 0;
   position: fixed;
   bottom: 0;
@@ -3606,11 +3639,11 @@ header {
 .editor-wrapper {
   min-height: 250px;
   background-color: white;
-  border-collapse: separate; 
-  border: 1px solid rgb(204, 204, 204); 
-  padding: 4px; 
-  box-sizing: content-box; 
-  -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset; 
+  border-collapse: separate;
+  border: 1px solid rgb(204, 204, 204);
+  padding: 4px;
+  box-sizing: content-box;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
   box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
   border-top-right-radius: 3px; border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px; border-top-left-radius: 3px;
@@ -4544,7 +4577,7 @@ ul.notifications {
 
 /** FullCalendar **/
 .fc-state-default {
-  background: #f5f5f5; 
+  background: #f5f5f5;
   color: #73879C;
 }
 

@@ -12,9 +12,9 @@
 
 
 <div>
-  <h2>Dynamic content</h2> -->
+  <h2>Dynamic content</h2>
   <h3>Grants:
-    <input type="text" [(ngModel)]="context.text">
+    <!-- <input type="text" [(ngModel)]="context.text"> -->
     <select name="grants" id="grants" [(ngModel)]="context">
       <option selected disabled>Select Grant Type</option>
       <option value="disasterRecoveryGrant">Disaster Recovery Grant</option>
@@ -22,11 +22,11 @@
       <option value="floodRecoveryGrant">Flood Recovery Grant</option>
     </select>
   </h3>
-  <dynamic-content type="sample1" [context]="context">
+  <dynamic-content type="sample3" [context]="context">
 
   </dynamic-content>
 
-  <minimal-app></minimal-app>
+  <!-- <minimal-app></minimal-app> -->
 </div>
 
 

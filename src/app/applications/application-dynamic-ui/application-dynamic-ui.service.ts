@@ -1,6 +1,6 @@
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import { GrantType } from './grants'
 
 
@@ -45,5 +45,6 @@ export class AppService{
  //      headers.append('Accept', 'application/json');
  //      return headers;
  // }
+
 
 }
