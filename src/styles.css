@@ -12,7 +12,7 @@
   color: #fff;
 }
 
-.sort-asc{
+.sort-asc {
   color: #fff;
 }
 
@@ -20,11 +20,11 @@
   color: #222;
 }
 
-.datatable-row-odd{
+.datatable-row-odd {
   background-color: #ddebf7;
 }
 
-sf-form-object fieldset div{
+sf-form-object fieldset div {
   margin-left: 0;
   margin-right: 0;
   margin-bottom: 10px;
@@ -35,7 +35,7 @@ sf-form-object fieldset div{
   padding-right: 10px;
 }
 
-sf-form-object fieldset{
+sf-form-object fieldset {
   position: relative;
   display: block;
   margin-bottom: 0.75rem;
@@ -43,7 +43,7 @@ sf-form-object fieldset{
   border-radius: 0.25rem;
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
-sf-form-object fieldset legend{
+sf-form-object fieldset legend {
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0 !important;
   padding: 0.75rem 1.25rem;
   /*margin-bottom: 0;*/
