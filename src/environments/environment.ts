@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  serviceBase: "http://application-dev.apps.gmm.bahincubator.com/",//"http://localhost:8402/",
+  serviceBase: "http://data-dev.apps.gmm.bahincubator.com/swagger-ui.html", //"http://application-dev.apps.gmm.bahincubator.com/","http://localhost:8402/",
   serviceBaseActiviti: "http://activiti-svc-dev.apps.gmm.bahincubator.com:80/"
 };
 
