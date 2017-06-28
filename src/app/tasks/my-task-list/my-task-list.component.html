@@ -1,22 +1,19 @@
 <div class="background"></div>
 <div class="task-model">
   <div class="heading">
-    <h1>DRAFT TASK</h1>
+    <p class="title">DRAFT TASK</p>
     <button type="button" class="close" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="body">
-    
-
-    <!-- <div class="row"> -->
-      
+  <!-- <hr class="line"> -->
+  <div class="body">  
       <!--Task Type-->
       <div class="select-box">
         <label for="">Task Type</label>
         <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Dropdown
+          <button class="btn btn-default dropdown-toggle disabled" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            To Do Task
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -24,13 +21,12 @@
           </ul>
         </div>
       </div>
-
       <!--Assigning Group-->
       <div class="select-box">
-        <label for="">Task Type</label>
+        <label for="">Assigning Group</label>
         <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Dropdown
+          <button class="btn btn-default dropdown-toggle disabled" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Grantee Applicant
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -38,32 +34,25 @@
           </ul>
         </div>
       </div>
-
       <!--Assigned Group-->
       <div class="select-box">
-        <label for="">Task Type</label>
+        <label for="">Assigned Group</label>
         <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Dropdown
+          <button class="btn btn-default dropdown-toggle disabled" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Grants Management Specialist
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li><a href="#">Action</a></li>
           </ul>
         </div>
-      </div>
-
-    <!-- </div>end row -->
-
-
-    <!-- <div class=""> -->
-      
+      </div>      
       <!--Requested Due Date-->
       <div class="select-box">
         <label for="">Requested Due Date</label>
         <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Dropdown
+          <button class="btn btn-default dropdown-toggle disabled" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            04/12/2017
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -71,13 +60,12 @@
           </ul>
         </div>
       </div>
-
       <!--Related Award-->
       <div class="select-box">
         <label for="">Related Award</label>
         <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Dropdown
+          <button class="btn btn-default dropdown-toggle disabled" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Award 139
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -85,13 +73,12 @@
           </ul>
         </div>
       </div>
-
-      <!--Assigned Group-->
+      <!--Assigned Notes-->
       <div class="select-box">
         <label for="">Assigned Note</label>
         <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Dropdown
+          <button class="btn btn-default dropdown-toggle disabled" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            I have approved this funding
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -100,16 +87,14 @@
         </div>
       </div>
 
-
-    <!-- </div>end row -->
-
-
+      <hr class="line">
+      
       <!--Status-->
-      <div class="select-box">
+      <div class="select-box status">
         <label for="">Status</label>
         <div class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Dropdown
+          <button class="btn btn-default dropdown-toggle disabled" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            In Progress
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -117,19 +102,18 @@
           </ul>
         </div>
       </div>
-
-
-      <div class="select-box">
+      <div class="select-box note">
         <label for="">Notes</label>
-        <input type="text">
+        <div class="dropdown"><input type="text"></div>
       </div>
+  </div>
 
-  </div>
-  <div class="cta">
-    <button>Cancel</button>
-    <button>Save</button>
-  </div>
-</div>
+    <div class="cta">
+      <button class="cancel">CANCEL</button>
+      <button class="save">SAVE</button>
+    </div>
+
+</div><!--end task model-->
 
 <div class="card">
   <div class="card-header">
