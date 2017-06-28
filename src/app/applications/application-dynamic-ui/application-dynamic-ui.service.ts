@@ -13,6 +13,15 @@ const GRANTS: GrantType[] = [
 @Injectable()
 export class AppService{
 
+  constructor(
+    private http: Http
+  ){}
+
+  getGrants() {
+      return this.http.get('http://data-dev.apps.gmm.bahincubator.com/getGrantTypes')
+       .map((res: Response) => res.json());
+  }
+
   get(grantType: string) : GrantType {
     return this.clone(GRANTS.find(p => p.grantType === grantType));
  }

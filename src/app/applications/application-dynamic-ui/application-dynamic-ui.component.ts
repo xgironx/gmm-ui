@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver, OnInit, OnDestroy, Injectable, OnChanges, DoCheck, KeyValueDiffers, ChangeDetectorRef} from '@angular/core'
-// import { AppService } from './application-dynamic-ui.service'
+import { AppService } from './application-dynamic-ui.service'
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
@@ -19,7 +19,7 @@ export class DynamicContentComponentDemo {
   selector: 'dynamic-content',
   template: '<div><div #container></div></div><button type="button" name="Submit" (click)="apply()">Submit</button><br><br><div  *ngFor= "let key of keys" ><label for="{{key}}" [class.dynamic]="true">{{key}}:</label><input type="text" name="{{key}}" value="" [class.texbox]="true"><br><br></div>',
   providers:[
-    // AppService,
+    AppService,
     DynamicFormComponent],
   styleUrls: ['./application-dynamic-ui.component.css']
 })
@@ -34,7 +34,7 @@ export class DynamicContentComponent implements OnInit, OnDestroy {
   private componentRef: ComponentRef<{}>;
   private _getApplicationsUI = 'http://dynamic-ui-dev.apps.gmm.bahincubator.com:80/newApplicationForm?grantType=';
 
-  //private grants: AppService
+  // private _getGrantTypes: AppService
   private grantsTypes
   private grants
   public keys : String[]
@@ -42,16 +42,21 @@ export class DynamicContentComponent implements OnInit, OnDestroy {
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-    // private grantsService : AppService
+    private grantsTypesService : AppService,
     private grantsService : DynamicFormComponent
   ) {
     }
 
     apply(){
-      // this.grantsTypes = this.grantsService.get(this.context)
+      this.grantsTypes = this.grantsTypesService.getGrants()
+       .subscribe(data => {
+         this.context = data
+         console.log('Grants: ', this.grantsTypes)
+       }
+       )  //this.context)
       // this.keys = Object.keys(this.grantsTypes)
       // console.log(this.context)
-      // console.log(this.grantsTypes)
+
       // console.log(this.keys)
       this.grants = this.grantsService.setMySchema(this.context)
       // this.grantsTypes = this.grantsService.setMyModel(this.context)
