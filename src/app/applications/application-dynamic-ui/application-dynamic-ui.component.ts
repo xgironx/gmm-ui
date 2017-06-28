@@ -141,7 +141,7 @@ export class UnknownDynamicComponent extends DynamicComponent {}
 @Component({
   selector:"minimal-app",
   // Bind the "mySchema" member to the schema input of the Form component.[validators]="myValidators" (onChange)="value=$event.value" {{value | json}}
-  template: '<sf-form [schema]="schema" (onChange)="value=$event.value"></sf-form>{{value | json}}'
+  template: '<sf-form [schema]="schema" (onChange)="value=$event.value"></sf-form>' //{{value | json}}
 })
 
 
@@ -356,7 +356,7 @@ export class DynamicFormComponent {
     // console.log(grant)
     // if(grant){
       this.schema =this.mySchema1
-      console.log(this.schema)
+      // console.log(this.schema)
     // }
   //   this.objDiffer = {}
   //   Object.keys(this.schema).map((elt) => {
