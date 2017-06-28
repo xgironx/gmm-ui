@@ -1,6 +1,9 @@
 import { Component, Input, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver, OnInit, OnDestroy, Injectable, OnChanges, DoCheck, KeyValueDiffers, ChangeDetectorRef} from '@angular/core'
 import { AppService } from './application-dynamic-ui.service'
+<<<<<<< HEAD
 import { ApplicationService } from '../application.service';
+=======
+>>>>>>> 0c796ef23ec69dfdaf78d7745964c7868c27ef09
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
@@ -21,7 +24,10 @@ export class DynamicContentComponentDemo {
   template: '<div><div #container></div></div><button type="button" name="Submit" (click)="apply()">Submit</button><br><br><div  *ngFor= "let key of keys" ><label for="{{key}}" [class.dynamic]="true">{{key}}:</label><input type="text" name="{{key}}" value="" [class.texbox]="true"><br><br></div>',
   providers:[
     AppService,
+<<<<<<< HEAD
     ApplicationService,
+=======
+>>>>>>> 0c796ef23ec69dfdaf78d7745964c7868c27ef09
     DynamicFormComponent],
   styleUrls: ['./application-dynamic-ui.component.css']
 })
@@ -36,7 +42,7 @@ export class DynamicContentComponent implements OnInit, OnDestroy {
   private componentRef: ComponentRef<{}>;
   private _getApplicationsUI = 'http://dynamic-ui-dev.apps.gmm.bahincubator.com:80/newApplicationForm?grantType=';
 
-  //private grants: AppService
+  // private _getGrantTypes: AppService
   private grantsTypes
   private grants
   public keys : String[]
@@ -44,17 +50,26 @@ export class DynamicContentComponent implements OnInit, OnDestroy {
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
+<<<<<<< HEAD
     private service : AppService,
     private applicationService: ApplicationService,
+=======
+    private grantsTypesService : AppService,
+>>>>>>> 0c796ef23ec69dfdaf78d7745964c7868c27ef09
     private grantsService : DynamicFormComponent
   ) {
     }
 
     apply(){
-      // this.grantsTypes = this.grantsService.get(this.context)
+      this.grantsTypes = this.grantsTypesService.getGrants()
+       .subscribe(data => {
+         this.context = data
+         console.log('Grants: ', this.grantsTypes)
+       }
+       )  //this.context)
       // this.keys = Object.keys(this.grantsTypes)
       // console.log(this.context)
-      // console.log(this.grantsTypes)
+
       // console.log(this.keys)
       //this.service.save();
       //this.service.save().subscribe(value => {
@@ -147,7 +162,7 @@ export class UnknownDynamicComponent extends DynamicComponent {}
 @Component({
   selector:"minimal-app",
   // Bind the "mySchema" member to the schema input of the Form component.[validators]="myValidators" (onChange)="value=$event.value" {{value | json}}
-  template: '<sf-form [schema]="schema"></sf-form>'
+  template: '<sf-form [schema]="schema" (onChange)="value=$event.value"></sf-form>{{value | json}}'
 })
 
 
