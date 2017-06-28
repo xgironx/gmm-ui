@@ -1,4 +1,4 @@
-import { Http, Response, Headers, RequestOptions  } from '@angular/http';
+import { Http, Response, Headers, RequestOptions, URLSearchParams  } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { Injectable, Component } from '@angular/core';
 import { GrantType } from './grants'
@@ -140,8 +140,11 @@ export class AppService {
   public save() : Observable<ApplicationForm> {
     let postType = "dynamicUiForm-1";
     //let url:string = "http://submit-dev.apps.gmm.bahincubator.com:80/submit";
-    let url:string = 'http://submit-dev.apps.gmm.bahincubator.com:80/testPost';
-    let body = {value: 'string'};
+    let url:string = 'http://submit-dev.apps.gmm.bahincubator.com:80/testPostRequestBody';
+    let value = 'hey';
+    let body = 'omg pls';
+    //body.set('value', 'fuck');
+    let body1 = `value=${value}`;
     // let body = {
     //   "postType": postType,
     //   "postValue": FORM
@@ -151,8 +154,8 @@ export class AppService {
     
 
     console.log('you mdae it to save ' + body);
-    console.log(JSON.stringify({value: 'string'}));
-    return this.http.post(url, 'value', options)
+
+    return this.http.post(url, body, options)
       .map((res: Response) => {
         console.log('res ' + res);
         return res.json();
