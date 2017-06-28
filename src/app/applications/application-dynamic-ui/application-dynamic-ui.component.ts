@@ -1,5 +1,6 @@
 import { Component, Input, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver, OnInit, OnDestroy, Injectable, OnChanges, DoCheck, KeyValueDiffers, ChangeDetectorRef} from '@angular/core'
 import { AppService } from './application-dynamic-ui.service'
+import { ApplicationService } from '../application.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
@@ -20,6 +21,7 @@ export class DynamicContentComponentDemo {
   template: '<div><div #container></div></div><button type="button" name="Submit" (click)="apply()">Submit</button><br><br><div  *ngFor= "let key of keys" ><label for="{{key}}" [class.dynamic]="true">{{key}}:</label><input type="text" name="{{key}}" value="" [class.texbox]="true"><br><br></div>',
   providers:[
     AppService,
+    ApplicationService,
     DynamicFormComponent],
   styleUrls: ['./application-dynamic-ui.component.css']
 })
@@ -43,6 +45,7 @@ export class DynamicContentComponent implements OnInit, OnDestroy {
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private service : AppService,
+    private applicationService: ApplicationService,
     private grantsService : DynamicFormComponent
   ) {
     }
@@ -53,8 +56,9 @@ export class DynamicContentComponent implements OnInit, OnDestroy {
       // console.log(this.context)
       // console.log(this.grantsTypes)
       // console.log(this.keys)
-      this.service.save();
-      this.service.save().subscribe(value => {
+      //this.service.save();
+      //this.service.save().subscribe(value => {
+        this.applicationService.mockSaveApplication().subscribe(value => {
         console.log('value from return ' + value);
       },
       err => {

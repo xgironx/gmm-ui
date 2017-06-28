@@ -1,4 +1,4 @@
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions  } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { Injectable, Component } from '@angular/core';
 import { GrantType } from './grants'
@@ -13,20 +13,20 @@ const GRANTS: GrantType[] = [
   { "grantType": "disasterRecoveryGrant", "poc": "", "location": "", "status": "" },
   { "grantType": "floodRecoveryGrant", "poc": "", "county": "", "region": "", "status": "" }
 ]
-// const FORM: ApplicationForm = new ApplicationForm(
-//   "grantType": "Grant Type",
-//   "organizationName": "Org Name",
-//   "address": "Address",
-//   "state": "state",
-//   "applicationType": "app type",
-//   "congressionalDistrict": "congress district",
-//   "projectTitle": "proj title",
-//   "projectNumber": "proj number",
-//   "projectYear": 2017,
-//   "submissionDate": "date",
-//   "grantValue": 123,
-//   "notificationsFrequency": "frequency"
-// );
+var FORM: ApplicationForm = {
+  grantType: "Grant Type",
+  organizationName: "Org Name",
+  address: "Address",
+  state: "state",
+  applicationType: "app type",
+  congressionalDistrict: "congress district",
+  projectTitle: "proj title",
+  projectNumber: "proj number",
+  projectYear: 2017,
+  submissionDate: "date",
+  grantValue: 123,
+  notificationsFrequency: "frequency"
+};
 // var GRANTEE1: Grantee;
 // GRANTEE1.address1 = "123 Main Grant Street";
 // GRANTEE1.address1 = "123 Main Grant Street";
@@ -138,12 +138,21 @@ export class AppService {
   }
 
   public save() : Observable<ApplicationForm> {
-    let postType = "applicationForm-1"
-    let grant: ApplicationForm = FORM;
-    let url:string = "http://submit-dev.apps.gmm.bahincubator.com:80/submit";
-    let headers = "{\"Accept\": \"*/*\"}";
-    console.log('you mdae it to save ' );
-    return this.http.post(url, '', '')
+    let postType = "dynamicUiForm-1";
+    //let url:string = "http://submit-dev.apps.gmm.bahincubator.com:80/submit";
+    let url:string = 'http://submit-dev.apps.gmm.bahincubator.com:80/testPost';
+    let body = {value: 'string'};
+    // let body = {
+    //   "postType": postType,
+    //   "postValue": FORM
+    // };
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({headers: headers});
+    
+
+    console.log('you mdae it to save ' + body);
+    console.log(JSON.stringify({value: 'string'}));
+    return this.http.post(url, 'value', options)
       .map((res: Response) => {
         console.log('res ' + res);
         return res.json();
@@ -170,6 +179,5 @@ export class AppService {
   //      headers.append('Accept', 'application/json');
   //      return headers;
   // }
-
 
 }
