@@ -22,6 +22,13 @@ export class AppService{
        .map((res: Response) => res.json());
   }
 
+  getData() {
+      return this.http.get('http://config-dev.apps.gmm.bahincubator.com/getAppForm')
+       .map(
+         (res: Response) => res.json()
+       );
+  }
+
   get(grantType: string) : GrantType {
     return this.clone(GRANTS.find(p => p.grantType === grantType));
  }

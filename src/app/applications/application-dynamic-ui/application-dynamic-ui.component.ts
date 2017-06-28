@@ -141,7 +141,7 @@ export class UnknownDynamicComponent extends DynamicComponent {}
 @Component({
   selector:"minimal-app",
   // Bind the "mySchema" member to the schema input of the Form component.[validators]="myValidators" (onChange)="value=$event.value" {{value | json}}
-  template: '<sf-form [schema]="schema" (onChange)="value=$event.value"></sf-form>' //{{value | json}}
+  template: '<sf-form [schema]="schema" (onChange)="value=$event.value"></sf-form> {{value | json}}'
 })
 
 
@@ -152,13 +152,16 @@ export class DynamicFormComponent {
   public schema: any = {
     "properties": {}
   }
+
   public value: JSON
   // public myChange: boolean
   // private objDiffer
 
   // differ: any
   // public refreshWidget: WidgetChooserComponent
-  constructor(){
+  constructor(
+    private dataService : AppService
+  ){
     // private differs: KeyValueDiffers
 
 
@@ -204,10 +207,6 @@ export class DynamicFormComponent {
         "type": "string",
         "description": "Project Title"
       },
-      // "projCheck": {
-      //   "type": "string",
-      //   "description": "Project (verification)"
-      // },
       "projectNumber": {
         "type": "string",
         "description": "Project Number"
@@ -224,8 +223,7 @@ export class DynamicFormComponent {
       "grantValue": {
         "type": "number",
         "description": "Grant Value"
-      }
-      ,
+      },
       "notificationsFrequency": {
         "type":"string",
         "description": "Dispersement Schedule",
@@ -241,47 +239,51 @@ export class DynamicFormComponent {
         }],
         "default": "annually"
       }
-      // ,
-      // "amount": {
-      //   "type": "string",
-      //   "description": "Is grant amount greater than $1 million?",
-      //   "widget":"radio",
-      //   "oneOf": [{
-      //     "description": "Yes", "enum": ["yes"]
-      //   }, {
-      //     "description": "No", "enum": ["no"]
-      //   }],
-      //   "default": "no"
-      // }
-      // ,
-      // "newGrant": {
-      //   "type": "boolean",
-      //   "default": false,
-      //   "description": "Is this a new or existing grant?"
-      // }
-      // ,
-      // "password": {
-      //   "type": "string",
-      //   "description": "Password",
-      //   "widget":"password"
-      // }
-
     },
     "required": ["organizationName","state","projectTitle", "projectNumber", "projectYear"],
     "fieldsets": [{
       "title": "General Information",
       "fields": ["organizationName","address","state","typeApp","congressionalDistrict","projectTitle", "projectNumber", "projectYear", "projectDate"
-      // , "projCheck"
     ]
     }, {
       "title": "Grant Information",
       "fields": ["grantType","grantValue"
       ,"notificationsFrequency"
-      // ,"amount","newGrant","password"
     ]
     }]
   }
 
+  // "projCheck": {
+  //   "type": "string",
+  //   "description": "Project (verification)"
+  // },
+      // , "projCheck"
+    // ,"amount","newGrant","password"
+
+  // ,
+  // "amount": {
+  //   "type": "string",
+  //   "description": "Is grant amount greater than $1 million?",
+  //   "widget":"radio",
+  //   "oneOf": [{
+  //     "description": "Yes", "enum": ["yes"]
+  //   }, {
+  //     "description": "No", "enum": ["no"]
+  //   }],
+  //   "default": "no"
+  // }
+  // ,
+  // "newGrant": {
+  //   "type": "boolean",
+  //   "default": false,
+  //   "description": "Is this a new or existing grant?"
+  // }
+  // ,
+  // "password": {
+  //   "type": "string",
+  //   "description": "Password",
+  //   "widget":"password"
+  // }
 
   // myValidators = {
   //   "/projCheck": (value, property, form) => {
@@ -355,7 +357,14 @@ export class DynamicFormComponent {
   ngOnInit(grant: string){
     // console.log(grant)
     // if(grant){
-      this.schema =this.mySchema1
+      //this.schema =
+
+      this.dataService.getData()
+       .subscribe(data => {
+         this.schema = data
+         console.log('Grants: ', this.schema)
+       }
+       )
       // console.log(this.schema)
     // }
   //   this.objDiffer = {}
