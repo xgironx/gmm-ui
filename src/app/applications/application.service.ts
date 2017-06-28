@@ -62,32 +62,33 @@ export class ApplicationService {
                 return response.json();
         });
     }
-    mockSaveApplication(): Observable<ApplicationForm> {
+    mockSaveApplication(value: any): Observable<ApplicationForm> {
+        console.log('in the serive ' + JSON.stringify(value));
         //let url = 'http://submit-dev.apps.gmm.bahincubator.com:80/testPostRequestBody';
        let url:string = "http://submit-dev.apps.gmm.bahincubator.com:80/submit";
         let postType = "dynamicUiForm-1";
 
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        let application = {
-            grantType: "Grant Type",
-            organizationName: "Org Name",
-            address: "Address",
-            state: "state",
-            applicationType: "app type",
-            congressionalDistrict: "congress district",
-            projectTitle: "proj title",
-            projectNumber: "proj number",
-            projectYear: 2017,
-            submissionDate: "date",
-            grantValue: 123,
-            notificationsFrequency: "frequency"
-        };
+        // let application = {
+        //     grantType: "Grant Type",
+        //     organizationName: "Org Name",
+        //     address: "Address",
+        //     state: "state",
+        //     applicationType: "app type",
+        //     congressionalDistrict: "congress district",
+        //     projectTitle: "proj title",
+        //     projectNumber: "proj number",
+        //     projectYear: 2017,
+        //     submissionDate: "date",
+        //     grantValue: 123,
+        //     notificationsFrequency: "frequency"
+        // };
         
        // let application = 'Form';
         let body = {
             "postTypeId": postType,
-            "postValues": JSON.stringify(application)
+            "postValues": JSON.stringify(value)
         };
 //         let body = {
 //   "postInstanceId": "string",
@@ -95,7 +96,7 @@ export class ApplicationService {
 //   "postValues": "string"
 // };
         console.log(url);
-        console.log(application);
+        //console.log(application);
         return this._http.post(url, body, options)
             .map((response: Response) => {
                 console.log(response);

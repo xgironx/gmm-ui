@@ -1,10 +1,9 @@
+
 import { Component, Input, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver, OnInit, OnDestroy, Injectable, OnChanges, DoCheck, KeyValueDiffers, ChangeDetectorRef} from '@angular/core'
 import { AppService } from './application-dynamic-ui.service'
-<<<<<<< HEAD
 import { ApplicationService } from '../application.service';
-=======
->>>>>>> 0c796ef23ec69dfdaf78d7745964c7868c27ef09
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -24,10 +23,7 @@ export class DynamicContentComponentDemo {
   template: '<div><div #container></div></div><button type="button" name="Submit" (click)="apply()">Submit</button><br><br><div  *ngFor= "let key of keys" ><label for="{{key}}" [class.dynamic]="true">{{key}}:</label><input type="text" name="{{key}}" value="" [class.texbox]="true"><br><br></div>',
   providers:[
     AppService,
-<<<<<<< HEAD
     ApplicationService,
-=======
->>>>>>> 0c796ef23ec69dfdaf78d7745964c7868c27ef09
     DynamicFormComponent],
   styleUrls: ['./application-dynamic-ui.component.css']
 })
@@ -50,35 +46,34 @@ export class DynamicContentComponent implements OnInit, OnDestroy {
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-<<<<<<< HEAD
     private service : AppService,
     private applicationService: ApplicationService,
-=======
-    private grantsTypesService : AppService,
->>>>>>> 0c796ef23ec69dfdaf78d7745964c7868c27ef09
-    private grantsService : DynamicFormComponent
+    private grantsService : DynamicFormComponent,
+    private dynamicForm: DynamicFormComponent
   ) {
     }
 
     apply(){
-      this.grantsTypes = this.grantsTypesService.getGrants()
-       .subscribe(data => {
-         this.context = data
-         console.log('Grants: ', this.grantsTypes)
-       }
-       )  //this.context)
+  
+      // this.grantsTypes = this.grantsTypesService.getGrants()
+      //  .subscribe(data => {
+      //    this.context = data
+      //    console.log('Grants: ', this.grantsTypes)
+      //  }
+       //)  //this.context)
       // this.keys = Object.keys(this.grantsTypes)
       // console.log(this.context)
 
       // console.log(this.keys)
       //this.service.save();
       //this.service.save().subscribe(value => {
-        this.applicationService.mockSaveApplication().subscribe(value => {
-        console.log('value from return ' + value);
-      },
-      err => {
-        console.log(err);
-      })
+        //this.dynamicForm.update();
+      //   this.applicationService.mockSaveApplication('oops').subscribe(value => {
+      //   console.log('value from return ' + value);
+      // },
+      // err => {
+      //   console.log(err);
+      // })
       this.grants = this.grantsService.setMySchema(this.context)
       // this.grantsTypes = this.grantsService.setMyModel(this.context)
       // console.log(this.grantsTypes)
@@ -162,7 +157,7 @@ export class UnknownDynamicComponent extends DynamicComponent {}
 @Component({
   selector:"minimal-app",
   // Bind the "mySchema" member to the schema input of the Form component.[validators]="myValidators" (onChange)="value=$event.value" {{value | json}}
-  template: '<sf-form [schema]="schema" (onChange)="value=$event.value"></sf-form> {{value | json}}'
+  template: '<sf-form [schema]="schema"  [actions]="myActions" (onChange)="value=$event.value"></sf-form> {{value | json}}'
 })
 
 
@@ -173,22 +168,28 @@ export class DynamicFormComponent {
   public schema: any = {
     "properties": {}
   }
+  public model: any;
 
-  public value: JSON
-  // public myChange: boolean
-  // private objDiffer
-
-  // differ: any
-  // public refreshWidget: WidgetChooserComponent
+  @Input() public value;
+  private validators = {};
   constructor(
-    private dataService : AppService
+    private dataService : AppService,
+    private service: ApplicationService
   ){
     // private differs: KeyValueDiffers
 
 
   }
   // mySchema = {}
-
+  public observable = Observable.create((observer)=>{
+    var id = setTimeout(() => {
+      console.log('timeout');
+      observer.onNext(42);
+    }, 1000);
+    return () => {
+      clearTimeout(id);
+    }
+  });
   private mySchema1 = {
     "properties": {
       "grantType": {
@@ -262,6 +263,10 @@ export class DynamicFormComponent {
       }
     },
     "required": ["organizationName","state","projectTitle", "projectNumber", "projectYear"],
+    "buttons": [{
+      "id": "alert", // the id of the action callback
+      "label": "Alert !" // the text inside the button
+    }],
     "fieldsets": [{
       "title": "General Information",
       "fields": ["organizationName","address","state","typeApp","congressionalDistrict","projectTitle", "projectNumber", "projectYear", "projectDate"
@@ -274,52 +279,32 @@ export class DynamicFormComponent {
     }]
   }
 
-  // "projCheck": {
-  //   "type": "string",
-  //   "description": "Project (verification)"
-  // },
-      // , "projCheck"
-    // ,"amount","newGrant","password"
+  myActions = {
+    "alert": (property) => {
+      this.model = property.value;
+      this.service.mockSaveApplication(property.value).subscribe(value => {
+        console.log('value from return ' + value);
+      },
+      err => {
+        console.log(err);
+      })
+    
+    },
+    "reset": (property) => {property.reset()}
+  }
 
-  // ,
-  // "amount": {
-  //   "type": "string",
-  //   "description": "Is grant amount greater than $1 million?",
-  //   "widget":"radio",
-  //   "oneOf": [{
-  //     "description": "Yes", "enum": ["yes"]
-  //   }, {
-  //     "description": "No", "enum": ["no"]
-  //   }],
-  //   "default": "no"
-  // }
-  // ,
-  // "newGrant": {
-  //   "type": "boolean",
-  //   "default": false,
-  //   "description": "Is this a new or existing grant?"
-  // }
-  // ,
-  // "password": {
-  //   "type": "string",
-  //   "description": "Password",
-  //   "widget":"password"
-  // }
 
-  // myValidators = {
-  //   "/projCheck": (value, property, form) => {
-  //     if (this.schema.property['projectTitle'] < 5 && value
-  //        ) {
-  //          console.log('Validator:', this.schema.property['projectTitle'], value)
-  //       return {"projCheck":{"expectedValue":"Name should be less than 5 characters"}}
-  //     }
-  //     return null;
-  //   }
-  // }
 
 
   myModel = {}
 
+  update(){
+
+    console.log('value ' + this.value);
+    console.log('model ' + this.model);
+    console.log('my model ' + JSON.stringify(this.myModel));
+    
+  }
   setMyModel(grant: string){
     this.myModel = {grantType: grant}
     console.log(this.myModel);
@@ -345,6 +330,9 @@ export class DynamicFormComponent {
     }
   }
 
+  onChange(event:any){
+    console.log('pls');
+  }
   ngOnChanges(changes: any){
     console.log('change triggered')
     console.log(changes.prop)
@@ -379,14 +367,14 @@ export class DynamicFormComponent {
   ngOnInit(grant: string){
     // console.log(grant)
     // if(grant){
-      //this.schema =
+      this.schema = this.mySchema1;
 
-      this.dataService.getData()
-       .subscribe(data => {
-         this.schema = data
-         console.log('Grants: ', this.schema)
-       }
-       )
+      // this.dataService.getData()
+      //  .subscribe(data => {
+      //    this.schema = data
+      //    console.log('Grants: ', this.schema)
+      //  }
+      //  )
       // console.log(this.schema)
     // }
   //   this.objDiffer = {}
