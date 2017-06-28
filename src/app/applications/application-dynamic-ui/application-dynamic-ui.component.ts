@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver, OnInit, OnDestroy, Injectable, OnChanges, DoCheck, KeyValueDiffers, ChangeDetectorRef} from '@angular/core'
-// import { AppService } from './application-dynamic-ui.service'
+import { AppService } from './application-dynamic-ui.service'
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
@@ -19,7 +19,7 @@ export class DynamicContentComponentDemo {
   selector: 'dynamic-content',
   template: '<div><div #container></div></div><button type="button" name="Submit" (click)="apply()">Submit</button><br><br><div  *ngFor= "let key of keys" ><label for="{{key}}" [class.dynamic]="true">{{key}}:</label><input type="text" name="{{key}}" value="" [class.texbox]="true"><br><br></div>',
   providers:[
-    // AppService,
+    AppService,
     DynamicFormComponent],
   styleUrls: ['./application-dynamic-ui.component.css']
 })
@@ -42,7 +42,7 @@ export class DynamicContentComponent implements OnInit, OnDestroy {
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-    // private grantsService : AppService
+    private service : AppService,
     private grantsService : DynamicFormComponent
   ) {
     }
@@ -53,6 +53,13 @@ export class DynamicContentComponent implements OnInit, OnDestroy {
       // console.log(this.context)
       // console.log(this.grantsTypes)
       // console.log(this.keys)
+      this.service.save();
+      this.service.save().subscribe(value => {
+        console.log('value from return ' + value);
+      },
+      err => {
+        console.log(err);
+      })
       this.grants = this.grantsService.setMySchema(this.context)
       // this.grantsTypes = this.grantsService.setMyModel(this.context)
       // console.log(this.grantsTypes)
@@ -294,6 +301,7 @@ export class DynamicFormComponent {
 
   setMyModel(grant: string){
     this.myModel = {grantType: grant}
+    console.log(this.myModel);
     return this.myModel
   }
 
@@ -311,8 +319,8 @@ export class DynamicFormComponent {
       // this.schema.required = ['password']
       // this.schema.onChange()
       // console.log(this.myChange)
-      console.log(this.schema)
-      console.log(this.schema.properties)
+      console.log(this.schema);
+      console.log(this.schema.properties);
     }
   }
 

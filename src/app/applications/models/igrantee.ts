@@ -11,3 +11,16 @@ export interface IGrantee {
     financialReportDate: Date;
     applicantType: string;
 }
+
+
+    // address1: string,
+    // address2: string,
+    // applicantType: string,
+    // city: string,
+    // dunsID: string,
+    // finReportDate: string,
+    // firstName: string,
+    // id: number,
+    // lastName: string,
+    // state: string,
+    // taxID: string
