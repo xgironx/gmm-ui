@@ -52,7 +52,7 @@ export class AppService {
     let body = {
       "postInstanceId": "string",
       "postTypeId": "string",
-      "postValues": application
+      "postValues": JSON.stringify(application)
     };
 
     return this._http.post(url, body, options)
