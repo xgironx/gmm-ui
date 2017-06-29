@@ -1,66 +1,70 @@
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { Injectable, Component } from '@angular/core';
-import { GrantType } from './grants'
+import { GrantType } from './grants';
+import { ApplicationForm } from '../models/application-form';
+import { serviceRoutes } from '../../../environments/environment';
 
 
 const GRANTS: GrantType[] = [
-  {"grantType":"terrorismProtectionGrant","poc":"","focus":"","region":"","status":""},
-  {"grantType":"disasterRecoveryGrant","poc":"","location":"","status":""},
-  {"grantType":"floodRecoveryGrant","poc":"","county":"","region":"","status":""}
+  { "grantType": "terrorismProtectionGrant", "poc": "", "focus": "", "region": "", "status": "" },
+  { "grantType": "disasterRecoveryGrant", "poc": "", "location": "", "status": "" },
+  { "grantType": "floodRecoveryGrant", "poc": "", "county": "", "region": "", "status": "" }
 ]
 
 @Injectable()
-export class AppService{
+export class AppService {
+  private _headers: Headers;
 
-  constructor(
-    private http: Http
-  ){}
+  constructor(private _http: Http) {
+    this._headers = new Headers();
+    this._headers.append('Access-Control-Allow-Headers', 'Content-Type');
+    this._headers.append('Access-Control-Allow-Methods', 'POST');
+    this._headers.append('Access-Control-Allow-Origin', '*');
+  }
 
   getGrants() {
-      return this.http.get('http://data-dev.apps.gmm.bahincubator.com/getGrantTypes')
-       .map((res: Response) => res.json());
+    return this._http.get(serviceRoutes.activiti.grants.getGrantTypes)
+      .map((res: Response) => res.json());
   }
 
   getData() {
-      return this.http.get('http://config-dev.apps.gmm.bahincubator.com/getAppForm')
-       .map(
-         (res: Response) => res.json()
-       );
+    return this._http.get(serviceRoutes.activiti.grants.getApplicationForm)
+      .map(
+      (res: Response) => res.json()
+      );
   }
 
-  get(grantType: string) : GrantType {
+  get(grantType: string): GrantType {
     return this.clone(GRANTS.find(p => p.grantType === grantType));
- }
+  }
 
- private clone(object: any){
+  private clone(object: any) {
     // hack
     //console.log(object)
     return JSON.parse(JSON.stringify(object));
   }
 
-  save(grant: GrantType){
-    let originalGrant = GRANTS.find(p => p.grantType === grant.grantType);
-    if (originalGrant) Object.assign(originalGrant, grant);
-    // saved muahahaha
+  submitApplication(application: JSON): Observable<ApplicationForm> {
+    let url: string = "http://submit-dev.apps.gmm.bahincubator.com:80/submit";
+    let postType = "dynamicUiForm-1";
+    let options = new RequestOptions({ headers: this._headers });
+    let body = {
+      "postInstanceId": "string",
+      "postTypeId": "string",
+      "postValues": application
+    };
+
+    return this._http.post(url, body, options)
+      .map((response: Response) => {
+        console.log('response is ' + response);
+        return response.json();
+      });
   }
- //  private baseUrl: string = 'http://dynamic-ui-dev.apps.gmm.bahincubator.com:80/'
- //
- //  constructor(private http : Http){
- //  }
- //
- //  getGrantTypes(): Observable<Person>{
- //    let grants$ = this.http
- //        .get('${this.baseUrl}/newApplicationForm', {headers: this.getHeaders()})
- //        .map(mapPersons)
- //        return grants$
- //  }
- //
- //  private getHeaders(){
- //    let headers = new Headers();
- //      headers.append('Accept', 'application/json');
- //      return headers;
- // }
-
-
+  //  getGrantTypes(): Observable<Person>{
+  //    let grants$ = this.http
+  //        .get('${this.baseUrl}/newApplicationForm', {headers: this.getHeaders()})
+  //        .map(mapPersons)
+  //        return grants$
+  //  }
 }

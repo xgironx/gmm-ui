@@ -1,5 +1,5 @@
 
-import { Component, Input, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver, OnInit, OnDestroy, Injectable, OnChanges, DoCheck, KeyValueDiffers, ChangeDetectorRef} from '@angular/core'
+import { Component, Input, ViewChild, ViewContainerRef, ComponentRef, ComponentFactoryResolver, OnInit, OnDestroy, Injectable, OnChanges, DoCheck, KeyValueDiffers, ChangeDetectorRef } from '@angular/core'
 import { AppService } from './application-dynamic-ui.service'
 import { ApplicationService } from '../application.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -13,15 +13,15 @@ import { Observable } from 'rxjs/Observable';
 })
 export class DynamicContentComponentDemo {
   context: any = {
-      text: 'test'
+    text: 'test'
   }
 }
 
 
 @Component({
   selector: 'dynamic-content',
-  template: '<div><div #container></div></div><button type="button" name="Submit" (click)="apply()">Submit</button><br><br><div  *ngFor= "let key of keys" ><label for="{{key}}" [class.dynamic]="true">{{key}}:</label><input type="text" name="{{key}}" value="" [class.texbox]="true"><br><br></div>',
-  providers:[
+  template: '<div><div #container></div></div><br><br><div  *ngFor= "let key of keys" ><label for="{{key}}" [class.dynamic]="true">{{key}}:</label><input type="text" name="{{key}}" value="" [class.texbox]="true"><br><br></div>',
+  providers: [
     AppService,
     ApplicationService,
     DynamicFormComponent],
@@ -29,7 +29,7 @@ export class DynamicContentComponentDemo {
 })
 
 export class DynamicContentComponent implements OnInit, OnDestroy {
-  @ViewChild('container', {read: ViewContainerRef})
+  @ViewChild('container', { read: ViewContainerRef })
   container: ViewContainerRef;
 
   @Input() type: string;
@@ -41,77 +41,77 @@ export class DynamicContentComponent implements OnInit, OnDestroy {
   // private _getGrantTypes: AppService
   private grantsTypes
   private grants
-  public keys : String[]
+  public keys: String[]
 
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
-    private service : AppService,
+    private service: AppService,
     private applicationService: ApplicationService,
-    private grantsService : DynamicFormComponent,
+    private grantsService: DynamicFormComponent,
     private dynamicForm: DynamicFormComponent
   ) {
+  }
+
+  apply() {
+
+    // this.grantsTypes = this.grantsTypesService.getGrants()
+    //  .subscribe(data => {
+    //    this.context = data
+    //    console.log('Grants: ', this.grantsTypes)
+    //  }
+    //)  //this.context)
+    // this.keys = Object.keys(this.grantsTypes)
+    // console.log(this.context)
+
+    // console.log(this.keys)
+    //this.service.save();
+    //this.service.save().subscribe(value => {
+    //this.dynamicForm.update();
+    //   this.applicationService.mockSaveApplication('oops').subscribe(value => {
+    //   console.log('value from return ' + value);
+    // },
+    // err => {
+    //   console.log(err);
+    // })
+    this.grants = this.grantsService.setMySchema(this.context)
+    // this.grantsTypes = this.grantsService.setMyModel(this.context)
+    // console.log(this.grantsTypes)
+  }
+
+
+  ngOnInit() {
+    if (this.type) {
+      let componentType = this.getComponentType(this.type);
+      let factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
+      this.componentRef = this.container.createComponent(factory);
+
+      let instance = <DynamicComponent>this.componentRef.instance;
+      instance.context = this.context;
     }
+  }
 
-    apply(){
-  
-      // this.grantsTypes = this.grantsTypesService.getGrants()
-      //  .subscribe(data => {
-      //    this.context = data
-      //    console.log('Grants: ', this.grantsTypes)
-      //  }
-       //)  //this.context)
-      // this.keys = Object.keys(this.grantsTypes)
-      // console.log(this.context)
-
-      // console.log(this.keys)
-      //this.service.save();
-      //this.service.save().subscribe(value => {
-        //this.dynamicForm.update();
-      //   this.applicationService.mockSaveApplication('oops').subscribe(value => {
-      //   console.log('value from return ' + value);
-      // },
-      // err => {
-      //   console.log(err);
-      // })
-      this.grants = this.grantsService.setMySchema(this.context)
-      // this.grantsTypes = this.grantsService.setMyModel(this.context)
-      // console.log(this.grantsTypes)
+  ngOnDestroy() {
+    if (this.componentRef) {
+      this.componentRef.destroy();
+      this.componentRef = null;
     }
+  }
 
+  private mappings = {
+    'sample1': DynamicSample1Component,
+    'sample2': DynamicSample2Component,
+    'sample3': DynamicFormComponent
+  };
 
-    ngOnInit(){
-      if (this.type) {
-        let componentType = this.getComponentType(this.type);
-        let factory = this.componentFactoryResolver.resolveComponentFactory(componentType);
-        this.componentRef = this.container.createComponent(factory);
-
-        let instance = <DynamicComponent> this.componentRef.instance;
-        instance.context = this.context;
-      }
-    }
-
-    ngOnDestroy(){
-      if(this.componentRef) {
-        this.componentRef.destroy();
-        this.componentRef = null;
-      }
-    }
-
-    private mappings = {
-      'sample1': DynamicSample1Component,
-      'sample2': DynamicSample2Component,
-      'sample3' : DynamicFormComponent
-    };
-
-    getComponentType(typeName: string){
-      let type = this.mappings[typeName];
-      return type || UnknownDynamicComponent;
-    }
+  getComponentType(typeName: string) {
+    let type = this.mappings[typeName];
+    return type || UnknownDynamicComponent;
+  }
 
 }
 
-export abstract class DynamicComponent{
+export abstract class DynamicComponent {
   context: any;
 }
 
@@ -120,21 +120,21 @@ export abstract class DynamicComponent{
   template: '<div>Dynamic sample 1 ({{context?.text}})</div>'
 })
 
-export class DynamicSample1Component extends DynamicComponent {}
+export class DynamicSample1Component extends DynamicComponent { }
 
 @Component({
   selector: 'dynamic-sample-2',
   template: '<div>Dynamic sample 2 ({{context?.text}})</div>'
 })
 
-export class DynamicSample2Component extends DynamicComponent {}
+export class DynamicSample2Component extends DynamicComponent { }
 
 @Component({
   selector: 'unknown-component',
   template: '<div>Unknown component</div>'
 })
 
-export class UnknownDynamicComponent extends DynamicComponent {}
+export class UnknownDynamicComponent extends DynamicComponent { }
 
 // @Component({
 //     selector: 'dynamic-component-demo',
@@ -155,41 +155,31 @@ export class UnknownDynamicComponent extends DynamicComponent {}
 //     // }
 // }
 @Component({
-  selector:"minimal-app",
+  selector: "minimal-app",
   // Bind the "mySchema" member to the schema input of the Form component.[validators]="myValidators" (onChange)="value=$event.value" {{value | json}}
-  template: '<sf-form [schema]="schema"  [actions]="myActions" (onChange)="value=$event.value"></sf-form> {{value | json}}'
+  template: '<sf-form [schema]="schema"  [actions]="saveForm" (onChange)="value=$event.value"></sf-form>'
 })
 
 
 export class DynamicFormComponent {
-// implements OnChanges{
+  // implements OnChanges{
   // The schema that will be used to generate a form
   // @Input()
   public schema: any = {
     "properties": {}
   }
-  public model: any;
+  public value;
+  public form;
 
-  @Input() public value;
-  private validators = {};
   constructor(
-    private dataService : AppService,
-    private service: ApplicationService
-  ){
+    private dataService: AppService
+  ) {
     // private differs: KeyValueDiffers
 
 
   }
   // mySchema = {}
-  public observable = Observable.create((observer)=>{
-    var id = setTimeout(() => {
-      console.log('timeout');
-      observer.onNext(42);
-    }, 1000);
-    return () => {
-      clearTimeout(id);
-    }
-  });
+
   private mySchema1 = {
     "properties": {
       "grantType": {
@@ -247,7 +237,7 @@ export class DynamicFormComponent {
         "description": "Grant Value"
       },
       "notificationsFrequency": {
-        "type":"string",
+        "type": "string",
         "description": "Dispersement Schedule",
         "widget": "select",
         "oneOf": [{
@@ -256,41 +246,40 @@ export class DynamicFormComponent {
           "description": "Quarterly", "enum": ["quarterly"]
         }, {
           "description": "Semi Annually", "enum": ["semiAnnually"]
-        },{
+        }, {
           "description": "Annually", "enum": ["annually"]
         }],
         "default": "annually"
       }
     },
-    "required": ["organizationName","state","projectTitle", "projectNumber", "projectYear"],
+    "required": ["organizationName", "state", "projectTitle", "projectNumber", "projectYear"],
     "buttons": [{
-      "id": "alert", // the id of the action callback
-      "label": "Alert !" // the text inside the button
+      "id": "submit", // the id of the action callback
+      "label": "Submit" // the text inside the button
     }],
     "fieldsets": [{
       "title": "General Information",
-      "fields": ["organizationName","address","state","typeApp","congressionalDistrict","projectTitle", "projectNumber", "projectYear", "projectDate"
-    ]
+      "fields": ["organizationName", "address", "state", "typeApp", "congressionalDistrict", "projectTitle", "projectNumber", "projectYear", "projectDate"
+      ]
     }, {
       "title": "Grant Information",
-      "fields": ["grantType","grantValue"
-      ,"notificationsFrequency"
-    ]
+      "fields": ["grantType", "grantValue"
+        , "notificationsFrequency"
+      ]
     }]
   }
 
-  myActions = {
-    "alert": (property) => {
-      this.model = property.value;
-      this.service.mockSaveApplication(property.value).subscribe(value => {
+  saveForm = {
+    "submit": (property) => {
+      console.log('submit');
+      this.form = property.value;
+      this.dataService.submitApplication(property.value).subscribe(value => {
         console.log('value from return ' + value);
       },
-      err => {
-        console.log(err);
-      })
-    
-    },
-    "reset": (property) => {property.reset()}
+        err => {
+          console.log(err);
+        })
+    }
   }
 
 
@@ -298,26 +287,19 @@ export class DynamicFormComponent {
 
   myModel = {}
 
-  update(){
-
-    console.log('value ' + this.value);
-    console.log('model ' + this.model);
-    console.log('my model ' + JSON.stringify(this.myModel));
-    
-  }
-  setMyModel(grant: string){
-    this.myModel = {grantType: grant}
+  setMyModel(grant: string) {
+    this.myModel = { grantType: grant }
     console.log(this.myModel);
     return this.myModel
   }
 
-  setMySchema(grant: string){
+  setMySchema(grant: string) {
     // this.schema = this.mySchema1
     // console.log(this.schema)
     // this.ngOnChanges(grant)
     // this.myChange = false
 
-    if(grant){
+    if (grant) {
       this.schema = this.mySchema1
       // this.myChange = true
       // ChangeDetectorRef.detectChanges()
@@ -330,10 +312,10 @@ export class DynamicFormComponent {
     }
   }
 
-  onChange(event:any){
+  onChange(event: any) {
     console.log('pls');
   }
-  ngOnChanges(changes: any){
+  ngOnChanges(changes: any) {
     console.log('change triggered')
     console.log(changes.prop)
     console.log(changes[this.schema].currentValue)
@@ -341,45 +323,45 @@ export class DynamicFormComponent {
   }
 
   // ngDoCheck(){
-    // var changes = this.differ.diff(this.schema.properties)
-    //
-    // if(changes){
-    //   console.log('***changes detected***')
-    //   changes.forEachChangedItem(r => console.log('changed: ', r.currentValue))
-    //   changes.forEachAddedItem(r => console.log('added: ', r.currentValue))
-    //   changes.forEachRemovedItem(r => console.log('removed: ', r.currentValue))
-    // }else {
-    //   console.log('nothing changed')
-    // }
-    // Object.keys(this.schema).map(elt => {
-    //   var objDiffer = this.objDiffer[elt]
-    //   var objChanges = objDiffer.diff(elt)
-    //   if(objChanges){
-    //     objChanges.forEachChangedItem((elt) => {
-    //       if(elt.key === 'properties'){
-    //         console.log("Properties changed")
-    //       }
-    //     })
-    //   }
-    // })
+  // var changes = this.differ.diff(this.schema.properties)
+  //
+  // if(changes){
+  //   console.log('***changes detected***')
+  //   changes.forEachChangedItem(r => console.log('changed: ', r.currentValue))
+  //   changes.forEachAddedItem(r => console.log('added: ', r.currentValue))
+  //   changes.forEachRemovedItem(r => console.log('removed: ', r.currentValue))
+  // }else {
+  //   console.log('nothing changed')
+  // }
+  // Object.keys(this.schema).map(elt => {
+  //   var objDiffer = this.objDiffer[elt]
+  //   var objChanges = objDiffer.diff(elt)
+  //   if(objChanges){
+  //     objChanges.forEachChangedItem((elt) => {
+  //       if(elt.key === 'properties'){
+  //         console.log("Properties changed")
+  //       }
+  //     })
+  //   }
+  // })
   // }
 
-  ngOnInit(grant: string){
+  ngOnInit(grant: string) {
     // console.log(grant)
     // if(grant){
-      this.schema = this.mySchema1;
+    this.schema = this.mySchema1;
 
-      // this.dataService.getData()
-      //  .subscribe(data => {
-      //    this.schema = data
-      //    console.log('Grants: ', this.schema)
-      //  }
-      //  )
-      // console.log(this.schema)
+    // this.dataService.getData()
+    //  .subscribe(data => {
+    //    this.schema = data
+    //    console.log('Grants: ', this.schema)
+    //  }
+    //  )
+    // console.log(this.schema)
     // }
-  //   this.objDiffer = {}
-  //   Object.keys(this.schema).map((elt) => {
-  //     this.objDiffer[elt] = this.differs.find(elt).create(null)
-  //   })
+    //   this.objDiffer = {}
+    //   Object.keys(this.schema).map((elt) => {
+    //     this.objDiffer[elt] = this.differs.find(elt).create(null)
+    //   })
   }
 }
