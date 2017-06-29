@@ -56,13 +56,13 @@ export class ApplicationsListComponent implements OnInit {
           }
           if(a.grantType && a.grantType.length > 0){
             if(this.grantTypes)
-              gt = this.grantTypes.find(x => x.grantTypeId == a.grantType).grantTypeName;
+              gt = this.grantTypes.find(x => x.id == a.grantType).name;
             else
               gt = a.grantType==null? "":a.grantType;
           }
           if(a.organization && a.organization.applicationType && a.organization.applicationType.length > 0){
             if(this.grantTypes)
-              at = this.applicantTypes.find(x => x.applicantTypeId == a.organization.applicationType).applicantTypeName;
+              at = this.applicantTypes.find(x => x.id == a.organization.applicationType).name;
             else
               at = a.organization.applicationType==null? "":a.organization.applicationType;
           }
@@ -87,7 +87,7 @@ export class ApplicationsListComponent implements OnInit {
              d.poc.toLowerCase().indexOf(val) !== -1 ||
              d.applicationType.toLowerCase().indexOf(val) !== -1 ||
              d.status.toLowerCase().indexOf(val) !== -1 ||
-             d.date.toLowerCase().indexOf(val) !== -1 
+             d.date.toLowerCase().indexOf(val) !== -1
       )
     });
     this.applications = applicationsTemp;
@@ -110,4 +110,3 @@ class ApplicationTableData {
         public date: string = "")
      {}
 }
-

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { ModalComponent, DialogRef } from 'angular2-modal';
- 
+
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IState } from '../../shared/models/istate';
@@ -36,9 +36,9 @@ export class GranteeAddModalComponent implements OnDestroy, OnInit, AfterViewIni
   selectedApplicantType:string = null;
 
   constructor(
-        private fb: FormBuilder, 
-        private _refDataService: RefDataService, 
-        private _applicationService: ApplicationService, 
+        private fb: FormBuilder,
+        private _refDataService: RefDataService,
+        private _applicationService: ApplicationService,
         private route: ActivatedRoute,
         private router: Router,
         public dialog: DialogRef<GranteeModalContext>
@@ -47,7 +47,7 @@ export class GranteeAddModalComponent implements OnDestroy, OnInit, AfterViewIni
     }
 
   ngAfterViewInit(){
-    
+
   }
 
   ngOnInit() {
@@ -67,34 +67,34 @@ export class GranteeAddModalComponent implements OnDestroy, OnInit, AfterViewIni
           this.grantee = this.context.grantee;
           this.editGrantee = this.context.grantee;
         }
-        
+
         for (var i = 0, len = this.context.states.length; i < len; i++) {
-          let option = { value: this.context.states[i].stateId, label: this.context.states[i].stateName };
+          let option = { value: this.context.states[i].id, label: this.context.states[i].name };
           this.stateDropDownList.push(option);
-          if(this.grantee != null && this.selectedState == null && this.context.states[i].stateName == this.grantee.state){
-            this.selectedState = this.context.states[i].stateId;
+          if(this.grantee != null && this.selectedState == null && this.context.states[i].name == this.grantee.state){
+            this.selectedState = this.context.states[i].id;
           }
         }
         for (var i = 0, len = this.context.applicantTypes.length; i < len; i++) {
-          let option = { value: this.context.applicantTypes[i].applicantTypeId, label: this.context.applicantTypes[i].applicantTypeName };
+          let option = { value: this.context.applicantTypes[i].id, label: this.context.applicantTypes[i].name };
           this.applicantTypesDropDownList.push(option);
-          if(this.grantee != null && this.selectedApplicantType == null && this.context.applicantTypes[i].applicantTypeName == this.grantee.applicantType){
-            this.selectedApplicantType = this.context.applicantTypes[i].applicantTypeId;
+          if(this.grantee != null && this.selectedApplicantType == null && this.context.applicantTypes[i].name == this.grantee.applicantType){
+            this.selectedApplicantType = this.context.applicantTypes[i].id;
           }
         }
   }
 
   save(formValues) {
-    let stateName: string = null;
+    let name: string = null;
     for (var i = 0, len = this.context.states.length; i < len; i++) {
-      if(formValues.state == this.context.states[i].stateId){
-        stateName = this.context.states[i].stateName;
+      if(formValues.state == this.context.states[i].id){
+        name = this.context.states[i].name;
       }
     }
     let applicantTypeName: string = null;
     for (var i = 0, len = this.context.applicantTypes.length; i < len; i++) {
-      if(formValues.applicantType == this.context.applicantTypes[i].applicantTypeId){
-        applicantTypeName = this.context.applicantTypes[i].applicantTypeName;
+      if(formValues.applicantType == this.context.applicantTypes[i].id){
+        applicantTypeName = this.context.applicantTypes[i].name;
       }
     }
     let grantee:IGrantee = {
@@ -104,7 +104,7 @@ export class GranteeAddModalComponent implements OnDestroy, OnInit, AfterViewIni
         street1: formValues.street1,
         street2: formValues.street2,
         city: formValues.city,
-        state: stateName,
+        state: name,
         dunsId: formValues.dunsId,
         taxId: formValues.taxId,
         financialReportDate: formValues.financialReportDate,

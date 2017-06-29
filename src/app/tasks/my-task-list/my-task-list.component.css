@@ -1,0 +1,122 @@
+.new-task {
+  cursor: pointer;
+}
+
+.close {
+  color: #000000; 
+  opacity: 1;
+}
+
+h1.line {
+  margin: auto;
+  border-top: 1px solid #adadad;
+}
+
+.btn.btn-default.dropdown-toggle.disabled {
+  border-radius: 0px !important;
+  text-align: left;
+}
+
+.background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  height: 2000px;
+  width: 2000px;
+  z-index: 1;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+}
+
+
+.task-model .heading .body {
+  color: #808080;
+}
+
+.task-model {
+  display: block;
+  position: absolute;
+  top: -65px;
+  left: 0;
+  height: 550px;
+  width: 896px;
+  z-index: 10;
+  border: 10px #000000;
+  background-color: #FFFFFF;
+}
+
+.task-model .heading {
+  position: relative;
+  padding: 10px;
+  border-bottom: 1px solid #adadad;
+}
+
+.task-model .heading p.title {
+  margin-bottom: 0 !important;
+  letter-spacing: 2px;
+}
+
+.task-model .heading button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 5px 10px;
+}
+
+.task-model .body {
+  float: left;
+  padding: 10px;
+  border-bottom: 1px solid #adadad;
+}
+
+.task-model .body .select-box {
+  display: inline-block;
+  margin: 12px;
+}
+
+.task-model .body .select-box label {
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+
+.task-model .body .select-box.status {
+  vertical-align: top;
+}
+
+.task-model .body .select-box.note .dropdown input {
+  width: 550px;
+  height: 150px;
+}
+
+.task-model .body .btn.btn-default.dropdown-toggle {
+  background-color: #FFFFFF;
+  border: 1px solid #000000;
+  width: 260px;
+  font-size: 14px;
+}
+
+.task-model .cta {
+  float: right;
+  margin: 20px;
+}
+
+.task-model .cta button {
+  display: inline-block;
+  height: 36px;
+  width: 220px;
+  color: #FFFFFF;
+  border-radius: 2px;
+  letter-spacing: 2px;
+  font-size: 13px;
+}
+
+.task-model .cta .cancel {
+  background-color: #4a4a4a;
+  border: 1px solid #4a4a4a;
+
+}
+
+.task-model .cta .save {
+  background-color: #4382b9;
+  border: 1px solid #4382b9;
+}
