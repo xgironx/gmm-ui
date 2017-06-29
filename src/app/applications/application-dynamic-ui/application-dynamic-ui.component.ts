@@ -359,17 +359,18 @@ export class DynamicFormComponent {
     // if(grant){
     this.schema = this.mySchema1;
 
-    // this.dataService.getData()
-    //  .subscribe(data => {
-    //    let schema = data;
+    this.dataService.getData()
+     .subscribe(data => {
+       let schemaData = data;
 
-    //    schema.buttons.id = 'submit';
-    //    schema.buttons.label = 'submit'
-    //    this.schema = schema;
-    //    console.log('Grants: ', this.schema)
-    //    console.log(this.mySchema1);
-    //  }
-    //  )
+      //  schema.buttons.id = 'submit';
+      //  schema.buttons.label = 'submit'
+       //this.schema = this.mySchema1;
+       //schema;
+       console.log('Grants: ', schemaData);
+      //  console.log(this.mySchema1);
+     }
+      )
     // console.log(this.schema)
     // }
     //   this.objDiffer = {}
