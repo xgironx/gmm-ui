@@ -1,8 +1,8 @@
-<div class="background"></div>
-<div class="task-model">
+<div *ngIf="toggleModel" class="background" (click)="closeTask()"></div>
+<div *ngIf="toggleModel" class="task-model">
   <div class="heading">
     <p class="title">DRAFT TASK</p>
-    <button type="button" class="close" aria-label="Close">
+    <button type="button" class="close" aria-label="Close" (click)="closeTask()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -109,14 +109,14 @@
   </div>
 
     <div class="cta">
-      <button class="cancel">CANCEL</button>
-      <button class="save">SAVE</button>
+      <button (click)="closeTask()" class="cancel">CANCEL</button>
+      <button (click)="closeTask()" class="save">SAVE</button>
     </div>
 
 </div><!--end task model-->
 
 <div class="card">
-  <div class="card-header">
+  <div (click)="openTask()" class="card-header">
     <i class="fa fa-cog pull-right" data-toggle="modal" ></i>
     MY TASKS
   </div>
@@ -157,7 +157,7 @@
    <ngx-datatable-column name="Actions" sortable="false" width="150">
     <template let-row="row" ngx-datatable-cell-template>
       <div>
-        <a class="new-task" (click)="editTask()" data-toggle="tooltip" data-placement="top" title="Edit Task">
+        <a class="new-task" (click)="openTask()" data-toggle="tooltip" data-placement="top" title="Edit Task">
           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
         </a>
       </div>

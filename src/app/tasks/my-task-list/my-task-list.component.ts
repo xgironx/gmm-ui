@@ -19,6 +19,7 @@ export class MyTaskListComponent implements OnInit {
     emptyMessage: "No data to display",
     totalMessage: "total"
   };
+  toggleModel: boolean;
 
   constructor(private _taskService: TaskService,private route: ActivatedRoute,
     private router: Router, private ddpipe: DateDifferencePipe) {
@@ -63,6 +64,14 @@ export class MyTaskListComponent implements OnInit {
 
   editTask(){
     
+  }
+
+  openTask() {
+    this.toggleModel = true;
+  }
+
+  closeTask() {
+    this.toggleModel = false;
   }
  
 }
