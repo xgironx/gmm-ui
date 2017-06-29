@@ -29,7 +29,7 @@ export class AppService {
   }
 
   getData() {
-    return this._http.get(serviceRoutes.activiti.grants.getApplicationForm)
+    return this._http.get("http://config-dev.apps.gmm.bahincubator.com/getAppForm")
       .map(
       (res: Response) => res.json()
       );

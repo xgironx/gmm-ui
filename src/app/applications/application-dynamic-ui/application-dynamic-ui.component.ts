@@ -20,7 +20,7 @@ export class DynamicContentComponentDemo {
 
 @Component({
   selector: 'dynamic-content',
-  template: '<div><div #container>hellloooooo{{applications|json}}</div></div><br><button (click)="click()">Get Applications</button><br><div  *ngFor= "let key of keys" ><label for="{{key}}" [class.dynamic]="true">{{key}}:</label><input type="text" name="{{key}}" value="" [class.texbox]="true"><br><br></div>',
+  template: '<div><div #container>{{applications|json}}</div></div><br><button (click)="click()">Get Applications</button><br><div  *ngFor= "let key of keys" ><label for="{{key}}" [class.dynamic]="true">{{key}}:</label><input type="text" name="{{key}}" value="" [class.texbox]="true"><br><br></div>',
   providers: [
     AppService,
     ApplicationService,
@@ -273,7 +273,8 @@ export class DynamicFormComponent {
       "fields": ["grantType", "grantValue"
         , "notificationsFrequency"
       ]
-    }]
+    }
+    ]
   }
 
   saveForm = {
@@ -360,8 +361,13 @@ export class DynamicFormComponent {
 
     // this.dataService.getData()
     //  .subscribe(data => {
-    //    this.schema = data
+    //    let schema = data;
+
+    //    schema.buttons.id = 'submit';
+    //    schema.buttons.label = 'submit'
+    //    this.schema = schema;
     //    console.log('Grants: ', this.schema)
+    //    console.log(this.mySchema1);
     //  }
     //  )
     // console.log(this.schema)
