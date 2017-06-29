@@ -20,7 +20,7 @@ export class DynamicContentComponentDemo {
 
 @Component({
   selector: 'dynamic-content',
-  template: '<div><div #container>{{applications|json}}</div></div><br><button (click)="click()">Get Applications</button><br><div  *ngFor= "let key of keys" ><label for="{{key}}" [class.dynamic]="true">{{key}}:</label><input type="text" name="{{key}}" value="" [class.texbox]="true"><br><br></div>',
+  template: '<div><div #container></div></div><br><button (click)="click()">Get Applications</button><br><div  *ngFor= "let key of keys" ><label for="{{key}}" [class.dynamic]="true">{{key}}:</label><input type="text" name="{{key}}" value="" [class.texbox]="true"><br><br></div>',
   providers: [
     AppService,
     ApplicationService,
