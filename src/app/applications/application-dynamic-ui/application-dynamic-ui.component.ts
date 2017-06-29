@@ -20,7 +20,7 @@ export class DynamicContentComponentDemo {
 
 @Component({
   selector: 'dynamic-content',
-  template: '<div><div #container></div></div><br><br><div  *ngFor= "let key of keys" ><label for="{{key}}" [class.dynamic]="true">{{key}}:</label><input type="text" name="{{key}}" value="" [class.texbox]="true"><br><br></div>',
+  template: '<div><div #container>hellloooooo{{applications|json}}</div></div><br><button (click)="click()">Get Applications</button><br><div  *ngFor= "let key of keys" ><label for="{{key}}" [class.dynamic]="true">{{key}}:</label><input type="text" name="{{key}}" value="" [class.texbox]="true"><br><br></div>',
   providers: [
     AppService,
     ApplicationService,
@@ -42,6 +42,7 @@ export class DynamicContentComponent implements OnInit, OnDestroy {
   private grantsTypes
   private grants
   public keys: String[]
+  public applications;
 
 
   constructor(
@@ -52,7 +53,13 @@ export class DynamicContentComponent implements OnInit, OnDestroy {
     private dynamicForm: DynamicFormComponent
   ) {
   }
-
+  click(){
+    this.service.getApplications()
+      .subscribe((applications) => {
+        console.log(applications);
+        this.applications = applications;
+      })
+  }
   apply() {
 
     // this.grantsTypes = this.grantsTypesService.getGrants()

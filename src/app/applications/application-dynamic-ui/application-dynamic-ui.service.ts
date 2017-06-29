@@ -35,6 +35,12 @@ export class AppService {
       );
   }
 
+  getApplications(){
+    return this._http.get('http://data-dev.apps.gmm.bahincubator.com:80/getApplications', this._headers)
+      .map((res: Response) => {
+        return res;
+      });
+  }
   get(grantType: string): GrantType {
     return this.clone(GRANTS.find(p => p.grantType === grantType));
   }
