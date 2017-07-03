@@ -14,10 +14,10 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^4.0.1",
-    "@angular/common": "^4.0.1",
+    "@angular/common": "4.2.4",
     "@angular/compiler": "^4.0.1",
     "@angular/compiler-cli": "^4.0.1",
-    "@angular/core": "^4.0.1",
+    "@angular/core": "4.2.4",
     "@angular/forms": "^4.0.1",
     "@angular/http": "^4.0.1",
     "@angular/platform-browser": "^4.0.1",
@@ -29,6 +29,7 @@
     "@types/jquery": "^2.0.41",
     "angular2-highcharts": "^0.5.5",
     "angular2-modal": "^2.0.3",
+    "angular2-schema-form": "^1.0.0-beta.7",
     "babel-polyfill": "^6.23.0",
     "bootstrap": "4.0.0-alpha.5",
     "classlist.js": "^1.1.20150312",
@@ -44,10 +45,9 @@
     "rxjs": "^5.2.0",
     "tether": "^1.4.0",
     "ts-helpers": "^1.1.2",
-    "typescript": "^2.2.2",
     "typings": "^2.1.0",
     "web-animations-js": "^2.2.2",
-    "zone.js": "^0.8.5"
+    "zone.js": "0.8.12"
   },
   "devDependencies": {
     "@angular/cli": "^1.0.0",
@@ -94,7 +94,7 @@
     "stylus-loader": "^3.0.1",
     "ts-node": "3.0.2",
     "tslint": "^5.0.0",
-    "typescript": "~2.2.2",
+    "typescript": "2.2.2",
     "url-loader": "^0.5.8",
     "webdriver-manager": "^12.0.4",
     "webpack-dev-server": "^2.4.2"

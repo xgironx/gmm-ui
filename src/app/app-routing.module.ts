@@ -8,8 +8,8 @@ import { StateResolver, ApplicantTypeResolver, GrantTypeResolver } from './share
 const routes: Routes = [
     { path: 'home', component: BranchChiefHomeComponent },
     { path: 'grantSpecialistHome', component: GrantSpecialistHomeComponent },
-    { 
-        path: 'granteeHome', 
+    {
+        path: 'granteeHome',
         component: GranteeHomeComponent,
         resolve: { grantTypes: GrantTypeResolver, applicantTypes: ApplicantTypeResolver },
     },

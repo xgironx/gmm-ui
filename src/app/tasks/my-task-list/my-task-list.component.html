@@ -1,51 +1,168 @@
-<div class="card">
-    <div class="card-header">
-        <i class="fa fa-cog pull-right" data-toggle="modal" ></i>
-        MY TASKS
+<div *ngIf="toggleModel" class="background" (click)="closeTask()"></div>
+<div *ngIf="toggleModel" class="task-model">
+  <div class="heading">
+    <p class="title">DRAFT TASK</p>
+    <button type="button" class="close" aria-label="Close" (click)="closeTask()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <!-- <hr class="line"> -->
+  <div class="body">  
+      <!--Task Type-->
+      <div class="select-box">
+        <label for="">Task Type</label>
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle disabled" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            To Do Task
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Action</a></li>
+          </ul>
+        </div>
+      </div>
+      <!--Assigning Group-->
+      <div class="select-box">
+        <label for="">Assigning Group</label>
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle disabled" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Grantee Applicant
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Action</a></li>
+          </ul>
+        </div>
+      </div>
+      <!--Assigned Group-->
+      <div class="select-box">
+        <label for="">Assigned Group</label>
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle disabled" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Grants Management Specialist
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Action</a></li>
+          </ul>
+        </div>
+      </div>      
+      <!--Requested Due Date-->
+      <div class="select-box">
+        <label for="">Requested Due Date</label>
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle disabled" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            04/12/2017
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Action</a></li>
+          </ul>
+        </div>
+      </div>
+      <!--Related Award-->
+      <div class="select-box">
+        <label for="">Related Award</label>
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle disabled" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Award 139
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Action</a></li>
+          </ul>
+        </div>
+      </div>
+      <!--Assigned Notes-->
+      <div class="select-box">
+        <label for="">Assigned Note</label>
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle disabled" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            I have approved this funding
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Action</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="line">
+      
+      <!--Status-->
+      <div class="select-box status">
+        <label for="">Status</label>
+        <div class="dropdown">
+          <button class="btn btn-default dropdown-toggle disabled" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            In Progress
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#">Action</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="select-box note">
+        <label for="">Notes</label>
+        <div class="dropdown"><input type="text"></div>
+      </div>
+  </div>
+
+    <div class="cta">
+      <button (click)="closeTask()" class="cancel">CANCEL</button>
+      <button (click)="closeTask()" class="save">SAVE</button>
     </div>
-    <div class="card-block">
-      <div class="row">
-  <div class="form-group col-md-12">
-<input
+
+</div><!--end task model-->
+
+<div class="card">
+  <div (click)="openTask()" class="card-header">
+    <i class="fa fa-cog pull-right" data-toggle="modal" ></i>
+    MY TASKS
+  </div>
+  <div class="card-block">
+    <div class="row">
+      <div class="form-group col-md-12">
+        <input
         type='text'
         style='padding:8px;margin:15px auto;width:30%;'
         placeholder='Type to filter on all columns...'
         (keyup)='updateFilter($event)'
-      />
+        />
       </div>
-  </div>
-        <ngx-datatable
-            class="material"
-                [rows]="tasks"
-                [headerHeight]="40"
-                [footerHeight]="40"
-                [rowHeight]="30"
-                [limit]="10"
-                [messages]="messages"
-        >
-          <ngx-datatable-column name="Task" sortable="true" prop="processCorrelationId" width="250">
-            <template let-row="row" ngx-datatable-cell-template>
-              <small>
-                <button class="btn btn-link btn-sm" (click)="navigateToApplication(row)" type="button">{{row.name}} {{row.processCorrelationId}}</button>
-              </small>
-            </template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Due Date" sortable="true" prop="dueDate" width="200">
-            <template let-row="row" ngx-datatable-cell-template>
-              <div>
-                 Due {{ row.dueDate | dateDifference : row.currentDate}}
-              </div>
-            </template>
-          </ngx-datatable-column>
-          <ngx-datatable-column name="Actions" sortable="false" width="150">
-            <template let-row="row" ngx-datatable-cell-template>
-              <div>
-                <a (click)="editTask()" data-toggle="tooltip" data-placement="top" title="Edit Task">
-                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                </a>
-              </div>
-            </template>
-          </ngx-datatable-column>
-        </ngx-datatable>
     </div>
+    <ngx-datatable
+    class="material"
+    [rows]="tasks"
+    [headerHeight]="40"
+    [footerHeight]="40"
+    [rowHeight]="30"
+    [limit]="10"
+    [messages]="messages"
+    >
+    <ngx-datatable-column name="Task" sortable="true" prop="processCorrelationId" width="250">
+      <template let-row="row" ngx-datatable-cell-template>
+        <small>
+          <button class="btn btn-link btn-sm" (click)="navigateToApplication(row)" type="button">{{row.name}} {{row.processCorrelationId}}</button>
+        </small>
+      </template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Due Date" sortable="true" prop="dueDate" width="200">
+      <template let-row="row" ngx-datatable-cell-template>
+        <div>
+         Due {{ row.dueDate | dateDifference : row.currentDate}}
+       </div>
+     </template>
+   </ngx-datatable-column>
+   <ngx-datatable-column name="Actions" sortable="false" width="150">
+    <template let-row="row" ngx-datatable-cell-template>
+      <div>
+        <a class="new-task" (click)="openTask()" data-toggle="tooltip" data-placement="top" title="Edit Task">
+          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        </a>
+      </div>
+    </template>
+  </ngx-datatable-column>
+</ngx-datatable>
+</div>
 </div>
