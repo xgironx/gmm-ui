@@ -51,16 +51,16 @@ export class ApplicationAddOrganizationComponent implements OnInit {
 
   constructor(
       private router:Router,
-      private vcRef: ViewContainerRef, 
-      public modal: Modal, 
+      private vcRef: ViewContainerRef,
+      public modal: Modal,
       private fb: FormBuilder,
       private route: ActivatedRoute,
       private _applicationService: ApplicationService,
       private curpipe: CurrencyPipePipe) {
     modal.overlay.defaultViewContainer = vcRef;
-    
+
   }
-  
+
   ngOnInit() {
     this.router.events
       .filter(e => e instanceof RoutesRecognized)
@@ -105,7 +105,7 @@ export class ApplicationAddOrganizationComponent implements OnInit {
             (<FormControl>this.applicationForm.controls['grantType']).patchValue(application.grantType, { onlySelf: true });
             (<FormControl>this.applicationForm.controls['grantValue']).patchValue(application.amount, { onlySelf: true });
             //(<FormControl>this.applicationForm.controls['grantValue']).patchValue(this.curpipe.transform(application.amount.toString()), { onlySelf: true });
-            
+
             if(application.pointOfContact != undefined && application.pointOfContact != null){
               this.pocs.push(application.pointOfContact);
             }
@@ -134,18 +134,18 @@ export class ApplicationAddOrganizationComponent implements OnInit {
       this.applicationState = ApplicationState.New;
       this.setFormControlEnableByState();
     }
-    
+
     this.states = this.route.snapshot.data['states'];
     for (var i = 0, len = this.states.length; i < len; i++) {
-        this.stateDropDownList.push({ value: this.states[i].stateId, label: this.states[i].stateName + ":" +  this.states[i].urbanArea});
+        this.stateDropDownList.push({ value: this.states[i].id, label: this.states[i].name + ":" +  this.states[i].abbreviation});
     }
     this.applicantTypes = this.route.snapshot.data['applicantTypes'];
     for (var i = 0, len = this.applicantTypes.length; i < len; i++) {
-        this.applicantTypesDropDownList.push({ value: this.applicantTypes[i].applicantTypeId, label: this.applicantTypes[i].applicantTypeName });
+        this.applicantTypesDropDownList.push({ value: this.applicantTypes[i].id, label: this.applicantTypes[i].name });
     }
     this.grantTypes = this.route.snapshot.data['grantTypes'];
     for (var i = 0, len = this.grantTypes.length; i < len; i++) {
-        this.grantTypesDropDownList.push({ value: this.grantTypes[i].grantTypeId, label: this.grantTypes[i].grantTypeName });
+        this.grantTypesDropDownList.push({ value: this.grantTypes[i].id, label: this.grantTypes[i].name });
     }
   }
 
@@ -331,7 +331,7 @@ export class ApplicationAddOrganizationComponent implements OnInit {
         (applications) => {
           console.log(applications);
         },
-        error => console.log(error),  
+        error => console.log(error),
         () => {
           //this.goToPreviousPage();
           this.router.navigate(['/granteeHome']);
@@ -347,7 +347,7 @@ export class ApplicationAddOrganizationComponent implements OnInit {
         (applications) => {
           console.log(applications);
         },
-        error => console.log(error),  
+        error => console.log(error),
         () => {
           //this.goToPreviousPage();
           this.router.navigate(['/granteeHome']);

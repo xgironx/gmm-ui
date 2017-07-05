@@ -1,0 +1,21 @@
+label.dynamic {
+  margin:0 0 3px 0;
+  padding:0px;
+  display:block;
+  font-weight: bold;
+}
+
+input.textbox {
+  width: 48%;
+}
+
+sf-form-object fieldset div {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 10px;
+  position: relative;
+  min-height: 1px;
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
