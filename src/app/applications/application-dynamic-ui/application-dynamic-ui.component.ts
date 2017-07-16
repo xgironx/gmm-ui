@@ -17,10 +17,11 @@ export class DynamicContentComponentDemo {
   }
 }
 
+                            // 201707152137L SATURDAY ADDED NEW MENU BUTTON STUBS
 console.log('ABOUT TO ENTER TEMPLATE')
 @Component({
   selector: 'dynamic-content',
-  // template: '<div><div #container></div></div><br><button (click)="click()">Get Applications</button><br><div  *ngFor= "let key of keys" ><label for="{{key}}" [class.dynamic]="true">{{key}}:</label><input type="text" name="{{key}}" value="" [class.texbox]="true"><br><br></div>',
+                            // template: '<div><div #container></div></div><br><button (click)="click()">Get Applications</button><br><div  *ngFor= "let key of keys" ><label for="{{key}}" [class.dynamic]="true">{{key}}:</label><input type="text" name="{{key}}" value="" [class.texbox]="true"><br><br></div>',
   template: '<div><div #container></div></div><br><button (click)="click()">SAVE DRAFT SHINY NEW BUTTON FROM GIRO</button><br><div  *ngFor= "let key of keys" ><label for="{{key}}" [class.dynamic]="true">{{key}}:</label><input type="text" name="{{key}}" value="" [class.texbox]="true"><br><br></div>, <div><div #container></div></div><br><button (click)="click()">CANCEL SHINIER NEW BUTTON COURTESY OF GIRO</button><br><div  *ngFor= "let key of keys" ><label for="{{key}}" [class.dynamic]="true">{{key}}:</label><input type="text" name="{{key}}" value="" [class.texbox]="true"><br><br></div>',
   providers: [
     AppService,
